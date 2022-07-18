@@ -1,0 +1,72 @@
+@use "../globals/mixins" as *;
+
+@font-face {
+  font-family: "TitilliumWeb-Regular", Tahoma, sans-serif;
+  src: url("../../../assets/fonts/TitilliumWeb-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "TitilliumWeb-SemiBold", Tahoma, sans-serif;
+  src: url("../../../assets/fonts/TitilliumWeb-SemiBold.ttf");
+  font-weight: 600;
+}
+
+//header
+h1 {
+  @include fonts(1.5rem, 1.5rem, 600);
+
+  @include medium {
+    @include fonts(1.4rem, 1.8rem, 600);
+  }
+}
+
+//sub-header
+h2 {
+  @include fonts(1rem, 2rem, 600);
+  @include medium {
+    @include fonts(1.4rem, 3rem, 600);
+  }
+}
+
+//Labels, Links & Buttons
+h3 {
+  @include fonts(0.7rem, 0.8rem, 600);
+  @include medium {
+    @include fonts(0.9rem, 1.1rem, 600);
+  }
+}
+
+//Table header
+h4 {
+  @include fonts(0.7rem, 0.9rem, 400);
+  @include medium {
+    @include fonts(0.5rem, 0.7rem, 400);
+  }
+}
+
+//Body Large
+p1 {
+  display: block;
+  @include fonts(0.9rem, 1.1rem, 400);
+  @include medium {
+    @include fonts(1rem, 1.2rem, 400);
+  }
+}
+
+//Body Medium
+p2 {
+  display: block;
+  @include fonts(0.7rem, 0.9rem, 400);
+  @include medium {
+    @include fonts(0.9rem, 1.1rem, 400);
+  }
+}
+//Body Small
+p3 {
+  display: block;
+  @include fonts(0.5rem, 0.7rem, 400);
+  @include medium {
+    @include fonts(0.7rem, 0.9rem, 400);
+  }
+}

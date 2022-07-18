@@ -1,0 +1,25 @@
+$tablet-min-width: 768px;
+
+@mixin small {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media (min-width: $tablet-min-width) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin fonts($font-size, $line-height, $font-weight) {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+}
