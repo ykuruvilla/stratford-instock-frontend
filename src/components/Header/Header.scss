@@ -3,7 +3,7 @@
 @use "../../styles/partials/resets" as *;
 
 .header {
-  background-color: #232940; // Graphite
+  background-color: --graphite;
   width: 100%;
 }
 
@@ -15,10 +15,15 @@
   padding: 3.039rem 1.6rem 2.4rem;
   gap: 2.871rem;
 
-  @include tablet {
+  @include medium {
     flex-direction: row;
     justify-content: space-between;
     padding: 2.4rem 3.2rem;
+  }
+
+  @include large {
+    // may need to double check calculation
+    padding: 2.4rem calc((100vw - 1020px) / 2);
   }
 
   &__logo {
@@ -29,7 +34,7 @@
       cursor: pointer;
     }
 
-    @include tablet {
+    @include medium {
       margin-top: 0;
     }
 
@@ -43,30 +48,33 @@
     justify-content: space-between;
     align-self: normal;
 
-    @include tablet {
+    @include medium {
       align-items: center;
       gap: 2.4rem;
     }
 
     &-item {
-      font-family: "Titillium Web";
+      font-family: "TitilliumWeb";
       font-weight: 600;
       font-size: 1.3rem;
       line-height: 2rem;
-      color: #bdc5d5; // cloud
-      // figma default 16.3rem but at 320px screen width goes out of bounds
+      color: --cloud;
+      // figma default 16.3rem but at 320px screen width item goes out of bounds
       width: 14.5rem;
-
-      //   height: 3.6rem;
-      //   text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &--selected {
-        color: white;
-        background: #13182c; // graphite
+        color: --white;
+        background: --instock-black;
         height: 3.6rem;
         border-radius: 2rem;
+        display: flex;
+        align-self: center;
+        justify-content: center;
 
-        @include tablet {
+        @include medium {
           height: 3.8rem;
           width: 10.7rem;
         }
@@ -80,8 +88,9 @@
         align-self: center;
         justify-content: center;
 
-        @include tablet {
+        @include medium {
           height: 2.2rem;
+          width: 10.7rem;
           width: 5.8rem;
         }
       }
@@ -89,28 +98,35 @@
   }
 
   &__text {
-    // using height 100% helps to align text in the middle vertically
-    height: 100%;
-    // if I use the same width as on figma it won't easily align the text horizontally
-    // width: 7.5rem;
-    display: flex;
     justify-content: center;
     align-items: center;
     border-bottom: solid 1px transparent;
-  }
 
-  &__inventory-text {
-    display: inline;
-    width: 5rem;
-    text-align: center;
+    &--selected {
+      &:hover {
+        border-bottom: 1px solid --cloud;
+        color: --white;
+      }
+    }
 
-    &:hover {
-      cursor: pointer;
-      border-bottom: 1px solid #fff;
+    &--unselected {
+      width: 5rem;
+      text-align: center;
+
+      &:hover {
+        cursor: pointer;
+        border-bottom: 1px solid --cloud;
+        color: --white;
+      }
     }
   }
 
+  &__warehouses-link {
+    height: 1.6rem;
+  }
+
   &__inventory-link {
+    height: 1.6rem;
     width: 5rem;
   }
 }
