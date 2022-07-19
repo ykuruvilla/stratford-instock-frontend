@@ -4,19 +4,39 @@
 @use "../../styles/partials/globals/resets" as *;
 
 .container {
-  margin: 1rem;
+  margin: 3rem;
 }
 
 .title {
-  margin: 1rem 0;
+  margin: 4rem 0;
 }
 .button-container {
   display: flex;
   justify-content: space-between;
-  margin: 0 1rem;
+  position: fixed;
+  bottom: 0;
+  padding: 0px 40px 20px 0px;
+  width: 100%;
 }
 
 .icon-close {
   display: block;
   margin-left: auto;
+}
+
+@include medium {
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 80px 20px 20px;
+    width: 100%;
+    position: relative;
+  }
+}
+
+//Styles for tablet
+@include large {
+  .button-container {
+    padding: 20px 200px 20px 20px;
+  }
 }

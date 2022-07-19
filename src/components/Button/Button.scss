@@ -11,11 +11,11 @@
   height: 36px;
   width: 100%;
   border-radius: 20px;
-  padding: 0 10px;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 8px;
 
   &__cancel {
     background-color: var(--white);
@@ -33,5 +33,6 @@
   .button {
     padding: 0 16px;
     height: 38px;
+    width: 70px;
   }
 }
