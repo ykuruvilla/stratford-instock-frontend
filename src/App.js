@@ -1,5 +1,11 @@
+import { DeleteWarehouseModal } from "./components/DeleteWarehouseModal/DeleteWarehouseModal";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <DeleteWarehouseModal />
+    </>
+  );
 }
 
 export default App;

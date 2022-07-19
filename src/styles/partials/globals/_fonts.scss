@@ -1,13 +1,13 @@
 @use "../globals/mixins" as *;
 
 @font-face {
-  font-family: "TitilliumWeb-Regular", Tahoma, sans-serif;
+  font-family: "TitilliumWeb", Tahoma, sans-serif;
   src: url("../../../assets/fonts/TitilliumWeb-Regular.ttf");
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "TitilliumWeb-SemiBold", Tahoma, sans-serif;
+  font-family: "TitilliumWeb", Tahoma, sans-serif;
   src: url("../../../assets/fonts/TitilliumWeb-SemiBold.ttf");
   font-weight: 600;
 }

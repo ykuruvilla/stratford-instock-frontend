@@ -4,13 +4,13 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: "titillium web";
+  font-family: "TitilliumWeb";
   height: 100vh;
   box-sizing: border-box;
   font-size: 0.625rem;
   text-decoration: none;
   list-style: none;
-  color: $instock-black;
+  color: var(--instock-black);
 }
 
 *,

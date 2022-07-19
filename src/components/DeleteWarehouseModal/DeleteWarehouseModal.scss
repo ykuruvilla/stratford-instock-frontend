@@ -1,0 +1,22 @@
+@use "../../styles/partials/globals/mixins" as *;
+@use "../../styles/partials/globals/fonts" as *;
+@use "../../styles/partials/globals/colors" as *;
+@use "../../styles/partials/globals/resets" as *;
+
+.container {
+  margin: 1rem;
+}
+
+.title {
+  margin: 1rem 0;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1rem;
+}
+
+.icon-close {
+  display: block;
+  margin-left: auto;
+}
