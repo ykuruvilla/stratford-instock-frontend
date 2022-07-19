@@ -17,7 +17,7 @@ h1 {
   @include fonts(2.8rem, 3.6rem, 600);
 
   @include medium {
-    @include fonts(3.1rem, 4rem, 600);
+    @include fonts(3.2rem, 4rem, 600);
   }
 }
 
@@ -45,26 +45,23 @@ h4 {
   }
 }
 
-//Body Large
-p1 {
-  display: block;
+//Body Large p1
+.body-large {
   @include fonts(1.5rem, 2.6rem, 400);
   @include medium {
-    @include fonts(1.6rem, 2.2rem, 400);
+    @include fonts(1.6rem, 2.8rem, 400);
   }
 }
 
-//Body Medium
-p2 {
-  display: block;
+//Body Medium p2
+p {
   @include fonts(1.3rem, 2rem, 400);
   @include medium {
     @include fonts(1.4rem, 2.2rem, 400);
   }
 }
-//Body Small
-p3 {
-  display: block;
+//Body Small p3
+.body-small {
   @include fonts(1.1rem, 1.6rem, 400);
   @include medium {
     @include fonts(1.2rem, 1.8rem, 400);
