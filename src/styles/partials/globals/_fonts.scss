@@ -14,59 +14,59 @@
 
 //header
 h1 {
-  @include fonts(1.5rem, 1.5rem, 600);
+  @include fonts(2.8rem, 3.6rem, 600);
 
   @include medium {
-    @include fonts(1.4rem, 1.8rem, 600);
+    @include fonts(3.1rem, 4rem, 600);
   }
 }
 
 //sub-header
 h2 {
-  @include fonts(1rem, 2rem, 600);
+  @include fonts(2rem, 2.8rem, 600);
   @include medium {
-    @include fonts(1.4rem, 3rem, 600);
+    @include fonts(2.4rem, 3.2rem, 600);
   }
 }
 
 //Labels, Links & Buttons
 h3 {
-  @include fonts(0.7rem, 0.8rem, 600);
+  @include fonts(1.3rem, 2rem, 600);
   @include medium {
-    @include fonts(0.9rem, 1.1rem, 600);
+    @include fonts(1.4rem, 2.2rem, 600);
   }
 }
 
 //Table header
 h4 {
-  @include fonts(0.7rem, 0.9rem, 400);
+  @include fonts(1.1rem, 1.6rem, 400);
   @include medium {
-    @include fonts(0.5rem, 0.7rem, 400);
+    @include fonts(1.2rem, 1.8rem, 400);
   }
 }
 
 //Body Large
 p1 {
   display: block;
-  @include fonts(0.9rem, 1.1rem, 400);
+  @include fonts(1.5rem, 2.6rem, 400);
   @include medium {
-    @include fonts(1rem, 1.2rem, 400);
+    @include fonts(1.6rem, 2.2rem, 400);
   }
 }
 
 //Body Medium
 p2 {
   display: block;
-  @include fonts(0.7rem, 0.9rem, 400);
+  @include fonts(1.3rem, 2rem, 400);
   @include medium {
-    @include fonts(0.9rem, 1.1rem, 400);
+    @include fonts(1.4rem, 2.2rem, 400);
   }
 }
 //Body Small
 p3 {
   display: block;
-  @include fonts(0.5rem, 0.7rem, 400);
+  @include fonts(1.1rem, 1.6rem, 400);
   @include medium {
-    @include fonts(0.7rem, 0.9rem, 400);
+    @include fonts(1.2rem, 1.8rem, 400);
   }
 }
