@@ -11,8 +11,8 @@ body {
   font-size: 0.625rem;
   text-decoration: none;
   list-style: none;
-  color: --instock-black;
-  background-color: var(--light-grey);
+  color: $instock-black;
+  background-color: $light-grey;
 }
 
 *,

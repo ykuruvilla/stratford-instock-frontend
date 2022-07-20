@@ -3,7 +3,7 @@
 @use "../../styles/partials/globals/resets" as *;
 
 .header {
-  background-color: var(--graphite);
+  background-color: $graphite;
   width: 100%;
 }
 
@@ -57,7 +57,7 @@
       font-weight: 600;
       font-size: 1.3rem;
       line-height: 2rem;
-      color: var(--cloud);
+      color: $cloud;
       // figma default 16.3rem but at 320px screen width item goes out of bounds
       display: flex;
       align-items: center;
@@ -73,8 +73,8 @@
       }
 
       &--selected {
-        color: var(--white);
-        background: var(--instock-black);
+        color: $white;
+        background: $instock-black;
         height: 3.6rem;
         width: 100%;
         border-radius: 2rem;
@@ -109,7 +109,7 @@
     &--selected {
       &:hover {
         text-decoration: underline;
-        color: var(--white);
+        color: $white;
       }
     }
 
@@ -120,7 +120,7 @@
       &:hover {
         cursor: pointer;
         text-decoration: underline;
-        color: var(--white);
+        color: $white;
       }
     }
   }
