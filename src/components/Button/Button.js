@@ -1,19 +1,9 @@
 import "./Button.scss";
 
-const ButtonCancel = () => {
+const Button = (props) => {
   return (
-    <button className="button button__cancel">
-      <h3 className="button__text">Cancel</h3>
-    </button>
+    <button className={`button button__${props.type}`}>{props.type}</button>
   );
 };
 
-const ButtonDelete = () => {
-  return (
-    <button className="button button__delete">
-      <h3 className="button__text">Delete</h3>
-    </button>
-  );
-};
-
-export { ButtonCancel, ButtonDelete };
+export default Button;

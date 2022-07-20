@@ -1,18 +1,20 @@
 import "./DeleteWarehouseModal.scss";
-import { ButtonCancel, ButtonDelete } from "../Button/Button";
+import Button from "../Button/Button";
 import closeIcon from "../../assets/icons/close-24px.svg";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 
 export const DeleteWarehouseModal = (props) => {
   const warehouseId = props?.warehouse?.id || 1;
   const deleteWarehouse = () => {
-    axios.delete(`http:localhost:8080/warehouses/${warehouseId}`);
-    // close pop up
+    axios.delete(`http:localhost:8080/warehouse/${warehouseId}`);
   };
   return (
     <section className="container">
-      <img className="icon-close" alt="close icon" src={closeIcon} />
+      <Link to="/">
+        <img className="icon-close" alt="close icon" src={closeIcon} />
+      </Link>
       <div>
         <h1 className="title">Delete Washington warehouse?</h1>
         <p>
@@ -21,8 +23,10 @@ export const DeleteWarehouseModal = (props) => {
         </p>
       </div>
       <div className="button-container">
-        <ButtonCancel />
-        <ButtonDelete onClick={deleteWarehouse} />
+        <Link to="/">
+          <Button type="cancel" />
+        </Link>
+        <Button type="delete" onClick={deleteWarehouse} />
       </div>
     </section>
   );

@@ -1,10 +1,10 @@
 @use "../../styles/partials/globals/mixins" as *;
 @use "../../styles/partials/globals/fonts" as *;
 @use "../../styles/partials/globals/colors" as *;
-@use "../../styles/partials/globals/resets" as *;
 
 .container {
   margin: 3rem;
+  height: 100%;
 }
 
 .title {
@@ -24,19 +24,16 @@
   margin-left: auto;
 }
 
+//Styles for tablet
 @include medium {
+  .container {
+    height: 60%;
+  }
   .button-container {
     display: flex;
     justify-content: flex-end;
     padding: 20px 80px 20px 20px;
     width: 100%;
     position: relative;
-  }
-}
-
-//Styles for tablet
-@include large {
-  .button-container {
-    padding: 20px 200px 20px 20px;
   }
 }

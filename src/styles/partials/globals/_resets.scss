@@ -1,10 +1,12 @@
 @use "./colors" as *;
+@use "./fonts" as *;
 
 html,
 body {
   margin: 0;
   padding: 0;
   font-family: "TitilliumWeb";
+  background-color: var(--light-grey);
   height: 100vh;
   box-sizing: border-box;
   font-size: 0.625rem;
