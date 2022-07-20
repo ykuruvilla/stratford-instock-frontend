@@ -6,23 +6,44 @@
   margin: -5.6rem 1.6rem 0;
   background-color: $white;
 
+  @include medium {
+    margin: -5.6rem 2.4rem 0;
+  }
+
   &__header {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     margin: 0 1.6rem;
+
+    @include medium {
+      flex-direction: row;
+      align-items: center;
+      margin: 0 2.4rem;
+    }
   }
 
   &__title {
     margin-top: 2.4rem;
     align-self: flex-start;
+
+    @include medium {
+      margin-top: 0;
+      margin-right: auto;
+      align-self: center;
+    }
   }
 
   &__search {
     display: flex;
     width: 100%;
     margin: 1.6rem 0;
+
+    @include medium {
+      width: fit-content;
+      margin-right: 2.4rem;
+    }
   }
 
   &__search-field {
@@ -33,6 +54,10 @@
     padding: 1.6rem;
     border-radius: 2rem;
     border: 1px solid $cloud;
+
+    @include medium {
+      height: 3.8rem;
+    }
 
     &::placeholder {
       color: $slate;
@@ -50,9 +75,31 @@
 
   &__table-headers {
     display: none;
+
+    @include medium {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 2.4rem;
+      background-color: $light-grey;
+    }
+  }
+
+  &__table-header-item {
+    display: flex;
+    align-items: center;
+    flex-basis: 20%;
+  }
+
+  &__sort-button {
+    border: none;
+    background-color: transparent;
   }
 
   &__container {
     margin-top: 1.6rem;
+
+    @include medium {
+      margin-top: 0;
+    }
   }
 }

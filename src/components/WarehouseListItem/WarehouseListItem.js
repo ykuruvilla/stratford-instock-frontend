@@ -19,7 +19,7 @@ function WarehouseListItem({ warehouseInfo }) {
             <img src={chevron} alt="Chevron right" />
           </NavLink>
           <h4 className="warehouse__info-header">ADDRESS</h4>
-          <p>{`${warehouseInfo.address}, ${warehouseInfo.city}, ${warehouseInfo.country}`}</p>
+          <p className="warehouse__address">{`${warehouseInfo.address}, ${warehouseInfo.city}, ${warehouseInfo.country}`}</p>
         </div>
         <div className="warehouse__contact-info">
           <h4 className="warehouse__info-header">CONTACT NAME</h4>
