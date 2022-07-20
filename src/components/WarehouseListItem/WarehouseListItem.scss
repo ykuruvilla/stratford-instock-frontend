@@ -1,1 +1,51 @@
 @use "../../styles/partials/globals/fonts" as *;
+@use "../../styles/partials/globals/mixins" as *;
+@use "../../styles/partials/globals/colors" as *;
+
+.warehouse {
+  &__list-item {
+    border-bottom: 1px solid $slate;
+  }
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.6rem;
+  }
+
+  &__info-header {
+    margin-bottom: 0.4rem;
+  }
+
+  &__name-link {
+    display: flex;
+    align-items: center;
+    color: $instock-indigo;
+    margin-bottom: 1.6rem;
+  }
+
+  &__contact-info {
+    margin-right: 1.6rem;
+  }
+
+  &__contact-name {
+    margin-bottom: 1.6rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1.6rem 1.6rem;
+  }
+
+  &__action-button {
+    border: none;
+    background-color: $white;
+  }
+}
+
+article {
+  &:first-child {
+    border-top: 1px solid $slate;
+  }
+}

@@ -1,0 +1,58 @@
+@use "../../styles/partials/globals/fonts" as *;
+@use "../../styles/partials/globals/mixins" as *;
+@use "../../styles/partials/globals/colors" as *;
+
+.warehouse-list {
+  margin: -5.6rem 1.6rem 0;
+  background-color: $white;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 1.6rem;
+  }
+
+  &__title {
+    margin-top: 2.4rem;
+    align-self: flex-start;
+  }
+
+  &__search {
+    display: flex;
+    width: 100%;
+    margin: 1.6rem 0;
+  }
+
+  &__search-field {
+    font-family: "TitilliumWeb";
+
+    height: 3.6rem;
+    width: 100%;
+    padding: 1.6rem;
+    border-radius: 2rem;
+    border: 1px solid $cloud;
+
+    &::placeholder {
+      color: $slate;
+    }
+    &:focus {
+      border: 1px solid $instock-indigo;
+    }
+  }
+
+  &__search-button {
+    background-color: transparent;
+    margin-left: -3.6rem;
+    border: none;
+  }
+
+  &__table-headers {
+    display: none;
+  }
+
+  &__container {
+    margin-top: 1.6rem;
+  }
+}

@@ -27,7 +27,7 @@ export default class WarehouseList extends Component {
       return <h1>Page loading...</h1>;
     }
     return (
-      <>
+      <section className="warehouse-list">
         <div className="warehouse-list__header">
           <h1 className="warehouse-list__title">Warehouses</h1>
           <form className="warehouse-list__search">
@@ -45,36 +45,35 @@ export default class WarehouseList extends Component {
             <button>Add New Warehouse</button>
           </form>
         </div>
-        <div className="warehouse__table-headers">
-          <div className="warehouse__table-header-item">
-            <h4 className="warehouse__table-heading">WAREHOUSE</h4>
-            <button>
+        <div className="warehouse-list__table-headers">
+          <div className="warehouse-list__table-header-item">
+            <h4 className="warehouse-list__table-heading">WAREHOUSE</h4>
+            <button className="warehouse-list__sort-button">
               <img src={sortIcon} alt="Sort icon" />
             </button>
           </div>
-          <div className="warehouse__table-header-item">
-            <h4 className="warehouse__table-heading">ADDRESS</h4>
-            <button>
+          <div className="warehouse-list__table-header-item">
+            <h4 className="warehouse-list__table-heading">ADDRESS</h4>
+            <button className="warehouse-list__sort-button">
               <img src={sortIcon} alt="Sort icon" />
             </button>
           </div>
-          <div className="warehouse__table-header-item">
-            <h4 className="warehouse__table-heading">CONTACT NAME</h4>
-            <button>
+          <div className="warehouse-list__table-header-item">
+            <h4 className="warehouse-list__table-heading">CONTACT NAME</h4>
+            <button className="warehouse-list__sort-button">
               <img src={sortIcon} alt="Sort icon" />
             </button>
           </div>
-          <div className="warehouse__table-header-item">
-            <h4 className="warehouse__table-heading">CONTACT INFORMATION</h4>
-            <button>
+          <div className="warehouse-list__table-header-item">
+            <h4 className="warehouse-list__table-heading">
+              CONTACT INFORMATION
+            </h4>
+            <button className="warehouse-list__sort-button">
               <img src={sortIcon} alt="Sort icon" />
             </button>
           </div>
-          <div className="warehouse__table-header-item">
-            <h4 className="warehouse__table-heading">ACTIONS</h4>
-            <button>
-              <img src={sortIcon} alt="Sort icon" />
-            </button>
+          <div className="warehouse-list__table-header-item">
+            <h4 className="warehouse-list__table-heading">ACTIONS</h4>
           </div>
         </div>
         <section className="warehouse-list__container">
@@ -84,7 +83,7 @@ export default class WarehouseList extends Component {
             );
           })}
         </section>
-      </>
+      </section>
     );
   }
 }
