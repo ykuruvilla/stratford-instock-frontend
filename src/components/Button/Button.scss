@@ -1,0 +1,38 @@
+@use "../../styles/partials/globals/mixins" as *;
+@use "../../styles/partials/globals/fonts" as *;
+@use "../../styles/partials/globals/colors" as *;
+@use "../../styles/partials/globals/resets" as *;
+
+//    &:hover {
+//     background-color: var(--brainflix-dark-blue);
+//   }
+
+.button {
+  height: 36px;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 8px;
+
+  &__cancel {
+    background-color: var(--white);
+    border: solid 1px var(--cloud);
+  }
+
+  &__delete {
+    background-color: var(--red);
+    color: var(--white);
+  }
+}
+
+//Styles for tablet
+@include medium {
+  .button {
+    padding: 0 16px;
+    height: 38px;
+    width: 70px;
+  }
+}
