@@ -1,9 +1,9 @@
-@use "../../styles/partials/mixins" as *;
-@use "../../styles/partials/variables" as *;
-@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/globals/mixins" as *;
+@use "../../styles/partials/globals/colors" as *;
+@use "../../styles/partials/globals/resets" as *;
 
 .header {
-  background-color: --graphite;
+  background-color: var(--graphite);
   width: 100%;
 }
 
@@ -50,25 +50,33 @@
 
     @include medium {
       align-items: center;
-      gap: 2.4rem;
     }
 
     &-item {
-      font-family: "TitilliumWeb";
+      font-family: "Titillium Web";
       font-weight: 600;
       font-size: 1.3rem;
       line-height: 2rem;
-      color: --cloud;
+      color: var(--cloud);
       // figma default 16.3rem but at 320px screen width item goes out of bounds
-      width: 14.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      max-width: 16.4rem;
+      min-width: 14.5rem;
+
+      @include medium {
+        height: 3.8rem;
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+        min-width: 10.7rem;
+      }
 
       &--selected {
-        color: --white;
-        background: --instock-black;
+        color: var(--white);
+        background: var(--instock-black);
         height: 3.6rem;
+        width: 100%;
         border-radius: 2rem;
         display: flex;
         align-self: center;
@@ -104,8 +112,8 @@
 
     &--selected {
       &:hover {
-        border-bottom: 1px solid --cloud;
-        color: --white;
+        border-bottom: 1px solid var(--cloud);
+        color: var(--white);
       }
     }
 
@@ -115,8 +123,8 @@
 
       &:hover {
         cursor: pointer;
-        border-bottom: 1px solid --cloud;
-        color: --white;
+        border-bottom: 1px solid var(--cloud);
+        color: var(--white);
       }
     }
   }

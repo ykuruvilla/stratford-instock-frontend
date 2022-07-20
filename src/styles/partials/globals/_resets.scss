@@ -10,7 +10,8 @@ body {
   font-size: 0.625rem;
   text-decoration: none;
   list-style: none;
-  color: $instock-black;
+  color: --instock-black;
+  background-color: var(--light-grey);
 }
 
 *,

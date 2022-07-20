@@ -1,4 +1,4 @@
-import logo from "../../InStock-Logo.svg";
+import logo from "../../assets/logos/instock-logo.svg";
 import "./Header.scss";
 import { Link, NavLink } from "react-router-dom";
 
@@ -11,13 +11,15 @@ const Header = () => {
         </NavLink>
         <ul className="navbar__list">
           <li className="navbar__list-item navbar__list-item--selected">
-            <Link to="/warehouse">
-              <span className="navbar__text"> Warehouses</span>
+            <Link to="/warehouse" className="navbar__warehouses-link">
+              <span className="navbar__text navbar__text--selected">
+                Warehouses
+              </span>
             </Link>
           </li>
           <li className="navbar__list-item navbar__list-item--unselected">
             <Link to="/inventory" className="navbar__inventory-link">
-              <span className="navbar__text navbar__inventory-text">
+              <span className="navbar__text navbar__text--unselected">
                 Inventory
               </span>
             </Link>
