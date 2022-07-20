@@ -17,15 +17,18 @@ export const DeleteWarehouseModal = (props) => {
       </Link>
       <div>
         <h1 className="title">Delete Washington warehouse?</h1>
-        <p>
+        <p className="body-large">
           Please confirm that you’d like to delete the Washington from the list
           of warehouses. You won’t be able to undo this action.
         </p>
       </div>
-      <div className="button-container">
-        <Link to="/">
-          <Button type="cancel" />
+      <div className="buttons-container">
+        <Link to="/" className="link">
+          <div className="button__margins">
+            <Button type="cancel" />
+          </div>
         </Link>
+
         <Button type="delete" onClick={deleteWarehouse} />
       </div>
     </section>

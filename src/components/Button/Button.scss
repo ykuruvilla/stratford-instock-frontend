@@ -3,35 +3,36 @@
 @use "../../styles/partials/globals/colors" as *;
 
 //    &:hover {
-//     background-color: var(--brainflix-dark-blue);
+//     background-color: $brainflix-dark-blue;
 //   }
 
 .button {
   height: 36px;
   font-family: "TitilliumWeb";
+  @include fonts(1.3rem, 2rem, 600);
   width: 100%;
   border-radius: 20px;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 8px;
   text-transform: capitalize;
 
   &__cancel {
-    background-color: var(--white);
-    border: solid 1px var(--cloud);
+    background-color: $white;
+    border: solid 1px $cloud;
   }
 
   &__delete {
-    background-color: var(--red);
-    color: var(--white);
+    background-color: $red;
+    color: $white;
   }
 }
 
 //Styles for tablet
 @include medium {
   .button {
+    @include fonts(1.4rem, 2.2rem, 600);
     padding: 0 16px;
     height: 38px;
     width: 70px;

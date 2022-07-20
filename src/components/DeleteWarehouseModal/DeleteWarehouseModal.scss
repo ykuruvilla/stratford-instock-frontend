@@ -7,12 +7,20 @@
   height: 100%;
 }
 
+.link {
+  width: 100%;
+}
+
 .title {
   margin: 4rem 0;
 }
-.button-container {
+
+.button__margins {
+  margin: 0 15px;
+}
+.buttons-container {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   position: fixed;
   bottom: 0;
   padding: 0px 40px 20px 0px;
@@ -29,11 +37,15 @@
   .container {
     height: 60%;
   }
-  .button-container {
+  .buttons-container {
     display: flex;
     justify-content: flex-end;
     padding: 20px 80px 20px 20px;
     width: 100%;
     position: relative;
+  }
+
+  .link {
+    width: 15%;
   }
 }
