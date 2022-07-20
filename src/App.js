@@ -12,8 +12,8 @@ function App() {
         {/* <Header /> */}
         <Switch>
           <Redirect exact from="/warehouses" to="/" />
-          <Route path="/" component={WarehouseList} />
-          <Route path="/inventory" component={Inventory} />
+          <Route path="/" component={""} />
+          <Route path="/inventory" component={""} />
         </Switch>
       </BrowserRouter>
     </>
