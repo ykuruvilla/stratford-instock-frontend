@@ -5,13 +5,26 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 import Modal from "react-modal";
-import { useState } from "react";
+import BASE_URL from "../../api/api";
 
-const DeleteWarehouseModal = ({ modalIsOpen, closeModal }) => {
-  // const warehouseId = props?.warehouse?.id || 1;
-  // const deleteWarehouse = () => {
-  //   axios.delete(`http:localhost:8080/warehouse/${warehouseId}`);
-  // };
+const DeleteWarehouseModal = ({
+  modalIsOpen,
+  closeModal,
+  warehouseID,
+  getWarehouseData,
+}) => {
+  const deleteWarehouse = () => {
+    console.log("delete clicked!");
+    axios
+      .delete(`${BASE_URL}/warehouse/${warehouseID}`)
+      .then((response) => {
+        console.log("delete success", response);
+        // GET latest data to trigger rerender
+        getWarehouseData();
+        closeModal();
+      })
+      .catch((error) => console.log("delete error", error));
+  };
 
   return (
     <>
@@ -28,6 +41,7 @@ const DeleteWarehouseModal = ({ modalIsOpen, closeModal }) => {
                 className="delete__icon-close"
                 alt="close icon"
                 src={closeIcon}
+                onClick={closeModal}
               />
             </NavLink>
             <div className="delete__wrapper">
@@ -39,10 +53,14 @@ const DeleteWarehouseModal = ({ modalIsOpen, closeModal }) => {
             </div>
           </div>
           <div className="delete__buttons-container">
-            <NavLink to="/" className="delete__cancel-link">
+            <NavLink
+              to="/"
+              className="delete__cancel-link"
+              onClick={closeModal}
+            >
               <Button type="cancel" label={"Cancel"} />
             </NavLink>
-            <Button type="delete" label={"Delete"} onClick={""} />
+            <Button type="delete" label={"Delete"} onClick={deleteWarehouse} />
           </div>
         </section>
       </Modal>

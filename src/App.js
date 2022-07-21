@@ -40,7 +40,10 @@ const App = () => {
           <Route
             path="/"
             render={() => (
-              <WarehouseList warehouseListData={warehouseListData} />
+              <WarehouseList
+                warehouseListData={warehouseListData}
+                getWarehouseData={getWarehouseData}
+              />
             )}
           />
           <Route path="/warehouse/:warehouseID" component={WarehouseDetails} />

@@ -21,7 +21,11 @@ function WarehouseListItem({ warehouseInfo }) {
 
   return (
     <>
-      <DeleteWarehouseModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      <DeleteWarehouseModal
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        warehouseID={warehouseInfo.id}
+      />
       <article className="warehouse__list-item">
         <div className="warehouse__details">
           <div className="warehouse__info">
