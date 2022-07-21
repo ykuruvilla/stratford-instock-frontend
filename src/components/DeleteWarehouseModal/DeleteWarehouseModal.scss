@@ -2,34 +2,58 @@
 @use "../../styles/partials/globals/fonts" as *;
 @use "../../styles/partials/globals/colors" as *;
 
-.container {
-  margin: 3rem;
-  height: 100%;
-}
+.delete {
+  &__container {
+    background-color: white;
+    margin-top: -13.848rem;
+    padding: 0 1.6rem;
+    height: 100%;
+    position: absolute;
 
-.link {
-  width: 100%;
-}
+    @include medium {
+      height: 60%;
+    }
+  }
 
-.title {
-  margin: 4rem 0;
-}
+  &__title {
+    margin: 4rem 0;
+  }
 
-.button__margins {
-  margin: 0 15px;
-}
-.buttons-container {
-  display: flex;
-  // justify-content: space-between;
-  position: fixed;
-  bottom: 0;
-  padding: 0px 40px 20px 0px;
-  width: 100%;
-}
+  &__link-close {
+    background-color: yellow;
+    margin-top: 2.1rem;
+    width: 100%;
+  }
 
-.icon-close {
-  display: block;
-  margin-left: auto;
+  &__icon-close {
+    display: block;
+    margin-left: auto;
+  }
+
+  &__button-margins {
+    margin: 0 15px;
+  }
+
+  &__buttons-container {
+    display: flex;
+    // justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    padding: 0px 40px 20px 0px;
+    width: 100%;
+
+    @include medium {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px 80px 20px 20px;
+      width: 100%;
+      position: relative;
+    }
+  }
+
+  &__cancel-link {
+    flex-basis: 50%;
+  }
 }
 
 //Styles for tablet
