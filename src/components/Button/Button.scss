@@ -36,4 +36,23 @@
       flex-basis: 7.2rem;
     }
   }
+
+  &__add {
+    background-color: $instock-indigo;
+    color: $white;
+    font-size: 1.3rem;
+    line-height: 3.6rem;
+    width: 100%;
+
+    &:hover {
+      background-color: $graphite;
+      cursor: pointer;
+    }
+
+    @include medium {
+      max-width: 16.8rem;
+      font-size: 1.4rem;
+      line-height: 2.2rem;
+    }
+  }
 }

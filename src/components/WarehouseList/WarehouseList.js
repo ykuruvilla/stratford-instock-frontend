@@ -5,6 +5,7 @@ import "./WarehouseList.scss";
 import searchIcon from "../../assets/icons/search-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
+import Button from "../Button/Button";
 
 const WarehouseList = ({ warehouseListData }) => {
   if (warehouseListData.length < 1) {
@@ -26,10 +27,13 @@ const WarehouseList = ({ warehouseListData }) => {
               <img src={searchIcon} alt="Search icon" />
             </button>
           </form>
-          <form className="warehouse-list__new-warehouse">
-            {/* TODO Replace with a Button component once we finalise the props */}
-            <button>Add New Warehouse</button>
-          </form>
+          {/* I don't think we need a form here  */}
+          {/* <form className="warehouse-list__new-warehouse"> */}
+          {/* TODO Replace with a Button component once we finalise the props */}
+          {/* <button>Add New Warehouse</button> */}
+          {/* is the + an icon or just text?  */}
+          <Button type={"add"} label={"+ Add New Warehouse"} />
+          {/* </form> */}
         </div>
         <div className="warehouse-list__table-headers">
           <div className="warehouse-list__info-headers">
