@@ -14,9 +14,8 @@ const DeleteWarehouseModal = ({
   getWarehouseData,
 }) => {
   const deleteWarehouse = () => {
-    console.log("delete clicked!");
     axios
-      .delete(`${BASE_URL}/warehouse/${warehouseID}`)
+      .delete(`${BASE_URL}warehouse/${warehouseID}`)
       .then((response) => {
         console.log("delete success", response);
         // GET latest data to trigger rerender
@@ -58,9 +57,13 @@ const DeleteWarehouseModal = ({
               className="delete__cancel-link"
               onClick={closeModal}
             >
-              <Button type="cancel" label={"Cancel"} />
+              <Button type="cancel" label={"Cancel"} onClick={closeModal} />
             </NavLink>
-            <Button type="delete" label={"Delete"} onClick={deleteWarehouse} />
+            <Button
+              type="delete"
+              label={"Delete"}
+              deleteWarehouse={deleteWarehouse}
+            />
           </div>
         </section>
       </Modal>

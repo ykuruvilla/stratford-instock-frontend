@@ -4,11 +4,10 @@ import "./WarehouseListItem.scss";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevron from "../../assets/icons/chevron_right-24px.svg";
-import Modal from "react-modal";
 import { useState } from "react";
 import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
 
-function WarehouseListItem({ warehouseInfo }) {
+function WarehouseListItem({ warehouseInfo, getWarehouseData }) {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -25,6 +24,7 @@ function WarehouseListItem({ warehouseInfo }) {
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}
         warehouseID={warehouseInfo.id}
+        getWarehouseData={getWarehouseData}
       />
       <article className="warehouse__list-item">
         <div className="warehouse__details">
