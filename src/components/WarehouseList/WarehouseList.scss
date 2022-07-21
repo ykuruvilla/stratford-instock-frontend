@@ -5,6 +5,7 @@
 .warehouse-list {
   margin: -5.6rem 1.6rem 0;
   background-color: $white;
+  border-radius: 3px;
 
   @include medium {
     margin: -7.1rem 2.4rem 0;
@@ -12,7 +13,7 @@
 
   @include large {
     width: 102rem;
-    margin: -5.6rem auto 0;
+    margin: -7.1rem auto 0;
   }
 
   &__header {

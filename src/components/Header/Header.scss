@@ -55,9 +55,11 @@
     display: flex;
     justify-content: space-between;
     align-self: normal;
+    padding-bottom: 8rem;
 
     @include medium {
       align-items: flex-start;
+      padding-bottom: 0;
     }
 
     &-item {
