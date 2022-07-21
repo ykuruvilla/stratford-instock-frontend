@@ -2,74 +2,150 @@
 @use "../../styles/partials/globals/fonts" as *;
 @use "../../styles/partials/globals/colors" as *;
 
-.delete {
-  &__container {
-    background-color: white;
-    margin-top: -13.848rem;
-    padding: 0 1.6rem;
-    height: 100%;
-    position: absolute;
+.modal {
+  width: 100%;
 
+  @include medium {
+    margin: 16rem auto 0;
+    // unexplained behaviour from Modal module so padding works like margin
+    padding: 0 4.8rem;
+  }
+
+  @include large {
+    // may need to double check calculation
+    padding-left: calc((100vw - 672px) / 2);
+    padding-right: calc((100vw - 672px) / 2);
+  }
+}
+
+.delete {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  justify-content: space-between;
+  padding: 2.1rem 1.6rem 2.1rem 2.4rem;
+
+  @include medium {
+    height: 26.2rem;
+    background-color: yellow;
+    border-radius: 3px;
+    padding: 0;
+    justify-content: flex-start;
+    // width: 67.2rem;
+  }
+
+  &__container-top {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__wrapper {
     @include medium {
-      height: 60%;
+      padding: 0 6.4rem 3.2rem;
     }
   }
 
   &__title {
-    margin: 4rem 0;
+    padding-bottom: 1.6rem;
   }
 
   &__link-close {
-    background-color: yellow;
-    margin-top: 2.1rem;
-    width: 100%;
-  }
+    display: flex;
+    align-self: flex-end;
+    justify-self: flex-end;
 
-  &__icon-close {
-    display: block;
-    margin-left: auto;
-  }
-
-  &__button-margins {
-    margin: 0 15px;
+    @include medium {
+      padding: 2.1rem 2.1rem 0.5rem;
+    }
   }
 
   &__buttons-container {
     display: flex;
-    // justify-content: space-between;
-    position: fixed;
-    bottom: 0;
-    padding: 0px 40px 20px 0px;
-    width: 100%;
+    justify-content: space-between;
+    gap: 1.7rem;
 
     @include medium {
-      display: flex;
       justify-content: flex-end;
-      padding: 20px 80px 20px 20px;
-      width: 100%;
-      position: relative;
+      padding: 0 6.4rem;
     }
   }
 
   &__cancel-link {
-    flex-basis: 50%;
-  }
-}
-
-//Styles for tablet
-@include medium {
-  .container {
-    height: 60%;
-  }
-  .buttons-container {
     display: flex;
-    justify-content: flex-end;
-    padding: 20px 80px 20px 20px;
-    width: 100%;
-    position: relative;
-  }
+    // do we have to limit the width of the buttons to 16.3rem?
+    flex-basis: 50%;
 
-  .link {
-    width: 15%;
+    @include medium {
+      height: 3.8rem;
+      flex-basis: 7.2rem;
+    }
   }
 }
+//   &__container {
+//     height: 100%;
+//     position: absolute;
+
+//     @include medium {
+//       height: 60%;
+//     }
+//   }
+
+//   &__title {
+//     margin: 4rem 0;
+//   }
+
+//   &__link-close {
+//     margin-top: 2.1rem;
+//     width: 100%;
+//   }
+
+//   &__icon-close {
+//     display: block;
+//     margin-left: auto;
+//   }
+
+//   &__button-margins {
+//     margin: 0 15px;
+//   }
+
+//   &__buttons-container {
+//     display: flex;
+//     // justify-content: space-between;
+//     // position: fixed;
+//     bottom: 0;
+//     // padding: 0px 40px 20px 0px;
+//     width: 100%;
+
+//     @include medium {
+//       display: flex;
+//       justify-content: flex-end;
+//       padding: 20px 80px 20px 20px;
+//       width: 100%;
+//       position: relative;
+//     }
+//   }
+
+//   &__cancel-link {
+//     flex-basis: 50%;
+//   }
+// }
+
+// //Styles for tablet
+// @include medium {
+//   .container {
+//     height: 60%;
+//   }
+//   .buttons-container {
+//     display: flex;
+//     justify-content: flex-end;
+//     padding: 20px 80px 20px 20px;
+//     width: 100%;
+//     position: relative;
+//   }
+
+//   .link {
+//     width: 15%;
+//   }
+// }

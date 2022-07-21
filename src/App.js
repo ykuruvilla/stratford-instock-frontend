@@ -8,13 +8,15 @@ import WarehouseList from "./components/WarehouseList/WarehouseList";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import BASE_URL from "./api/api";
 
 const App = () => {
   const [warehouseListData, setwarehouseListData] = useState([]);
 
-  const populateState = async () => {
+  const getWarehouseData = async () => {
     try {
-      const result = await axios.get("http://localhost:8080/warehouse");
+      console.log(`${BASE_URL}warehouse`);
+      const result = await axios.get(`${BASE_URL}warehouse`);
 
       setwarehouseListData(result.data);
     } catch (error) {
@@ -23,12 +25,11 @@ const App = () => {
   };
 
   useEffect(() => {
-    // initial mount (review later if condition is needed)
-    // if (warehouseListData.length < 1) {
-    //   populateState();
-    // }
-    populateState();
-  });
+    // initial mount
+    if (warehouseListData.length < 1) {
+      getWarehouseData();
+    }
+  }, []);
 
   return (
     <>

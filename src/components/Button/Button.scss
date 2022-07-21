@@ -2,40 +2,38 @@
 @use "../../styles/partials/globals/fonts" as *;
 @use "../../styles/partials/globals/colors" as *;
 
-//    &:hover {
-//     background-color: $brainflix-dark-blue;
-//   }
-
 .button {
-  height: 36px;
+  height: 3.6rem;
   font-family: "TitilliumWeb";
   @include fonts(1.3rem, 2rem, 600);
-  width: 100%;
   border-radius: 20px;
   border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: capitalize;
+  flex-basis: 50%;
 
   &__cancel {
     background-color: $white;
     border: solid 1px $cloud;
+    flex-basis: 100%;
+
+    &:hover {
+      cursor: pointer;
+      color: $instock-indigo;
+      border: solid 1px $instock-indigo;
+    }
   }
 
   &__delete {
     background-color: $red;
     color: $white;
-    flex-basis: 50%;
-  }
-}
 
-//Styles for tablet
-@include medium {
-  .button {
-    @include fonts(1.4rem, 2.2rem, 600);
-    padding: 0 16px;
-    height: 38px;
-    width: 70px;
+    &:hover {
+      cursor: pointer;
+      background-color: $graphite;
+    }
+
+    @include medium {
+      height: 3.8rem;
+      flex-basis: 7.2rem;
+    }
   }
 }
