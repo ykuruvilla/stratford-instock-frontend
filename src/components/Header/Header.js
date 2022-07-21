@@ -6,9 +6,12 @@ const Header = () => {
   return (
     <header className="header">
       <nav className="navbar">
-        <NavLink to="/" className="navbar__logo-link">
-          <img src={logo} className="navbar__logo" alt="instock-logo" />
-        </NavLink>
+        <div className="navbar__logo-container">
+          <NavLink to="/" className="navbar__logo-link">
+            <img src={logo} className="navbar__logo" alt="instock-logo" />
+          </NavLink>
+        </div>
+
         <ul className="navbar__list">
           <li className="navbar__list-item navbar__list-item--selected">
             <Link to="/warehouse" className="navbar__warehouses-link">

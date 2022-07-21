@@ -7,7 +7,12 @@
   background-color: $white;
 
   @include medium {
-    margin: -5.6rem 2.4rem 0;
+    margin: -7.1rem 2.4rem 0;
+  }
+
+  @include large {
+    width: 102rem;
+    margin: -5.6rem auto 0;
   }
 
   &__header {
@@ -79,15 +84,30 @@
     @include medium {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding: 0.8rem 2.4rem;
       background-color: $light-grey;
     }
   }
 
+  &__info-headers {
+    display: flex;
+    flex-basis: 80%;
+  }
+
+  &__action-headers {
+    flex-basis: 20%;
+  }
+
   &__table-header-item {
     display: flex;
     align-items: center;
-    flex-basis: 20%;
+    flex-basis: 25%;
+
+    &--actions {
+      text-align: right;
+      flex-basis: 100%;
+    }
   }
 
   &__sort-button {

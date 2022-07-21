@@ -18,12 +18,20 @@
   @include medium {
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-start;
     padding: 2.4rem 3.2rem;
+    height: 16rem;
   }
 
   @include large {
     // may need to double check calculation
     padding: 2.4rem calc((100vw - 1020px) / 2);
+  }
+
+  &__logo-container {
+    height: 3.8rem;
+    display: flex;
+    align-items: center;
   }
 
   &__logo {
@@ -49,7 +57,7 @@
     align-self: normal;
 
     @include medium {
-      align-items: center;
+      align-items: flex-start;
     }
 
     &-item {
@@ -94,9 +102,10 @@
         justify-content: center;
 
         @include medium {
-          height: 2.2rem;
+          height: 3.8rem;
           width: 10.7rem;
           width: 5.8rem;
+          align-self: normal;
         }
       }
     }

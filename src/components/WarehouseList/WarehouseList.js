@@ -46,34 +46,38 @@ export default class WarehouseList extends Component {
           </form>
         </div>
         <div className="warehouse-list__table-headers">
-          <div className="warehouse-list__table-header-item">
-            <h4 className="warehouse-list__table-heading">WAREHOUSE</h4>
-            <button className="warehouse-list__sort-button">
-              <img src={sortIcon} alt="Sort icon" />
-            </button>
+          <div className="warehouse-list__info-headers">
+            <div className="warehouse-list__table-header-item">
+              <h4 className="warehouse-list__table-heading">WAREHOUSE</h4>
+              <button className="warehouse-list__sort-button">
+                <img src={sortIcon} alt="Sort icon" />
+              </button>
+            </div>
+            <div className="warehouse-list__table-header-item">
+              <h4 className="warehouse-list__table-heading">ADDRESS</h4>
+              <button className="warehouse-list__sort-button">
+                <img src={sortIcon} alt="Sort icon" />
+              </button>
+            </div>
+            <div className="warehouse-list__table-header-item">
+              <h4 className="warehouse-list__table-heading">CONTACT NAME</h4>
+              <button className="warehouse-list__sort-button">
+                <img src={sortIcon} alt="Sort icon" />
+              </button>
+            </div>
+            <div className="warehouse-list__table-header-item">
+              <h4 className="warehouse-list__table-heading">
+                CONTACT INFORMATION
+              </h4>
+              <button className="warehouse-list__sort-button">
+                <img src={sortIcon} alt="Sort icon" />
+              </button>
+            </div>
           </div>
-          <div className="warehouse-list__table-header-item">
-            <h4 className="warehouse-list__table-heading">ADDRESS</h4>
-            <button className="warehouse-list__sort-button">
-              <img src={sortIcon} alt="Sort icon" />
-            </button>
-          </div>
-          <div className="warehouse-list__table-header-item">
-            <h4 className="warehouse-list__table-heading">CONTACT NAME</h4>
-            <button className="warehouse-list__sort-button">
-              <img src={sortIcon} alt="Sort icon" />
-            </button>
-          </div>
-          <div className="warehouse-list__table-header-item">
-            <h4 className="warehouse-list__table-heading">
-              CONTACT INFORMATION
-            </h4>
-            <button className="warehouse-list__sort-button">
-              <img src={sortIcon} alt="Sort icon" />
-            </button>
-          </div>
-          <div className="warehouse-list__table-header-item">
-            <h4 className="warehouse-list__table-heading">ACTIONS</h4>
+          <div className="warehouse-action-headers">
+            <div className="warehouse-list__table-header-item warehouse-list__table-header-item--actions">
+              <h4 className="warehouse-list__table-heading">ACTIONS</h4>
+            </div>
           </div>
         </div>
         <section className="warehouse-list__container">
