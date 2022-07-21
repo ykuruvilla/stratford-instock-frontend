@@ -1,0 +1,117 @@
+@use "../../styles/partials/globals/fonts" as *;
+@use "../../styles/partials/globals/mixins" as *;
+@use "../../styles/partials/globals/colors" as *;
+
+.warehouse {
+  &__list-item {
+    border-bottom: 1px solid $cloud;
+
+    @include medium {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &:hover {
+      background-color: $light-grey;
+    }
+  }
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.6rem;
+
+    @include medium {
+      margin: 1.6rem 0 1.6rem 2.4rem;
+      flex-basis: 80%;
+    }
+  }
+
+  &__info {
+    @include medium {
+      display: flex;
+      flex-basis: 50%;
+    }
+  }
+
+  &__info-header {
+    margin-bottom: 0.4rem;
+
+    @include medium {
+      display: none;
+    }
+  }
+
+  &__name-link {
+    display: flex;
+    align-items: center;
+    color: $instock-indigo;
+    margin-bottom: 1.6rem;
+
+    @include medium {
+      flex-basis: 50%;
+    }
+  }
+
+  &__address {
+    @include medium {
+      flex-basis: 50%;
+      padding-right: 2.4rem;
+    }
+  }
+
+  &__contact-info {
+    margin-right: 1.6rem;
+
+    @include medium {
+      display: flex;
+      flex-basis: 50%;
+    }
+  }
+
+  &__contact-name {
+    margin-bottom: 1.6rem;
+
+    @include medium {
+      flex-basis: 50%;
+    }
+  }
+
+  &__contact-details-container {
+    @include medium {
+      flex-basis: 50%;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1.6rem 1.6rem;
+
+    @include medium {
+      margin: 1.6rem 0 1.6rem 0;
+      padding-right: 2.4rem;
+      justify-content: flex-end;
+      flex-basis: 20%;
+    }
+  }
+
+  &__action-button {
+    border: none;
+    background-color: transparent;
+
+    @include medium {
+      margin-left: 2.4rem;
+    }
+  }
+}
+
+article {
+  &:first-child {
+    border-top: 1px solid $cloud;
+
+    @include medium {
+      border-top: none;
+    }
+  }
+}
