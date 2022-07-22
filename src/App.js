@@ -28,7 +28,7 @@ const App = () => {
     if (warehouseListData.length < 1) {
       getWarehouseData();
     }
-  }, [warehouseListData]);
+  }, [warehouseListData.length]);
 
   return (
     <>

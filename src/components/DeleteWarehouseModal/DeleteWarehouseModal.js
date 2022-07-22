@@ -20,7 +20,7 @@ const DeleteWarehouseModal = ({
       .delete(`${BASE_URL}warehouse/${warehouseID}`)
       .then((response) => {
         console.log("delete success", response);
-        history.go(0);
+        // history.go(0);
         closeModal();
       })
       .catch((error) => console.log("delete error", error));
@@ -58,13 +58,9 @@ const DeleteWarehouseModal = ({
               className="delete__cancel-link"
               onClick={closeModal}
             >
-              <Button type="cancel" label={"Cancel"} onClick={closeModal} />
+              <Button type="cancel" label={"Cancel"} action={closeModal} />
             </NavLink>
-            <Button
-              type="delete"
-              label={"Delete"}
-              deleteWarehouse={deleteWarehouse}
-            />
+            <Button type="delete" label={"Delete"} action={deleteWarehouse} />
           </div>
         </section>
       </Modal>
