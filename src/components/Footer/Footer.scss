@@ -1,0 +1,20 @@
+@use "../../styles/partials/globals/fonts" as *;
+@use "../../styles/partials/globals/mixins" as *;
+@use "../../styles/partials/globals/colors" as *;
+
+.footer {
+  padding: 4rem 0;
+
+  @include medium {
+    padding-top: 7rem;
+  }
+
+  @include large {
+    padding: 4.8rem 0;
+  }
+
+  &__text {
+    text-align: center;
+    color: $slate;
+  }
+}
