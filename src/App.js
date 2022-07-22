@@ -41,7 +41,7 @@ const App = () => {
             render={() => (
               <WarehouseList
                 warehouseListData={warehouseListData}
-                getWarehouseData={getWarehouseData}
+                setwarehouseListData={setwarehouseListData}
               />
             )}
           />
