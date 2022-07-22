@@ -1,5 +1,6 @@
 import { Route, Switch, Redirect } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
+import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 // import Inventory from "./pages/Inventory/Inventory";
 // import Warehouses from "./pages/Warehouses/Warehouses";
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/warehouse/:warehouseID" component={WarehouseDetails} />
           <Route path="/inventory" component={""} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </>
   );
