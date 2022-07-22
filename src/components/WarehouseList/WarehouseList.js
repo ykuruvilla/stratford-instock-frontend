@@ -5,7 +5,7 @@ import searchIcon from "../../assets/icons/search-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import Button from "../Button/Button";
 
-const WarehouseList = ({ warehouseListData, getWarehouseData }) => {
+const WarehouseList = ({ warehouseListData, setwarehouseListData }) => {
   if (warehouseListData.length < 1) {
     return <h1>Page loading...</h1>;
   }
@@ -67,7 +67,7 @@ const WarehouseList = ({ warehouseListData, getWarehouseData }) => {
             <WarehouseListItem
               warehouseInfo={warehouse}
               key={warehouse.id}
-              getWarehouseData={getWarehouseData}
+              setwarehouseListData={setwarehouseListData}
             />
           );
         })}
