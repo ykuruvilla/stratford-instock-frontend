@@ -43,7 +43,6 @@ const App = () => {
           <Redirect exact from="/warehouses" to="/" />
           <Route
             path="/"
-<<<<<<< HEAD
             render={(routerProps) => (
               <Table
                 {...routerProps}
@@ -57,12 +56,6 @@ const App = () => {
                 colTwoTitle=" ADDRESS"
                 colThreeTitle="CONTACT NAME"
                 colFourTitle="CONTACT INFORMATION"
-=======
-            render={() => (
-              <WarehouseList
-                warehouseListData={warehouseListData}
-                setwarehouseListData={setwarehouseListData}
->>>>>>> develop
               />
             )}
           />
