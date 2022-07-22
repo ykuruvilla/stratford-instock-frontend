@@ -4,7 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 // import Inventory from "./pages/Inventory/Inventory";
 // import Warehouses from "./pages/Warehouses/Warehouses";
-import WarehouseList from "./components/WarehouseList/WarehouseList";
+import Table from "./components/Table/Table";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -31,6 +31,10 @@ const App = () => {
     }
   }, [warehouseListData.length]);
 
+  // useEffect(() => {
+  //   // inventory axios call
+  // }, [warehouseId]);
+
   return (
     <>
       <BrowserRouter>
@@ -39,10 +43,26 @@ const App = () => {
           <Redirect exact from="/warehouses" to="/" />
           <Route
             path="/"
+<<<<<<< HEAD
+            render={(routerProps) => (
+              <Table
+                {...routerProps}
+                data={warehouseListData}
+                getWarehouseData={getWarehouseData}
+                title="Warehouses"
+                hasSearch={true}
+                buttonType="add"
+                buttonLabel="+ Add New Warehouse"
+                colOneTitle="WAREHOUSE"
+                colTwoTitle=" ADDRESS"
+                colThreeTitle="CONTACT NAME"
+                colFourTitle="CONTACT INFORMATION"
+=======
             render={() => (
               <WarehouseList
                 warehouseListData={warehouseListData}
                 setwarehouseListData={setwarehouseListData}
+>>>>>>> develop
               />
             )}
           />
