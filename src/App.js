@@ -8,6 +8,7 @@ import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BASE_URL from "./api/api";
+import "./App.scss";
 
 const App = () => {
   const [warehouseListData, setwarehouseListData] = useState([]);

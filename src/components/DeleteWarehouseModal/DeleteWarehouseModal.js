@@ -1,7 +1,7 @@
 import "./DeleteWarehouseModal.scss";
 import Button from "../Button/Button";
 import closeIcon from "../../assets/icons/close-24px.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 import Modal from "react-modal";
@@ -13,13 +13,14 @@ const DeleteWarehouseModal = ({
   warehouseID,
   getWarehouseData,
 }) => {
+  const history = useHistory();
+
   const deleteWarehouse = () => {
     axios
       .delete(`${BASE_URL}warehouse/${warehouseID}`)
       .then((response) => {
         console.log("delete success", response);
-        // GET latest data to trigger rerender
-        getWarehouseData();
+        history.go(0);
         closeModal();
       })
       .catch((error) => console.log("delete error", error));

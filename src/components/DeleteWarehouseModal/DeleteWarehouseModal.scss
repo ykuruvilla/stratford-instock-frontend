@@ -4,17 +4,17 @@
 
 .modal {
   width: 100%;
+  background-color: rgba($instock-black, 0.7);
 
   @include medium {
-    margin: 16rem auto 0;
     // unexplained behaviour from Modal module so padding works like margin
-    padding: 0 4.8rem;
+    padding: 16rem 4.8rem 100%;
   }
 
   @include large {
     // may need to double check calculation
-    padding-left: calc((100vw - 672px) / 2);
-    padding-right: calc((100vw - 672px) / 2);
+    padding: 16rem calc((100vw - 672px) / 2) 100%;
+    margin: 0;
   }
 }
 
