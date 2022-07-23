@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import Button from "../Button/Button";
 import FormCard from "../FormCard/FormCard";
 import "./Form.scss";
 import { validateInput } from "../../utils/helper";
 import axios from "axios";
-const { BASE_URL } = require("../../api/api/");
+import BASE_URL from "../../api/api";
 
-const Form = ({ title }) => {
+const Form = ({ title, setWarehouseListData }) => {
   // left/up details inputs
   const [warehouseNameError, setWarehouseNameError] = useState(false);
   const [streetAddressError, setstreetAddressError] = useState(false);
@@ -73,9 +73,33 @@ const Form = ({ title }) => {
         return;
       }
     }
-    // do axios call
-    axios.post();
+    // if no input error -> POST data to backend
+    const newWarehouseObj = {
+      name: e.target.WarehouseName.value,
+      address: e.target.StreetAddress.value,
+      city: e.target.City.value,
+      country: e.target.Country.value,
+      contact: {
+        name: e.target.ContactName.value,
+        position: e.target.Position.value,
+        phone: e.target.PhoneNumber.value,
+        email: e.target.Email.value,
+      },
+    };
+    console.log(`${BASE_URL}warehouse`);
+    axios
+      .post(`${BASE_URL}warehouse`, newWarehouseObj)
+      .then((response) => {
+        console.log(response);
+        // add new warehouse to state to trigger re-render
+        setWarehouseListData((prevData) => [
+          ...prevData,
+          response.data.resourceCreated,
+        ]);
+      })
+      .catch((error) => console.log("POST new warehouse error", error));
     e.target.reset();
+    history.push("/warehouse");
   };
 
   const cancelSubmitHandler = (e) => {
@@ -86,7 +110,9 @@ const Form = ({ title }) => {
   return (
     <section className="form">
       <div className="form__container">
-        <img src={arrow} alt="" className="form__arrow" />
+        <Link to="/warehouse">
+          <img src={arrow} alt="" className="form__arrow" />
+        </Link>
         <h1 className="form__title">{title}</h1>
       </div>
       <form onSubmit={formSubmitHandler}>

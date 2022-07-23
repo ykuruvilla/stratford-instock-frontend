@@ -29,19 +29,24 @@ const App = () => {
     if (warehouseListData.length < 1) {
       getWarehouseData();
     }
-  }, [warehouseListData.length]);
+  }, [warehouseListData]);
 
-  // order the routes from most specific to least specific
+  // Note to myself: order the routes from most specific to least specific
   return (
     <>
-      <body className="body">
+      <div className="body">
         <div className="app__container">
           <Header />
           <Switch>
             <Route
               exact
               path="/warehouse/add-new-warehouse"
-              render={() => <Form title={"Add New Warehouse"} />}
+              render={() => (
+                <Form
+                  title={"Add New Warehouse"}
+                  setWarehouseListData={setwarehouseListData}
+                />
+              )}
             />
             <Route
               path="/warehouse/:warehouseID"
@@ -61,7 +66,7 @@ const App = () => {
           </Switch>
         </div>
         <Footer />
-      </body>
+      </div>
     </>
   );
 };
