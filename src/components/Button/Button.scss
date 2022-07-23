@@ -55,4 +55,22 @@
       line-height: 2.2rem;
     }
   }
+
+  &__edit {
+    flex-basis: 50%;
+
+    @include medium {
+      max-width: 13.8rem;
+      height: 3.8rem;
+    }
+  }
+
+  &__form-cancel {
+    flex-basis: 50%;
+
+    @include medium {
+      max-width: 7.2rem;
+      height: 3.8rem;
+    }
+  }
 }

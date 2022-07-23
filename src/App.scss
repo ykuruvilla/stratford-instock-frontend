@@ -2,3 +2,9 @@
 @use "./styles/partials/globals/fonts" as *;
 @use "./styles/partials/globals/colors" as *;
 @use "./styles/partials/globals/resets" as *;
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

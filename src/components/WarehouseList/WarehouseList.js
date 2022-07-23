@@ -4,6 +4,7 @@ import "./WarehouseList.scss";
 import searchIcon from "../../assets/icons/search-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 
 const WarehouseList = ({ warehouseListData, setwarehouseListData }) => {
   if (warehouseListData.length < 1) {
@@ -23,8 +24,9 @@ const WarehouseList = ({ warehouseListData, setwarehouseListData }) => {
             <img src={searchIcon} alt="Search icon" />
           </button>
         </form>
-        {/* is the + an icon or just text?  */}
-        <Button type={"add"} label={"+ Add New Warehouse"} />
+        <Link to="/warehouse/add-new-warehouse">
+          <Button type={"add"} label={"+ Add New Warehouse"} />
+        </Link>
       </div>
       <div className="warehouse-list__table-headers">
         <div className="warehouse-list__info-headers">
