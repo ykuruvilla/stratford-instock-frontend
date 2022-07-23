@@ -43,13 +43,27 @@ const App = () => {
               path="/warehouse/add-new-warehouse"
               render={() => (
                 <Form
-                  title={"Add New Warehouse"}
+                  title="Add New Warehouse"
                   setWarehouseListData={setwarehouseListData}
+                  buttonType="add"
+                  buttonLabel="+ Add Warehouse"
                 />
               )}
             />
             <Route
-              path="/warehouse/:warehouseID"
+              exact
+              path="/warehouse/edit-warehouse"
+              render={() => (
+                <Form
+                  title="Edit Warehouse"
+                  setWarehouseListData={setwarehouseListData}
+                  buttonType="save"
+                  buttonLabel="Save"
+                />
+              )}
+            />
+            <Route
+              path="/warehouse/:warehouseId"
               component={WarehouseDetails}
             />
             <Route

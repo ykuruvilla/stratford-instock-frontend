@@ -8,7 +8,7 @@ import { validateInput } from "../../utils/helper";
 import axios from "axios";
 import BASE_URL from "../../api/api";
 
-const Form = ({ title, setWarehouseListData }) => {
+const Form = ({ title, setWarehouseListData, buttonType, buttonLabel }) => {
   // left/up details inputs
   const [warehouseNameError, setWarehouseNameError] = useState(false);
   const [streetAddressError, setstreetAddressError] = useState(false);
@@ -150,7 +150,7 @@ const Form = ({ title, setWarehouseListData }) => {
             label="Cancel"
             action={cancelSubmitHandler}
           />
-          <Button type="add button__edit " label="+ Add Warehouse" />
+          <Button type={`${buttonType} button__edit`} label={buttonLabel} />
         </div>
       </form>
     </section>

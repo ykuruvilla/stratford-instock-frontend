@@ -53,7 +53,7 @@ const DeleteWarehouseModal = ({
           </div>
           <div className="delete__buttons-container">
             <NavLink
-              to="/"
+              to="/warehouse"
               className="delete__cancel-link"
               onClick={closeModal}
             >

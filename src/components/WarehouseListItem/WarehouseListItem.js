@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./WarehouseListItem.scss";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
@@ -54,10 +54,12 @@ function WarehouseListItem({ warehouseInfo, setwarehouseListData }) {
         </div>
         <div className="warehouse__actions">
           <button className="warehouse__action-button" onClick={openModal}>
-            <img src={deleteIcon} alt="Delete button" />
+            <img src={deleteIcon} alt="delete icon" />
           </button>
           <button className="warehouse__action-button">
-            <img src={editIcon} alt="Delete button" />
+            <Link to="/warehouse/edit-warehouse">
+              <img src={editIcon} alt="edit icon" />
+            </Link>
           </button>
         </div>
       </article>
