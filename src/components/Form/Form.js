@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import Button from "../Button/Button";
 import FormCard from "../FormCard/FormCard";
@@ -110,9 +110,9 @@ const Form = ({ title, setWarehouseListData }) => {
   return (
     <section className="form">
       <div className="form__container">
-        <Link to="/warehouse">
+        <NavLink to="/warehouse" className="form__arrow-link">
           <img src={arrow} alt="" className="form__arrow" />
-        </Link>
+        </NavLink>
         <h1 className="form__title">{title}</h1>
       </div>
       <form onSubmit={formSubmitHandler}>

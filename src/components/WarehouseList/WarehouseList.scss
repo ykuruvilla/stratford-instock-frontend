@@ -8,7 +8,7 @@
   border-radius: 3px;
 
   @include medium {
-    margin: -7.1rem 2.4rem 0;
+    margin: -7.1rem 3.2rem 0;
   }
 
   @include large {
@@ -21,17 +21,17 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    padding: 3.2rem 0 2.2rem;
     margin: 0 1.6rem;
 
     @include medium {
       flex-direction: row;
       align-items: center;
-      margin: 0 2.4rem;
+      margin: 0 3.2rem;
     }
   }
 
   &__title {
-    margin-top: 2.4rem;
     align-self: flex-start;
 
     @include medium {
@@ -44,7 +44,7 @@
   &__search {
     display: flex;
     width: 100%;
-    margin: 1.6rem 0;
+    // margin: 1.6rem 0;
 
     @include medium {
       width: fit-content;
@@ -79,6 +79,15 @@
     border: none;
   }
 
+  &__link {
+    display: block;
+    width: 100%;
+
+    @include medium {
+      width: 16.8rem;
+    }
+  }
+
   &__table-headers {
     display: none;
 
@@ -86,7 +95,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.8rem 2.4rem;
+      padding: 0.8rem 3.2rem;
       background-color: $light-grey;
     }
   }
