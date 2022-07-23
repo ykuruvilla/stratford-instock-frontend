@@ -1,0 +1,24 @@
+@use "../../styles/partials/globals/colors" as *;
+
+.formcard {
+  &__error {
+    border: 1px solid $red;
+
+    &-message {
+      color: $red;
+    }
+
+    &-container {
+      display: flex;
+      margin-top: 0.4rem;
+    }
+
+    &--hidden {
+      display: none;
+    }
+
+    &-img {
+      margin-right: 0.5rem;
+    }
+  }
+}
