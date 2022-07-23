@@ -10,16 +10,16 @@ import BASE_URL from "../../api/api";
 const DeleteWarehouseModal = ({
   modalIsOpen,
   closeModal,
-  warehouseID,
+  warehouseId,
   setwarehouseListData,
 }) => {
   const deleteWarehouse = () => {
     axios
-      .delete(`${BASE_URL}warehouse/${warehouseID}`)
+      .delete(`${BASE_URL}warehouse/${warehouseId}`)
       .then((response) => {
         console.log("delete success", response);
         setwarehouseListData((prev) =>
-          prev.filter((warehouse) => warehouse.id !== warehouseID)
+          prev.filter((warehouse) => warehouse.id !== warehouseId)
         );
       })
       .catch((error) => console.log("delete error", error));

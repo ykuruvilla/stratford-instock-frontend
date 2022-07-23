@@ -23,7 +23,7 @@ function WarehouseListItem({ warehouseInfo, setwarehouseListData }) {
       <DeleteWarehouseModal
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}
-        warehouseID={warehouseInfo.id}
+        warehouseId={warehouseInfo.id}
         setwarehouseListData={setwarehouseListData}
       />
       <article className="warehouse__list-item">
