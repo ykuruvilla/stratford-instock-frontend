@@ -1,11 +1,11 @@
-import { Route, Switch, Redirect } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 // import Inventory from "./pages/Inventory/Inventory";
 // import Warehouses from "./pages/Warehouses/Warehouses";
 import Table from "./components/Table/Table";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
+import Form from "./components/Form/Form";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BASE_URL from "./api/api";
@@ -29,50 +29,46 @@ const App = () => {
     if (warehouseListData.length < 1) {
       getWarehouseData();
     }
-  }, [warehouseListData.length]);
+  }, [warehouseListData]);
 
-  // useEffect(() => {
-  //   // inventory axios call
-  // }, [warehouseId]);
-
+  // Note to myself: order the routes from most specific to least specific
   return (
     <>
-      <BrowserRouter>
-        <Header />
-        <Switch>
-          <Redirect exact from="/warehouses" to="/" />
-          <Route
-            path="/"
-<<<<<<< HEAD
-            render={(routerProps) => (
-              <Table
-                {...routerProps}
-                data={warehouseListData}
-                getWarehouseData={getWarehouseData}
-                title="Warehouses"
-                hasSearch={true}
-                buttonType="add"
-                buttonLabel="+ Add New Warehouse"
-                colOneTitle="WAREHOUSE"
-                colTwoTitle=" ADDRESS"
-                colThreeTitle="CONTACT NAME"
-                colFourTitle="CONTACT INFORMATION"
-=======
-            render={() => (
-              <WarehouseList
-                warehouseListData={warehouseListData}
-                setwarehouseListData={setwarehouseListData}
->>>>>>> develop
-              />
-            )}
-          />
-          <Route path="/warehouse/:warehouseID" component={WarehouseDetails} />
-          <Route path="/inventory" component={""} />
-        </Switch>
+      <div className="body">
+        <div className="app__container">
+          <Header />
+          <Switch>
+            <Route
+              exact
+              path="/warehouse/add-new-warehouse"
+              render={() => (
+                <Form
+                  title={"Add New Warehouse"}
+                  setWarehouseListData={setwarehouseListData}
+                />
+              )}
+            />
+            <Route
+              path="/warehouse/:warehouseID"
+              component={WarehouseDetails}
+            />
+            <Route
+              exact
+              path="/warehouse"
+              render={() => (
+                <WarehouseList
+                  warehouseListData={warehouseListData}
+                  setwarehouseListData={setwarehouseListData}
+                />
+              )}
+            />
+            <Route exact path="/inventory" component={""} />
+          </Switch>
+        </div>
         <Footer />
-      </BrowserRouter>
+      </div>
     </>
   );
 };
 
-export default App;
+export default withRouter(App);

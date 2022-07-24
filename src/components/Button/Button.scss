@@ -6,7 +6,7 @@
   height: 3.6rem;
   font-family: "TitilliumWeb";
   @include fonts(1.3rem, 2rem, 600);
-  border-radius: 20px;
+  border-radius: 2rem;
   border: none;
   flex-basis: 50%;
 
@@ -53,6 +53,24 @@
       max-width: 16.8rem;
       font-size: 1.4rem;
       line-height: 2.2rem;
+    }
+  }
+
+  &__edit {
+    flex-basis: 50%;
+
+    @include medium {
+      max-width: 13.8rem;
+      height: 3.8rem;
+    }
+  }
+
+  &__form-cancel {
+    flex-basis: 50%;
+
+    @include medium {
+      max-width: 7.2rem;
+      height: 3.8rem;
     }
   }
 }
