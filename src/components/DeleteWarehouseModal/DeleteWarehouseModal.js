@@ -11,14 +11,14 @@ const DeleteWarehouseModal = ({
   modalIsOpen,
   closeModal,
   warehouseId,
-  setwarehouseListData,
+  setWarehouseListData,
 }) => {
   const deleteWarehouse = () => {
     axios
       .delete(`${BASE_URL}warehouse/${warehouseId}`)
       .then((response) => {
         console.log("delete success", response);
-        setwarehouseListData((prev) =>
+        setWarehouseListData((prev) =>
           prev.filter((warehouse) => warehouse.id !== warehouseId)
         );
       })
@@ -35,7 +35,7 @@ const DeleteWarehouseModal = ({
       >
         <section className="delete">
           <div className="delete__container-top">
-            <NavLink to="/warehouses" className="delete__link-close">
+            <NavLink to="/warehouse" className="delete__link-close">
               <img
                 className="delete__icon-close"
                 alt="close icon"
