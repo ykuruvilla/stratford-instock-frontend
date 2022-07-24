@@ -6,10 +6,11 @@ import sortIcon from "../../assets/icons/sort-24px.svg";
 import Button from "../Button/Button";
 
 const Table = (props) => {
-  if (props.data.length < 1) {
-    return <h1>Page loading...</h1>;
-  }
-  console.log(props);
+  console.log("Table props", props);
+
+  // if (!props.data.inventoryData) {
+  //   return <h1>Page loading...</h1>;
+  // }
   return (
     <section className="table">
       <div className="table__header">
@@ -77,14 +78,16 @@ const Table = (props) => {
             );
           })}
 
-        {props.location.pathname === "/warehouse/:warehouseID" &&
+        {props.data.inventoryData &&
+          Object.keys(props.data).includes("inventoryData") &&
           props.data.inventoryData.map((inventory) => {
+            console.log(inventory);
             return (
               <TableItem
                 data={inventory}
                 key={inventory.id}
                 location={props.location}
-                setInventoryData={props.setInventoryData}
+                setwarehouseDetailsData={props.setwarehouseDetailsData}
               />
             );
           })}

@@ -32,7 +32,7 @@ function TableItem(props) {
               <h4 className="table-item__info-header">WAREHOUSE</h4>
               <NavLink
                 className="table-item__name-link"
-                to={`table-item/${props.data.id}`}
+                to={`/warehouse/${props.data.id}`}
               >
                 <h3 className="table-item__name">{props.data.name}</h3>
                 <img src={chevron} alt="Chevron right" />
@@ -57,7 +57,7 @@ function TableItem(props) {
               <img src={deleteIcon} alt="Delete button" />
             </button>
             <button className="table-item__action-button">
-              <img src={editIcon} alt="Delete button" />
+              <img src={editIcon} alt="Edit button" />
             </button>
           </div>
         </article>
@@ -65,7 +65,7 @@ function TableItem(props) {
     );
   }
 
-  if (props.location.pathname === "/warehouse/:warehouseID") {
+  if (Object.keys(props.data).includes("status")) {
     return (
       <>
         {/* DeleteWarehouseModal will need to be changed to DeleteInventoryModal once it is built */}
@@ -84,14 +84,24 @@ function TableItem(props) {
                 <img src={chevron} alt="Chevron right" />
               </NavLink>
               <h4 className="table-item__info-header">CATEGORY</h4>
-              <p className="table-item__address">{props.data.categoy}</p>
+              <p className="table-item__address">{props.data.category}</p>
             </div>
             <div className="table-item__contact-info">
               <h4 className="table-item__info-header">STATUS</h4>
-              <p className="table-item__contact-name">{props.data.status}</p>
+              <div className="table-item__status-container">
+                <p
+                  className={`table-item__status ${
+                    props.data.quantity > 0
+                      ? "table-item__status--instock"
+                      : "table-item__status--outstock"
+                  }`}
+                >
+                  {props.data.status}
+                </p>
+              </div>
               <h4 className="table-item__info-header">QTY</h4>
               <div className="table-item__contact-details-container">
-                <p>{props.data.contact.quantity}</p>
+                <p>{props.data.quantity}</p>
               </div>
             </div>
           </div>
@@ -100,7 +110,7 @@ function TableItem(props) {
               <img src={deleteIcon} alt="Delete button" />
             </button>
             <button className="table-item__action-button">
-              <img src={editIcon} alt="Delete button" />
+              <img src={editIcon} alt="Edit button" />
             </button>
           </div>
         </article>
