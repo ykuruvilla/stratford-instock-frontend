@@ -3,7 +3,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 // import Inventory from "./pages/Inventory/Inventory";
 // import Warehouses from "./pages/Warehouses/Warehouses";
-import WarehouseList from "./components/WarehouseList/WarehouseList";
+import Table from "./components/Table/Table";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import Form from "./components/Form/Form";
 import { useEffect, useState } from "react";
