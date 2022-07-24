@@ -6,7 +6,7 @@ import sortIcon from "../../assets/icons/sort-24px.svg";
 import Button from "../Button/Button";
 import { NavLink } from "react-router-dom";
 
-const WarehouseList = ({ warehouseListData, setwarehouseListData }) => {
+const WarehouseList = ({ warehouseListData, setWarehouseListData }) => {
   if (warehouseListData.length < 1) {
     return <h1>Page loading...</h1>;
   }
@@ -72,7 +72,7 @@ const WarehouseList = ({ warehouseListData, setwarehouseListData }) => {
             <WarehouseListItem
               warehouseInfo={warehouse}
               key={warehouse.id}
-              setwarehouseListData={setwarehouseListData}
+              setWarehouseListData={setWarehouseListData}
             />
           );
         })}

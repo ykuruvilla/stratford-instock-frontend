@@ -109,6 +109,10 @@
     border: none;
     background-color: transparent;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     @include medium {
       margin-left: 2.4rem;
     }

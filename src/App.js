@@ -11,14 +11,14 @@ import axios from "axios";
 import BASE_URL from "./api/api";
 import "./App.scss";
 
-const App = () => {
-  const [warehouseListData, setwarehouseListData] = useState([]);
+const App = ({ location }) => {
+  const [warehouseListData, setWarehouseListData] = useState([]);
 
   const getWarehouseData = async () => {
     try {
       const result = await axios.get(`${BASE_URL}warehouse`);
 
-      setwarehouseListData(result.data);
+      setWarehouseListData(result.data);
     } catch (error) {
       window.alert(error.message);
     }
@@ -43,13 +43,30 @@ const App = () => {
               path="/warehouse/add-new-warehouse"
               render={() => (
                 <Form
-                  title={"Add New Warehouse"}
-                  setWarehouseListData={setwarehouseListData}
+                  title="Add New Warehouse"
+                  setWarehouseListData={setWarehouseListData}
+                  buttonType="add"
+                  buttonLabel="+ Add Warehouse"
+                  view="add"
                 />
               )}
             />
             <Route
-              path="/warehouse/:warehouseID"
+              exact
+              path="/warehouse/edit-warehouse/:warehouseId"
+              render={() => (
+                <Form
+                  title="Edit Warehouse"
+                  setWarehouseListData={setWarehouseListData}
+                  buttonType="save"
+                  buttonLabel="Save"
+                  view="edit"
+                  location={location}
+                />
+              )}
+            />
+            <Route
+              path="/warehouse/:warehouseId"
               component={WarehouseDetails}
             />
             <Route
@@ -58,7 +75,7 @@ const App = () => {
               render={() => (
                 <WarehouseList
                   warehouseListData={warehouseListData}
-                  setwarehouseListData={setwarehouseListData}
+                  setWarehouseListData={setWarehouseListData}
                 />
               )}
             />
