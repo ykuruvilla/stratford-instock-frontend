@@ -7,7 +7,6 @@ import Button from "../Button/Button";
 import { NavLink } from "react-router-dom";
 
 const Table = (props) => {
-  console.log(props.data.inventoryData);
   return (
     <section className="table">
       <div className="table__header">

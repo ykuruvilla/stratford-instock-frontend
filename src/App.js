@@ -61,7 +61,7 @@ const App = ({ location }) => {
     <>
       <div className="body">
         <div className="app__container">
-          <Header />
+          <Header location={location} />
           <Switch>
             <Route
               exact
