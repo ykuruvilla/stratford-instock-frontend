@@ -117,6 +117,31 @@
       margin-left: 2.4rem;
     }
   }
+
+  &__status-container {
+    flex-basis: 50%;
+  }
+  &__status {
+    display: inline-block;
+    height: 2.4rem;
+    padding: 0 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 1.6rem;
+
+    @include medium {
+      height: 2.6rem;
+    }
+
+    &--instock {
+      color: #158473;
+      background-color: rgba($color: #158473, $alpha: 0.07);
+    }
+
+    &--outstock {
+      color: #c94515;
+      background-color: rgba($color: #c94515, $alpha: 0.07);
+    }
+  }
 }
 
 article {

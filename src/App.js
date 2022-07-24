@@ -1,4 +1,4 @@
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 // import Inventory from "./pages/Inventory/Inventory";
@@ -13,6 +13,7 @@ import "./App.scss";
 
 const App = ({ location }) => {
   const [warehouseListData, setWarehouseListData] = useState([]);
+  const [warehouseDetailsData, setWarehouseDetailsData] = useState([]);
 
   const getWarehouseData = async () => {
     try {
@@ -29,7 +30,17 @@ const App = ({ location }) => {
     if (warehouseListData.length < 1) {
       getWarehouseData();
     }
-  }, [warehouseListData]);
+  }, [warehouseListData.length]);
+
+  // Component did update (on warehouse list click)
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}${location.pathname.slice(1)}`)
+      .then((response) => {
+        setWarehouseDetailsData(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, [location.pathname]);
 
   // Note to myself: order the routes from most specific to least specific
   return (
@@ -67,15 +78,40 @@ const App = ({ location }) => {
             />
             <Route
               path="/warehouse/:warehouseId"
-              component={WarehouseDetails}
+              render={(routerProps) => (
+                <Table
+                  {...routerProps}
+                  data={warehouseDetailsData}
+                  title={warehouseDetailsData.name}
+                  setWarehouseDetailsData={setWarehouseDetailsData}
+                  hasSearch={false}
+                  buttonType="edit"
+                  buttonLabel="Edit"
+                  colOneTitle="INVENTORY ITEM"
+                  colTwoTitle=" CATEGORY"
+                  colThreeTitle="STATUS"
+                  colFourTitle="QUANTITY"
+                  link="/warehouse/edit-warehouse/:warehouseId"
+                />
+              )}
             />
             <Route
               exact
               path="/warehouse"
-              render={() => (
-                <WarehouseList
-                  warehouseListData={warehouseListData}
-                  setWarehouseListData={setWarehouseListData}
+              render={(routerProps) => (
+                <Table
+                  {...routerProps}
+                  data={warehouseListData}
+                  getWarehouseData={getWarehouseData}
+                  title="Warehouses"
+                  hasSearch={true}
+                  buttonType="add"
+                  buttonLabel="+ Add New Warehouse"
+                  colOneTitle="WAREHOUSE"
+                  colTwoTitle=" ADDRESS"
+                  colThreeTitle="CONTACT NAME"
+                  colFourTitle="CONTACT INFORMATION"
+                  link="/warehouse/add-new-warehouse"
                 />
               )}
             />
