@@ -1,4 +1,4 @@
-import "./DeleteWarehouseModal.scss";
+import "./DeleteModal.scss";
 import Button from "../Button/Button";
 import closeIcon from "../../assets/icons/close-24px.svg";
 import { NavLink } from "react-router-dom";
@@ -7,20 +7,39 @@ import React from "react";
 import Modal from "react-modal";
 import BASE_URL from "../../api/api";
 
-const DeleteWarehouseModal = ({
+const DeleteModal = ({
   modalIsOpen,
   closeModal,
-  warehouseId,
+  id,
   setWarehouseListData,
+  setWarehouseDetailsData,
+  modalType,
+  warehouseName,
+  inventoryName,
 }) => {
   const deleteWarehouse = () => {
     axios
-      .delete(`${BASE_URL}warehouse/${warehouseId}`)
+      .delete(`${BASE_URL}warehouse/${id}`)
       .then((response) => {
         console.log("delete success", response);
         setWarehouseListData((prev) =>
-          prev.filter((warehouse) => warehouse.id !== warehouseId)
+          prev.filter((warehouse) => warehouse.id !== id)
         );
+      })
+      .catch((error) => console.log("delete error", error));
+  };
+
+  const deleteInventoryItem = () => {
+    axios
+      .delete(`${BASE_URL}inventory/${id}`)
+      .then((response) => {
+        console.log("delete success", response);
+        setWarehouseDetailsData((prevData) => ({
+          ...prevData,
+          inventoryData: prevData.inventoryData.filter(
+            (inventory) => inventory.id !== id
+          ),
+        }));
       })
       .catch((error) => console.log("delete error", error));
   };
@@ -44,10 +63,15 @@ const DeleteWarehouseModal = ({
               />
             </NavLink>
             <div className="delete__wrapper">
-              <h1 className="delete__title">Delete Washington warehouse?</h1>
+              <h1 className="delete__title">
+                {modalType === "warehouse"
+                  ? `Delete ${warehouseName} warehouse?`
+                  : `Delete ${inventoryName} inventory item?`}
+              </h1>
               <p className="body-large">
-                Please confirm that you’d like to delete the Washington from the
-                list of warehouses. You won’t be able to undo this action.
+                {modalType === "warehouse"
+                  ? `Please confirm that you’d like to delete the ${warehouseName} from the list of warehouses. You won’t be able to undo this action.`
+                  : `Please confirm that you’d like to delete ${inventoryName} from the inventory list. You won’t be able to undo this action.`}
               </p>
             </div>
           </div>
@@ -59,7 +83,15 @@ const DeleteWarehouseModal = ({
             >
               <Button type="cancel" label={"Cancel"} action={closeModal} />
             </NavLink>
-            <Button type="delete" label={"Delete"} action={deleteWarehouse} />
+            <Button
+              type="delete"
+              label={"Delete"}
+              action={
+                modalType === "warehouse"
+                  ? deleteWarehouse
+                  : deleteInventoryItem
+              }
+            />
           </div>
         </section>
       </Modal>
@@ -67,4 +99,4 @@ const DeleteWarehouseModal = ({
   );
 };
 
-export default DeleteWarehouseModal;
+export default DeleteModal;

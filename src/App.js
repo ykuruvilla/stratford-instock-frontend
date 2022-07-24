@@ -92,6 +92,7 @@ const App = ({ location }) => {
                   colThreeTitle="STATUS"
                   colFourTitle="QUANTITY"
                   link="/warehouse/edit-warehouse/:warehouseId"
+                  modalType="inventory"
                 />
               )}
             />
@@ -112,10 +113,12 @@ const App = ({ location }) => {
                   colThreeTitle="CONTACT NAME"
                   colFourTitle="CONTACT INFORMATION"
                   link="/warehouse/add-new-warehouse"
+                  modalType="warehouse"
                 />
               )}
             />
             <Route exact path="/inventory" component={""} />
+            <Redirect exact from="/" to="/warehouse" />
           </Switch>
         </div>
         <Footer />

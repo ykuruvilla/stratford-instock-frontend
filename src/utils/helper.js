@@ -21,13 +21,11 @@ export const validateInput = (
   } else if (emailFunc) {
     if (!/@/.test(input)) {
       emailFunc(true);
-      console.log("email wrong");
       return true;
     }
   } else if (phoneFunc) {
     if (validatePhoneNumber(input)) {
       phoneFunc(true);
-      console.log("phone wrong");
       return true;
     }
   }
