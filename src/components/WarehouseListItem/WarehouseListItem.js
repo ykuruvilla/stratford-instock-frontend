@@ -57,7 +57,7 @@ function WarehouseListItem({ warehouseInfo, setwarehouseListData }) {
             <img src={deleteIcon} alt="delete icon" />
           </button>
           <button className="warehouse__action-button">
-            <Link to="/warehouse/edit-warehouse">
+            <Link to={`/warehouse/edit-warehouse/${warehouseInfo.id}`}>
               <img src={editIcon} alt="edit icon" />
             </Link>
           </button>

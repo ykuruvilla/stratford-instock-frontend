@@ -8,7 +8,14 @@ import { validateInput } from "../../utils/helper";
 import axios from "axios";
 import BASE_URL from "../../api/api";
 
-const Form = ({ title, setWarehouseListData, buttonType, buttonLabel }) => {
+const Form = ({
+  title,
+  setWarehouseListData,
+  buttonType,
+  buttonLabel,
+  view,
+  location,
+}) => {
   // left/up details inputs
   const [warehouseNameError, setWarehouseNameError] = useState(false);
   const [streetAddressError, setstreetAddressError] = useState(false);
@@ -86,18 +93,38 @@ const Form = ({ title, setWarehouseListData, buttonType, buttonLabel }) => {
         email: e.target.Email.value,
       },
     };
-    console.log(`${BASE_URL}warehouse`);
-    axios
-      .post(`${BASE_URL}warehouse`, newWarehouseObj)
-      .then((response) => {
-        console.log(response);
-        // add new warehouse to state to trigger re-render
-        setWarehouseListData((prevData) => [
-          ...prevData,
-          response.data.resourceCreated,
-        ]);
-      })
-      .catch((error) => console.log("POST new warehouse error", error));
+
+    //
+    if (view === "add") {
+      axios
+        .post(`${BASE_URL}warehouse`, newWarehouseObj)
+        .then((response) => {
+          console.log(response);
+          // add new warehouse to state to trigger re-render
+          setWarehouseListData((prevData) => [
+            ...prevData,
+            response.data.resourceCreated,
+          ]);
+        })
+        .catch((error) => console.log("POST new warehouse error", error));
+    } else if (view === "edit") {
+      axios
+        .put(
+          `${BASE_URL}warehouse/${location.pathname.slice(-36)}`,
+          newWarehouseObj
+        )
+        .then((response) => {
+          // add edited warehouse to state to trigger re-render
+          setWarehouseListData((prevData) =>
+            prevData.map((warehouse) =>
+              warehouse.id === location.pathname.slice(-36)
+                ? response.data.resourceUpdated
+                : warehouse
+            )
+          );
+        })
+        .catch((error) => console.log("POST new warehouse error", error));
+    }
     e.target.reset();
     history.push("/warehouse");
   };
@@ -111,7 +138,7 @@ const Form = ({ title, setWarehouseListData, buttonType, buttonLabel }) => {
     <section className="form">
       <div className="form__container">
         <NavLink to="/warehouse" className="form__arrow-link">
-          <img src={arrow} alt="" className="form__arrow" />
+          <img src={arrow} alt="arrow icon" className="form__arrow" />
         </NavLink>
         <h1 className="form__title">{title}</h1>
       </div>
