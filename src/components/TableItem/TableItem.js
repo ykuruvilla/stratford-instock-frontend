@@ -17,7 +17,7 @@ function TableItem(props) {
   const closeModal = () => {
     setIsOpen(false);
   };
-  if (props.location.pathname === "/warehouse") {
+  if (props.dataSet === "warehouseList") {
     return (
       <>
         <DeleteWarehouseModal
@@ -67,7 +67,7 @@ function TableItem(props) {
     );
   }
 
-  if (Object.keys(props.data).includes("status")) {
+  if (props.dataSet === "warehouseDetails") {
     return (
       <>
         {/* DeleteWarehouseModal will need to be changed to DeleteInventoryModal once it is built */}
@@ -114,6 +114,63 @@ function TableItem(props) {
             <button className="table-item__action-button">
               <img src={editIcon} alt="Edit button" />
             </button>
+          </div>
+        </article>
+      </>
+    );
+  }
+
+  if (props.dataSet === "inventoryList") {
+    return (
+      <>
+        {/* DeleteWarehouseModal will need to be changed to DeleteInventoryModal once it is built */}
+        <DeleteWarehouseModal
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+          warehouseID={props.data.id}
+          getWarehouseData={props.getWarehouseData}
+        />
+        <article className="table-item__list-item">
+          <div className="table-item__details">
+            <div className="table-item__info">
+              <h4 className="table-item__info-header">INVENTORY ITEM</h4>
+              <NavLink className="table-item__name-link" to={``}>
+                <h3 className="table-item__name">{props.data.itemName}</h3>
+                <img src={chevron} alt="Chevron right" />
+              </NavLink>
+              <h4 className="table-item__info-header">CATEGORY</h4>
+              <p className="table-item__address">{props.data.category}</p>
+            </div>
+            <div className="table-item__contact-info">
+              <h4 className="table-item__info-header">STATUS</h4>
+              <div className="table-item__status-container">
+                <p
+                  className={`table-item__status ${
+                    props.data.quantity > 0
+                      ? "table-item__status--instock"
+                      : "table-item__status--outstock"
+                  }`}
+                >
+                  {props.data.status}
+                </p>
+              </div>
+              <h4 className="table-item__info-header">QTY</h4>
+              <div className="table-item__contact-details-container">
+                <p>{props.data.quantity}</p>
+                <h4 className="table-item__info-header">WAREHOUSE</h4>
+                <div className="table-item__contact-details-container">
+                  <p>{props.data.warehouseName}</p>
+                </div>
+              </div>
+            </div>
+            <div className="table-item__actions">
+              <button className="table-item__action-button" onClick={openModal}>
+                <img src={deleteIcon} alt="Delete button" />
+              </button>
+              <button className="table-item__action-button">
+                <img src={editIcon} alt="Edit button" />
+              </button>
+            </div>
           </div>
         </article>
       </>

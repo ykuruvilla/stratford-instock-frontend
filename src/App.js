@@ -14,12 +14,22 @@ import "./App.scss";
 const App = ({ location }) => {
   const [warehouseListData, setWarehouseListData] = useState([]);
   const [warehouseDetailsData, setWarehouseDetailsData] = useState([]);
+  const [inventoryListData, setInventoryListData] = useState([]);
 
   const getWarehouseData = async () => {
     try {
       const result = await axios.get(`${BASE_URL}warehouse`);
 
       setWarehouseListData(result.data);
+    } catch (error) {
+      window.alert(error.message);
+    }
+  };
+
+  const getInventoryData = async () => {
+    try {
+      const result = await axios.get(`${BASE_URL}inventory`);
+      setInventoryListData(result.data);
     } catch (error) {
       window.alert(error.message);
     }
@@ -40,6 +50,10 @@ const App = ({ location }) => {
         setWarehouseDetailsData(response.data);
       })
       .catch((error) => console.log(error));
+  }, [location.pathname]);
+
+  useEffect(() => {
+    getInventoryData();
   }, [location.pathname]);
 
   // Note to myself: order the routes from most specific to least specific
@@ -82,6 +96,7 @@ const App = ({ location }) => {
                 <Table
                   {...routerProps}
                   data={warehouseDetailsData}
+                  dataSet="warehouseDetails"
                   title={warehouseDetailsData.name}
                   setWarehouseDetailsData={setWarehouseDetailsData}
                   hasSearch={false}
@@ -91,7 +106,6 @@ const App = ({ location }) => {
                   colTwoTitle=" CATEGORY"
                   colThreeTitle="STATUS"
                   colFourTitle="QUANTITY"
-                  link="/warehouse/edit-warehouse/:warehouseId"
                 />
               )}
             />
@@ -102,6 +116,7 @@ const App = ({ location }) => {
                 <Table
                   {...routerProps}
                   data={warehouseListData}
+                  dataSet="warehouseList"
                   getWarehouseData={getWarehouseData}
                   title="Warehouses"
                   hasSearch={true}
@@ -111,11 +126,30 @@ const App = ({ location }) => {
                   colTwoTitle=" ADDRESS"
                   colThreeTitle="CONTACT NAME"
                   colFourTitle="CONTACT INFORMATION"
-                  link="/warehouse/add-new-warehouse"
                 />
               )}
             />
-            <Route exact path="/inventory" component={""} />
+            <Route
+              exact
+              path="/inventory"
+              render={(routerProps) => (
+                <Table
+                  {...routerProps}
+                  data={inventoryListData}
+                  dataSet="inventoryList"
+                  getInventoryData={getInventoryData}
+                  title="Inventory"
+                  hasSearch={true}
+                  buttonType="add"
+                  buttonLabel="+ Add New Item"
+                  colOneTitle="INVENTORY ITEM"
+                  colTwoTitle="CATEGORY"
+                  colThreeTitle="STATUS"
+                  colFourTitle="QTY"
+                  colFiveTitle="WAREHOUSE"
+                />
+              )}
+            />
           </Switch>
         </div>
         <Footer />
