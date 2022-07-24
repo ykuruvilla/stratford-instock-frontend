@@ -4,8 +4,9 @@ import "./WarehouseList.scss";
 import searchIcon from "../../assets/icons/search-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import Button from "../Button/Button";
+import { NavLink } from "react-router-dom";
 
-const WarehouseList = ({ warehouseListData, setwarehouseListData }) => {
+const WarehouseList = ({ warehouseListData, setWarehouseListData }) => {
   if (warehouseListData.length < 1) {
     return <h1>Page loading...</h1>;
   }
@@ -23,8 +24,12 @@ const WarehouseList = ({ warehouseListData, setwarehouseListData }) => {
             <img src={searchIcon} alt="Search icon" />
           </button>
         </form>
-        {/* is the + an icon or just text?  */}
-        <Button type={"add"} label={"+ Add New Warehouse"} />
+        <NavLink
+          to="/warehouse/add-new-warehouse"
+          className="warehouse-list__link"
+        >
+          <Button type={"add"} label={"+ Add New Warehouse"} />
+        </NavLink>
       </div>
       <div className="warehouse-list__table-headers">
         <div className="warehouse-list__info-headers">
@@ -67,7 +72,7 @@ const WarehouseList = ({ warehouseListData, setwarehouseListData }) => {
             <WarehouseListItem
               warehouseInfo={warehouse}
               key={warehouse.id}
-              setwarehouseListData={setwarehouseListData}
+              setWarehouseListData={setWarehouseListData}
             />
           );
         })}

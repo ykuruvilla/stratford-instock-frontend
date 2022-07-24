@@ -17,7 +17,7 @@ function TableItem(props) {
   const closeModal = () => {
     setIsOpen(false);
   };
-  if (props.location.pathname === "/") {
+  if (props.location.pathname === "/warehouse") {
     return (
       <>
         <DeleteWarehouseModal
@@ -56,9 +56,11 @@ function TableItem(props) {
             <button className="table-item__action-button" onClick={openModal}>
               <img src={deleteIcon} alt="Delete button" />
             </button>
-            <button className="table-item__action-button">
-              <img src={editIcon} alt="Edit button" />
-            </button>
+            <NavLink to={`/warehouse/edit-warehouse/${props.data.id}`}>
+              <button className="table-item__action-button">
+                <img src={editIcon} alt="Edit button" />
+              </button>
+            </NavLink>
           </div>
         </article>
       </>

@@ -4,10 +4,11 @@ import "./Table.scss";
 import searchIcon from "../../assets/icons/search-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import Button from "../Button/Button";
+import { NavLink } from "react-router-dom";
 
 const Table = (props) => {
-  console.log("Table props", props);
-
+  // console.log("Table props", props);
+  console.log("current id:", props.location.pathname.slice(-36));
   // if (!props.data.inventoryData) {
   //   return <h1>Page loading...</h1>;
   // }
@@ -28,9 +29,18 @@ const Table = (props) => {
             </button>
           </form>
         )}
-
-        {/* is the + an icon or just text?  */}
-        <Button type={props.buttonType} label={props.buttonLabel} />
+        {/* NavLink needs to be dynamic */}
+        <NavLink
+          to={
+            props.location.pathname === "/warehouse"
+              ? "/warehouse/add-new-warehouse"
+              : `/warehouse/edit-warehouse/${props.location.pathname.slice(
+                  -36
+                )}`
+          }
+        >
+          <Button type={props.buttonType} label={props.buttonLabel} />
+        </NavLink>
       </div>
       <div className="table__table-headers">
         <div className="table__info-headers">
@@ -66,7 +76,7 @@ const Table = (props) => {
         </div>
       </div>
       <section className="table__container">
-        {props.location.pathname === "/" &&
+        {props.location.pathname === "/warehouse" &&
           props.data.map((warehouse) => {
             return (
               <TableItem
@@ -87,7 +97,7 @@ const Table = (props) => {
                 data={inventory}
                 key={inventory.id}
                 location={props.location}
-                setwarehouseDetailsData={props.setwarehouseDetailsData}
+                setWarehouseDetailsData={props.setWarehouseDetailsData}
               />
             );
           })}

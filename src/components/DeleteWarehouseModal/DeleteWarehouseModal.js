@@ -10,16 +10,16 @@ import BASE_URL from "../../api/api";
 const DeleteWarehouseModal = ({
   modalIsOpen,
   closeModal,
-  warehouseID,
-  setwarehouseListData,
+  warehouseId,
+  setWarehouseListData,
 }) => {
   const deleteWarehouse = () => {
     axios
-      .delete(`${BASE_URL}warehouse/${warehouseID}`)
+      .delete(`${BASE_URL}warehouse/${warehouseId}`)
       .then((response) => {
         console.log("delete success", response);
-        setwarehouseListData((prev) =>
-          prev.filter((warehouse) => warehouse.id !== warehouseID)
+        setWarehouseListData((prev) =>
+          prev.filter((warehouse) => warehouse.id !== warehouseId)
         );
       })
       .catch((error) => console.log("delete error", error));
@@ -35,7 +35,7 @@ const DeleteWarehouseModal = ({
       >
         <section className="delete">
           <div className="delete__container-top">
-            <NavLink to="/warehouses" className="delete__link-close">
+            <NavLink to="/warehouse" className="delete__link-close">
               <img
                 className="delete__icon-close"
                 alt="close icon"
@@ -53,7 +53,7 @@ const DeleteWarehouseModal = ({
           </div>
           <div className="delete__buttons-container">
             <NavLink
-              to="/"
+              to="/warehouse"
               className="delete__cancel-link"
               onClick={closeModal}
             >

@@ -6,7 +6,7 @@
   height: 3.6rem;
   font-family: "TitilliumWeb";
   @include fonts(1.3rem, 2rem, 600);
-  border-radius: 20px;
+  border-radius: 2rem;
   border: none;
   flex-basis: 50%;
 
@@ -73,6 +73,32 @@
     &:hover {
       cursor: pointer;
       background-color: $graphite;
+    }
+
+    @include medium {
+      max-width: 13.8rem;
+      height: 3.8rem;
+    }
+  }
+
+  &__form-cancel {
+    flex-basis: 50%;
+
+    @include medium {
+      max-width: 7.2rem;
+      height: 3.8rem;
+    }
+  }
+
+  &__save {
+    color: $white;
+    background-color: $instock-indigo;
+    @include medium {
+      max-width: 6.3rem;
+    }
+    &:hover {
+      background-color: $graphite;
+      cursor: pointer;
     }
   }
 }
