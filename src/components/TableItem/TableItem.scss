@@ -2,7 +2,7 @@
 @use "../../styles/partials/globals/mixins" as *;
 @use "../../styles/partials/globals/colors" as *;
 
-.warehouse {
+.table-item {
   &__list-item {
     border-bottom: 1px solid $cloud;
 
