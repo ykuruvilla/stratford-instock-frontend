@@ -94,12 +94,10 @@ const Form = ({
       },
     };
 
-    //
     if (view === "add") {
       axios
         .post(`${BASE_URL}warehouse`, newWarehouseObj)
         .then((response) => {
-          console.log(response);
           // add new warehouse to state to trigger re-render
           setWarehouseListData((prevData) => [
             ...prevData,
@@ -126,12 +124,12 @@ const Form = ({
         .catch((error) => console.log("POST new warehouse error", error));
     }
     e.target.reset();
-    history.push("/warehouse");
+    // history.push("/warehouse");
   };
 
   const cancelSubmitHandler = (e) => {
     e.preventDefault();
-    history.push("/warehouse");
+    history.goBack("/warehouse");
   };
 
   return (

@@ -5,7 +5,7 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevron from "../../assets/icons/chevron_right-24px.svg";
 import { useState } from "react";
-import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
+import DeleteModal from "../DeleteModal/DeleteModal";
 
 function TableItem(props) {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -20,11 +20,14 @@ function TableItem(props) {
   if (props.dataSet === "warehouseList") {
     return (
       <>
-        <DeleteWarehouseModal
+        <DeleteModal
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
-          warehouseID={props.data.id}
+          id={props.data.id}
           getWarehouseData={props.getWarehouseData}
+          warehouseName={props.data.name}
+          inventoryName={props.data.itemName}
+          modalType={props.modalType}
         />
         <article className="table-item__list-item">
           <div className="table-item__details">
@@ -70,12 +73,16 @@ function TableItem(props) {
   if (props.dataSet === "warehouseDetails") {
     return (
       <>
-        {/* DeleteWarehouseModal will need to be changed to DeleteInventoryModal once it is built */}
-        <DeleteWarehouseModal
+        {/* DeleteModal will need to be changed to DeleteInventoryModal once it is built */}
+        <DeleteModal
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
-          warehouseID={props.data.id}
+          id={props.data.id}
           getWarehouseData={props.getWarehouseData}
+          setWarehouseDetailsData={props.setWarehouseDetailsData}
+          warehouseName={props.data.name}
+          inventoryName={props.data.itemName}
+          modalType={props.modalType}
         />
         <article className="table-item__list-item">
           <div className="table-item__details">
@@ -124,11 +131,14 @@ function TableItem(props) {
     return (
       <>
         {/* DeleteWarehouseModal will need to be changed to DeleteInventoryModal once it is built */}
-        <DeleteWarehouseModal
+        <DeleteModal
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
           warehouseID={props.data.id}
           getWarehouseData={props.getWarehouseData}
+          warehouseName={props.data.name}
+          inventoryName={props.data.itemName}
+          modalType={props.modalType}
         />
         <article className="table-item__list-item">
           <div className="table-item__details table-item__details--inventory">

@@ -24,7 +24,6 @@ const Table = (props) => {
             </button>
           </form>
         )}
-        {/* NavLink needs to be dynamic */}
         <NavLink
           className="table__link"
           to={
@@ -97,6 +96,7 @@ const Table = (props) => {
                 key={warehouse.id}
                 location={props.location}
                 setWarehouseData={props.settWarehouseData}
+                modalType={props.modalType}
               />
             );
           })}
@@ -111,6 +111,7 @@ const Table = (props) => {
                 key={inventory.id}
                 location={props.location}
                 setWarehouseDetailsData={props.setWarehouseDetailsData}
+                modalType={props.modalType}
               />
             );
           })}
@@ -123,6 +124,7 @@ const Table = (props) => {
                 dataSet={props.dataSet}
                 key={inventory.id}
                 location={props.location}
+                modalType={props.modalType}
               />
             );
           })}

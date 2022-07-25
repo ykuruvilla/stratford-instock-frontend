@@ -21,6 +21,10 @@
       color: $instock-indigo;
       border: solid 1px $instock-indigo;
     }
+
+    @include medium {
+      height: 3.8rem;
+    }
   }
 
   &__delete {
@@ -100,6 +104,17 @@
     &:hover {
       background-color: $graphite;
       cursor: pointer;
+    }
+  }
+
+  &__cancel-link {
+    display: flex;
+    flex-basis: 50%;
+
+    @include medium {
+      height: 3.8rem;
+      flex-basis: 7.2rem;
+      align-items: center;
     }
   }
 }
