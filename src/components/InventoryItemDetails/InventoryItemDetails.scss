@@ -1,0 +1,128 @@
+@use "../../styles/partials/globals/fonts" as *;
+@use "../../styles/partials/globals/mixins" as *;
+@use "../../styles/partials/globals/colors" as *;
+
+.inventory-details {
+  margin: 0 1.6rem;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+  border-radius: 3px;
+  position: relative;
+  background-color: $white;
+  position: relative;
+  top: -66px;
+
+  @include medium {
+    margin: 0 3.6rem;
+  }
+
+  @include large {
+    width: 102rem;
+    margin: 0 auto;
+  }
+
+  &__header-container {
+    display: flex;
+    align-items: center;
+    padding: 3.2rem 0 2.4rem;
+    border-bottom: 1px solid $cloud;
+  }
+
+  &__back-button {
+    margin-left: 2.8rem;
+  }
+  &__header-title {
+    margin: 0 auto 0 1.2rem;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    background-color: $instock-indigo;
+    margin-right: 2.4rem;
+
+    &:hover {
+      background-color: $graphite;
+    }
+
+    @include medium {
+      height: 3.8rem;
+      padding: 0 1.6rem;
+      border-radius: 2rem;
+    }
+  }
+
+  &__link-image {
+    padding: 1.05rem;
+    filter: brightness(0) saturate(100%) invert(94%) sepia(0%) saturate(24%)
+      hue-rotate(24deg) brightness(105%) contrast(108%);
+  }
+
+  &__link-text {
+    display: none;
+    color: $white;
+
+    @include medium {
+      display: inline-block;
+    }
+  }
+
+  &__card {
+    padding: 1.6rem 2.4rem;
+
+    @include medium {
+      display: flex;
+      //   justify-content: space-between;
+    }
+  }
+
+  &__card-left {
+    @include medium {
+      padding-right: 2.4rem;
+      border-right: 1px solid $cloud;
+    }
+  }
+
+  &__card-right {
+    @include medium {
+      margin-left: 3rem;
+    }
+  }
+
+  &__card-right--upper {
+    display: flex;
+  }
+
+  &__table-header {
+    margin-bottom: 0.4rem;
+  }
+
+  &__table-text {
+    margin-bottom: 1.6rem;
+
+    @include medium {
+      margin-bottom: 3.2rem;
+    }
+  }
+
+  &__status-container {
+    margin-right: 8rem;
+  }
+
+  &__status {
+    text-transform: uppercase;
+    height: 2.4rem;
+    padding: 0 0.8rem;
+    border-radius: 2rem;
+
+    &--instock {
+      color: #158473;
+      background-color: rgba($color: #158473, $alpha: 0.07);
+    }
+
+    &--outstock {
+      color: #c94515;
+      background-color: rgba($color: #c94515, $alpha: 0.07);
+    }
+  }
+}

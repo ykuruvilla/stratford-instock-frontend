@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 // import Inventory from "./pages/Inventory/Inventory";
 // import Warehouses from "./pages/Warehouses/Warehouses";
 import Table from "./components/Table/Table";
+import InventoryItemDetails from "./components/InventoryItemDetails/InventoryItemDetails";
 // import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import Form from "./components/Form/Form";
 import { useEffect, useState } from "react";
@@ -73,6 +74,11 @@ const App = ({ location }) => {
         <div className="app__container">
           <Header location={location} />
           <Switch>
+            <Route
+              exact
+              path="/inventory/:inventoryId"
+              render={() => <InventoryItemDetails location={location} />}
+            />
             <Route
               exact
               path="/warehouse/add-new-warehouse"
