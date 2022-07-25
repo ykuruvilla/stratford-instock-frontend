@@ -131,8 +131,8 @@ function TableItem(props) {
           getWarehouseData={props.getWarehouseData}
         />
         <article className="table-item__list-item">
-          <div className="table-item__details">
-            <div className="table-item__info">
+          <div className="table-item__details table-item__details--inventory">
+            <div className="table-item__info table-item__info--inventory">
               <h4 className="table-item__info-header">INVENTORY ITEM</h4>
               <NavLink className="table-item__name-link" to={``}>
                 <h3 className="table-item__name">{props.data.itemName}</h3>
@@ -141,9 +141,14 @@ function TableItem(props) {
               <h4 className="table-item__info-header">CATEGORY</h4>
               <p className="table-item__address">{props.data.category}</p>
             </div>
-            <div className="table-item__contact-info">
+            <div className="table-item__status-info">
               <h4 className="table-item__info-header">STATUS</h4>
-              <div className="table-item__status-container">
+              <div
+                className={`table-item__status-container ${
+                  props.dataSet === "inventoryList" &&
+                  "table-item__status-container--inventory"
+                }`}
+              >
                 <p
                   className={`table-item__status ${
                     props.data.quantity > 0
@@ -155,22 +160,22 @@ function TableItem(props) {
                 </p>
               </div>
               <h4 className="table-item__info-header">QTY</h4>
-              <div className="table-item__contact-details-container">
-                <p>{props.data.quantity}</p>
+              <div className="table-item__quantity-container">
+                <p className="table-item__quantity">{props.data.quantity}</p>
                 <h4 className="table-item__info-header">WAREHOUSE</h4>
-                <div className="table-item__contact-details-container">
-                  <p>{props.data.warehouseName}</p>
-                </div>
+              </div>
+              <div className="table-item__warehouse-container">
+                <p>{props.data.warehouseName}</p>
               </div>
             </div>
-            <div className="table-item__actions">
-              <button className="table-item__action-button" onClick={openModal}>
-                <img src={deleteIcon} alt="Delete button" />
-              </button>
-              <button className="table-item__action-button">
-                <img src={editIcon} alt="Edit button" />
-              </button>
-            </div>
+          </div>
+          <div className="table-item__actions">
+            <button className="table-item__action-button" onClick={openModal}>
+              <img src={deleteIcon} alt="Delete button" />
+            </button>
+            <button className="table-item__action-button">
+              <img src={editIcon} alt="Edit button" />
+            </button>
           </div>
         </article>
       </>

@@ -26,6 +26,7 @@ const Table = (props) => {
         )}
         {/* NavLink needs to be dynamic */}
         <NavLink
+          className="table__link"
           to={
             props.location.pathname === "/warehouse"
               ? "/warehouse/add-new-warehouse"
@@ -37,8 +38,16 @@ const Table = (props) => {
           <Button type={props.buttonType} label={props.buttonLabel} />
         </NavLink>
       </div>
-      <div className="table__table-headers">
-        <div className="table__info-headers">
+      <div
+        className={`table__table-headers ${
+          props.colFiveTitle && "table__table-headers--inventory"
+        }`}
+      >
+        <div
+          className={`table__info-headers ${
+            props.colFiveTitle && "table__info-headers--inventory"
+          }`}
+        >
           <div className="table__table-header-item">
             <h4 className="table__table-heading">{props.colOneTitle}</h4>
             <button className="table__sort-button">

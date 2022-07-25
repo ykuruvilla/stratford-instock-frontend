@@ -44,7 +44,7 @@
   &__search {
     display: flex;
     width: 100%;
-    // margin: 1.6rem 0;
+    margin: 1.6rem 0;
 
     @include medium {
       width: fit-content;
@@ -103,6 +103,10 @@
   &__info-headers {
     display: flex;
     flex-basis: 80%;
+
+    &--inventory {
+      flex-basis: 83.333%;
+    }
   }
 
   &__action-headers {

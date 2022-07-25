@@ -25,12 +25,22 @@
       margin: 1.6rem 0 1.6rem 3.2rem;
       flex-basis: 80%;
     }
+
+    &--inventory {
+      @include medium {
+        flex-basis: 83.333%;
+      }
+    }
   }
 
   &__info {
     @include medium {
       display: flex;
       flex-basis: 50%;
+    }
+
+    &--inventory {
+      flex-basis: 40%;
     }
   }
 
@@ -95,6 +105,7 @@
   &__actions {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 0 1.6rem 1.6rem;
 
     @include medium {
@@ -120,7 +131,20 @@
 
   &__status-container {
     flex-basis: 50%;
+
+    &--inventory {
+      flex-basis: 33%;
+    }
   }
+
+  &__quantity-container {
+    flex-basis: 33%;
+  }
+
+  &__warehouse-container {
+    flex-basis: 33%;
+  }
+
   &__status {
     display: inline-block;
     height: 2.4rem;
@@ -130,6 +154,7 @@
 
     @include medium {
       height: 2.6rem;
+      margin-bottom: 0;
     }
 
     &--instock {
@@ -140,6 +165,24 @@
     &--outstock {
       color: #c94515;
       background-color: rgba($color: #c94515, $alpha: 0.07);
+    }
+  }
+
+  &__status-info {
+    display: flex;
+    flex-direction: column;
+    @include medium {
+      flex-direction: row;
+      align-items: baseline;
+      flex-basis: 60%;
+    }
+  }
+
+  &__quantity {
+    margin-bottom: 1.6rem;
+
+    @include medium {
+      margin-bottom: 0;
     }
   }
 }
