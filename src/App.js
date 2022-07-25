@@ -62,7 +62,6 @@ const App = ({ location }) => {
   // component did mount for inventory data
   useEffect(() => {
     if (location.pathname === "/inventory") {
-      console.log("get inventory data");
       getInventoryData();
     }
   }, [location.pathname]);
@@ -83,7 +82,9 @@ const App = ({ location }) => {
                   setWarehouseListData={setWarehouseListData}
                   buttonType="add"
                   buttonLabel="+ Add Warehouse"
+                  location={location}
                   view="add"
+                  warehouseListData={warehouseListData}
                 />
               )}
             />
@@ -98,6 +99,7 @@ const App = ({ location }) => {
                   buttonLabel="Save"
                   view="edit"
                   location={location}
+                  warehouseListData={warehouseListData}
                 />
               )}
             />
@@ -143,6 +145,23 @@ const App = ({ location }) => {
                   // not sure if this prop is necessary
                   link="/warehouse/add-new-warehouse"
                   modalType="warehouse"
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/inventory/edit/:inventoryId"
+              render={(routerProps) => (
+                <Form
+                  location={routerProps.location}
+                  title="Edit Inventory Item"
+                  setWarehouseListData={setWarehouseListData}
+                  buttonType="save"
+                  buttonLabel="Save"
+                  view="edit"
+                  warehouseListData={warehouseListData}
+                  setInventoryListData={setInventoryListData}
+                  inventoryListData={inventoryListData}
                 />
               )}
             />

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./TableItem.scss";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
@@ -118,9 +118,12 @@ function TableItem(props) {
             <button className="table-item__action-button" onClick={openModal}>
               <img src={deleteIcon} alt="Delete button" />
             </button>
-            <button className="table-item__action-button">
-              <img src={editIcon} alt="Edit button" />
-            </button>
+
+            <Link to={`/inventory/edit/${props.data.id}`}>
+              <button className="table-item__action-button">
+                <img src={editIcon} alt="Edit button" />
+              </button>
+            </Link>
           </div>
         </article>
       </>
@@ -183,9 +186,11 @@ function TableItem(props) {
             <button className="table-item__action-button" onClick={openModal}>
               <img src={deleteIcon} alt="Delete button" />
             </button>
-            <button className="table-item__action-button">
-              <img src={editIcon} alt="Edit button" />
-            </button>
+            <Link to={`/inventory/edit/${props.data.id}`}>
+              <button className="table-item__action-button">
+                <img src={editIcon} alt="Edit button" />
+              </button>
+            </Link>
           </div>
         </article>
       </>
