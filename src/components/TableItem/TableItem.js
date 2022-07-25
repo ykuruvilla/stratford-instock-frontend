@@ -24,7 +24,7 @@ function TableItem(props) {
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
           id={props.data.id}
-          getWarehouseData={props.getWarehouseData}
+          setWarehouseListData={props.setWarehouseListData}
           warehouseName={props.data.name}
           inventoryName={props.data.itemName}
           modalType={props.modalType}

@@ -104,6 +104,7 @@ const Table = (props) => {
                   location={props.location}
                   setWarehouseData={props.settWarehouseData}
                   modalType={props.modalType}
+                  setWarehouseDetailsData={props.setWarehouseDetailsData}
                 />
               );
             })}
@@ -134,6 +135,7 @@ const Table = (props) => {
                   key={inventory.id}
                   location={props.location}
                   modalType={props.modalType}
+                  setWarehouseListData={props.setWarehouseListData}
                 />
               );
             })}

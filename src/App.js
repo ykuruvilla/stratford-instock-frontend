@@ -91,6 +91,7 @@ const App = ({ location }) => {
                   location={location}
                   view="add"
                   warehouseListData={warehouseListData}
+                  setInventoryListData={setInventoryListData}
                 />
               )}
             />
@@ -118,6 +119,7 @@ const App = ({ location }) => {
                   dataSet="warehouseDetails"
                   title={warehouseDetailsData.name}
                   setWarehouseDetailsData={setWarehouseDetailsData}
+                  setWarehouseListData={setWarehouseListData}
                   hasSearch={false}
                   buttonType="edit"
                   buttonLabel="Edit"
@@ -140,6 +142,7 @@ const App = ({ location }) => {
                   data={warehouseListData}
                   dataSet="warehouseList"
                   getWarehouseData={getWarehouseData}
+                  setWarehouseListData={setWarehouseListData}
                   title="Warehouses"
                   hasSearch={true}
                   buttonType="add"

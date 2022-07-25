@@ -17,7 +17,16 @@ const ItemAvailabilityForm = ({
   warehouseListData,
   stockStatus,
   selectedItem,
+  setStatus,
 }) => {
+  //FIXME:
+  const onChangeHandler = (e, setState) => {
+    e.preventDefault();
+    console.log("onChange");
+    console.log(e.target.value);
+    setState(e.target.value);
+  };
+
   if (selectedItem.length === 0) {
     return <h1>Loading...</h1>;
   } else {

@@ -37,7 +37,14 @@ const Form = ({
   const [phoneValidation, setPhoneValidation] = useState(false);
   const [emailValidation, setEmailValidation] = useState(false);
 
-  // put field values in state
+  // EDIT warehouse
+  const [warehouseName, setWarehouseName] = useState("");
+  const [warehouseAddress, setWarehouseAddress] = useState("");
+  const [warehouseCity, setWarehouseCity] = useState("");
+  const [warehouseCounty, setWarehouseCounty] = useState("");
+  const [warehouseContact, setWarehouseContact] = useState("");
+
+  // EDIT inventory items - put field values in state
   //async for state onChange!!!!
   const [itemName, setItemName] = useState("");
   const [description, setDescription] = useState("");
@@ -45,7 +52,10 @@ const Form = ({
   const [selectedItem, setSelectedItem] = useState("");
 
   useEffect(() => {
-    if (Object.keys(selectedItem).length === 0) {
+    if (
+      Object.keys(selectedItem).length === 0 &&
+      location.pathname.includes("inventory")
+    ) {
       axios
         .get(`${BASE_URL}inventory`)
         .then((response) => {
@@ -129,6 +139,7 @@ const Form = ({
     };
 
     if (view === "add") {
+      console.log("View is add");
       axios
         .post(`${BASE_URL}warehouse`, newWarehouseObj)
         .then((response) => {
@@ -140,6 +151,7 @@ const Form = ({
         })
         .catch((error) => console.log("POST new warehouse error", error));
     } else if (view === "edit") {
+      console.log("View is edit");
       axios
         .put(
           `${BASE_URL}warehouse/${location.pathname.slice(-36)}`,
@@ -157,7 +169,6 @@ const Form = ({
         })
         .catch((error) => console.log("POST new warehouse error", error));
     }
-
     e.target.reset();
     history.push("/warehouse");
   };
@@ -236,6 +247,7 @@ const Form = ({
               ErrorInputFour={emailError}
               warehouseListData={warehouseListData}
               stockStatus={status}
+              setStatus={setStatus}
               selectedItem={selectedItem}
             />
           </div>
@@ -246,9 +258,7 @@ const Form = ({
             label="Cancel"
             action={cancelSubmitHandler}
           />
-          <Link to={`inventory/${location.pathname.slice(-36)}`}>
-            <Button type={`${buttonType} button__edit`} label={buttonLabel} />
-          </Link>
+          <Button type={`${buttonType} button__edit`} label={buttonLabel} />
         </div>
       </form>
     </section>
