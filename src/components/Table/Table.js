@@ -5,8 +5,12 @@ import searchIcon from "../../assets/icons/search-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import Button from "../Button/Button";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { filterInventory, filterWarehouse } from "../../utils/helper";
 
 const Table = (props) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <section className="table">
       <div className="table__header">
@@ -15,13 +19,14 @@ const Table = (props) => {
         {props.hasSearch && (
           <form className="table__search">
             <input
+              onChange={(event) => setSearchTerm(event.target.value)}
               type="search"
               className="table__search-field"
               placeholder="Search..."
             />
-            <button type="submit" className="table__search-button">
+            <p className="table__search-button">
               <img src={searchIcon} alt="Search icon" />
-            </button>
+            </p>
           </form>
         )}
         <NavLink
@@ -88,18 +93,20 @@ const Table = (props) => {
       </div>
       <section className="table__container">
         {props.dataSet === "warehouseList" &&
-          props.data.map((warehouse) => {
-            return (
-              <TableItem
-                data={warehouse}
-                dataSet={props.dataSet}
-                key={warehouse.id}
-                location={props.location}
-                setWarehouseData={props.settWarehouseData}
-                modalType={props.modalType}
-              />
-            );
-          })}
+          props.data
+            .filter((warehouse) => filterWarehouse(warehouse, searchTerm))
+            .map((warehouse) => {
+              return (
+                <TableItem
+                  data={warehouse}
+                  dataSet={props.dataSet}
+                  key={warehouse.id}
+                  location={props.location}
+                  setWarehouseData={props.settWarehouseData}
+                  modalType={props.modalType}
+                />
+              );
+            })}
 
         {props.data.inventoryData &&
           props.dataSet === "warehouseDetails" &&
@@ -117,17 +124,19 @@ const Table = (props) => {
           })}
 
         {props.dataSet === "inventoryList" &&
-          props.data.map((inventory) => {
-            return (
-              <TableItem
-                data={inventory}
-                dataSet={props.dataSet}
-                key={inventory.id}
-                location={props.location}
-                modalType={props.modalType}
-              />
-            );
-          })}
+          props.data
+            .filter((inventory) => filterInventory(inventory, searchTerm))
+            .map((inventory) => {
+              return (
+                <TableItem
+                  data={inventory}
+                  dataSet={props.dataSet}
+                  key={inventory.id}
+                  location={props.location}
+                  modalType={props.modalType}
+                />
+              );
+            })}
       </section>
     </section>
   );

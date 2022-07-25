@@ -63,7 +63,6 @@ const App = ({ location }) => {
   // component did mount for inventory data
   useEffect(() => {
     if (location.pathname === "/inventory") {
-      console.log("get inventory data");
       getInventoryData();
     }
   }, [location.pathname]);

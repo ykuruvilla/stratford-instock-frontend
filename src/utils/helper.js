@@ -32,3 +32,62 @@ export const validateInput = (
   func(false);
   return false;
 };
+
+export const filterWarehouse = (obj, str) => {
+  if (str === "") {
+    return obj;
+  }
+
+  if (obj.name.toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+
+  if (obj.address.toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+
+  if (obj.city.toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+
+  if (obj.country.toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+
+  if (obj.contact.name.toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+
+  if (obj.contact.phone.toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+
+  if (obj.contact.email.toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+};
+
+export const filterInventory = (obj, str) => {
+  if (str === "") {
+    return obj;
+  }
+  if (obj.warehouseName.toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+
+  if (obj.itemName.toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+
+  if (obj.category.toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+
+  if (obj.status.toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+
+  if (obj.quantity.toString().toLowerCase().includes(str.toLowerCase())) {
+    return obj;
+  }
+};
