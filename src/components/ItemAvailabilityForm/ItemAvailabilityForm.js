@@ -9,6 +9,7 @@ const ItemAvailabilityForm = ({
   labelOne,
   labelTwo,
   labelThree,
+  labelFour,
   borderClass,
   ErrorInputOne,
   ErrorInputTwo,
@@ -17,8 +18,6 @@ const ItemAvailabilityForm = ({
   stockStatus,
   selectedItem,
 }) => {
-  console.log("itemAvailabilityForm");
-
   if (selectedItem.length === 0) {
     return <h1>Loading...</h1>;
   } else {
@@ -40,10 +39,12 @@ const ItemAvailabilityForm = ({
               value={stockStatus}
               defaultChecked={stockStatus === "In Stock"}
             />
-
             <label
               htmlFor={labelOne.replace(/\s+/g, "")}
-              className="formcard__label"
+              className={`formcard__label`}
+              id={`${
+                stockStatus === "In Stock" ? "" : "formcard__label--grey"
+              }`}
             >
               {labelOne}
             </label>
@@ -61,32 +62,43 @@ const ItemAvailabilityForm = ({
             />
             <label
               htmlFor={labelTwo.replace(/\s+/g, "")}
-              className="formcard__label"
+              className={`formcard__label `}
+              id={`${
+                stockStatus === "Out of Stock" ? "" : "formcard__label--grey"
+              }`}
             >
               {labelTwo}
             </label>
           </div>
         </div>
+        {stockStatus === "In Stock" && (
+          <>
+            <label htmlFor={labelThree} className="formcard__label">
+              {labelThree}
+            </label>
+            <input
+              type="number"
+              className="formcard__input formcard__input--qty"
+              id={labelThree.replace(/\s+/g, "")}
+              defaultValue={selectedItem.quantity}
+            ></input>
+          </>
+        )}
         <label
-          htmlFor={labelThree.replace(/\s+/g, "")}
+          htmlFor={labelFour.replace(/\s+/g, "")}
           className="formcard__label"
         >
-          {labelThree}
+          {labelFour}
         </label>
         <select
           className={`formcard__input ${false ? "formcard__error" : ""}`}
-          placeholder={labelThree}
-          name={labelThree.replace(/\s+/g, "")}
-          id={labelThree.replace(/\s+/g, "")}
+          name={labelFour.replace(/\s+/g, "")}
+          id={labelFour.replace(/\s+/g, "")}
           defaultValue={selectedItem.warehouseName}
         >
-          {warehouseListData.map((warehouse) =>
-            warehouse.id === selectedItem.warehouseID ? (
-              <option key={warehouse.id}>{warehouse.name}</option>
-            ) : (
-              <option key={warehouse.id}>{warehouse.name}</option>
-            )
-          )}
+          {warehouseListData.map((warehouse) => (
+            <option key={warehouse.id}>{warehouse.name}</option>
+          ))}
         </select>
         {/* <ErrorMessage errorInput={ErrorInputFour} emailError={emailValidation} /> */}
       </article>

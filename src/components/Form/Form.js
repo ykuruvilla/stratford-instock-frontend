@@ -21,8 +21,6 @@ const Form = ({
   view,
   location,
 }) => {
-  console.log(location);
-
   // left/up details inputs
   const [warehouseNameError, setWarehouseNameError] = useState(false);
   const [streetAddressError, setstreetAddressError] = useState(false);
@@ -58,10 +56,6 @@ const Form = ({
           });
 
           setSelectedItem(currentItem);
-
-          console.log("current", currentItem.itemName);
-
-          // wrong because response.data is an array
           setItemName(currentItem.itemName);
           setDescription(currentItem.description);
           setStatus(currentItem.status);
@@ -221,28 +215,26 @@ const Form = ({
               labelTwo={"Description"}
               labelThree={"Category"}
               labelFour={"Category"}
-              className=""
               ErrorInputOne={contactNameError}
               ErrorInputTwo={positionError}
               ErrorInputThree={phoneError}
-              ErrorInputFour={emailError}
-              phoneValidation={phoneValidation}
-              emailValidation={emailValidation}
+              itemName={itemName}
+              description={description}
+              inventoryListData={inventoryListData}
+              selectedItem={selectedItem}
+              warehouseListData={warehouseListData}
             />
             <ItemAvailabilityForm
               title={"Item Availability"}
               labelOne={"In Stock"}
               labelTwo={"Out of Stock"}
-              labelThree={"Warehouse"}
-              className=""
+              labelThree={"Quantity"}
+              labelFour={"Warehouse"}
               ErrorInputOne={contactNameError}
               ErrorInputTwo={positionError}
               ErrorInputThree={phoneError}
               ErrorInputFour={emailError}
               warehouseListData={warehouseListData}
-              setInventoryListData={setInventoryListData}
-              inventoryListData={inventoryListData}
-              location={location}
               stockStatus={status}
               selectedItem={selectedItem}
             />

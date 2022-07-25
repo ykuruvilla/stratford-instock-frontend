@@ -12,54 +12,76 @@ const ItemDetailsForm = ({
   ErrorInputTwo,
   ErrorInputThree,
   ErrorInputFour,
-  phoneValidation,
-  emailValidation,
+  itemName,
+  description,
+  inventoryListData,
+  selectedItem,
 }) => {
-  return (
-    <article className={`formcard ${borderClass}`}>
-      <h2 className="formcard__title">{title}</h2>
-      <label htmlFor={labelOne.replace(/\s+/g, "")} className="formcard__label">
-        {labelOne}
-      </label>
-      <input
-        type="text"
-        className={`formcard__input ${ErrorInputOne ? "formcard__error" : ""}`}
-        placeholder={labelOne}
-        name={labelOne.replace(/\s+/g, "")}
-        id={labelOne.replace(/\s+/g, "")}
-      />
-      <ErrorMessage errorInput={ErrorInputOne} />
+  const uniqueCategories = [
+    ...new Set(inventoryListData.map((item) => item.category)),
+  ];
 
-      <label htmlFor={labelTwo.replace(/\s+/g, "")} className="formcard__label">
-        {labelTwo}
-      </label>
-      <textarea
-        type="text"
-        className={`formcard__textarea ${
-          ErrorInputTwo ? "formcard__error" : ""
-        }`}
-        placeholder={labelTwo}
-        name={labelTwo.replace(/\s+/g, "")}
-        id={labelTwo.replace(/\s+/g, "")}
-      />
-      <ErrorMessage errorInput={ErrorInputTwo} />
+  if (selectedItem.length === 0) {
+    return <h1>Loading...</h1>;
+  } else {
+    return (
+      <article className={`formcard ${borderClass}`}>
+        <h2 className="formcard__title">{title}</h2>
+        <label
+          htmlFor={labelOne.replace(/\s+/g, "")}
+          className="formcard__label"
+        >
+          {labelOne}
+        </label>
+        <input
+          type="text"
+          className={`formcard__input ${
+            ErrorInputOne ? "formcard__error" : ""
+          }`}
+          name={labelOne.replace(/\s+/g, "")}
+          id={labelOne.replace(/\s+/g, "")}
+          defaultValue={itemName}
+        />
+        <ErrorMessage errorInput={ErrorInputOne} />
 
-      <label
-        htmlFor={labelFour.replace(/\s+/g, "")}
-        className="formcard__label"
-      >
-        {labelFour}
-      </label>
-      <input
-        type="text"
-        className={`formcard__input ${ErrorInputFour ? "formcard__error" : ""}`}
-        placeholder={labelFour}
-        name={labelFour.replace(/\s+/g, "")}
-        id={labelFour.replace(/\s+/g, "")}
-      />
-      <ErrorMessage errorInput={ErrorInputFour} emailError={emailValidation} />
-    </article>
-  );
+        <label
+          htmlFor={labelTwo.replace(/\s+/g, "")}
+          className="formcard__label"
+        >
+          {labelTwo}
+        </label>
+        <textarea
+          type="text"
+          className={`formcard__textarea ${
+            ErrorInputTwo ? "formcard__error" : ""
+          }`}
+          name={labelTwo.replace(/\s+/g, "")}
+          id={labelTwo.replace(/\s+/g, "")}
+          defaultValue={description}
+        />
+        <ErrorMessage errorInput={ErrorInputTwo} />
+
+        <label
+          htmlFor={labelFour.replace(/\s+/g, "")}
+          className="formcard__label"
+        >
+          {labelFour}
+        </label>
+
+        <select
+          className={`formcard__input ${false ? "formcard__error" : ""}`}
+          name={labelThree.replace(/\s+/g, "")}
+          id={labelThree.replace(/\s+/g, "")}
+          defaultValue={selectedItem.category}
+        >
+          {uniqueCategories.map((category, i) => (
+            <option key={i}>{category}</option>
+          ))}
+        </select>
+        {/* <ErrorMessage errorInput={ErrorInputFour} emailError={emailValidation} /> */}
+      </article>
+    );
+  }
 };
 
 export default ItemDetailsForm;
