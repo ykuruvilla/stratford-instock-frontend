@@ -64,6 +64,13 @@
     }
   }
 
+  &__name {
+    transition: margin-right 0.5s;
+    &:hover {
+      margin-right: 4px;
+    }
+  }
+
   &__address {
     @include medium {
       flex-basis: 50%;
