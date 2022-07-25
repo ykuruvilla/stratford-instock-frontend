@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 // import Inventory from "./pages/Inventory/Inventory";
 // import Warehouses from "./pages/Warehouses/Warehouses";
 import Table from "./components/Table/Table";
-import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
+// import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import Form from "./components/Form/Form";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -14,19 +14,28 @@ import "./App.scss";
 const App = ({ location }) => {
   const [warehouseListData, setWarehouseListData] = useState([]);
   const [warehouseDetailsData, setWarehouseDetailsData] = useState([]);
+  const [inventoryListData, setInventoryListData] = useState([]);
 
   const getWarehouseData = async () => {
     try {
       const result = await axios.get(`${BASE_URL}warehouse`);
-
       setWarehouseListData(result.data);
     } catch (error) {
       window.alert(error.message);
     }
   };
 
+  const getInventoryData = async () => {
+    try {
+      const result = await axios.get(`${BASE_URL}inventory`);
+      setInventoryListData(result.data);
+    } catch (error) {
+      window.alert(error.message);
+    }
+  };
+
+  // initial mount
   useEffect(() => {
-    // initial mount
     if (warehouseListData.length < 1) {
       getWarehouseData();
     }
@@ -34,12 +43,28 @@ const App = ({ location }) => {
 
   // Component did update (on warehouse list click)
   useEffect(() => {
-    axios
-      .get(`${BASE_URL}${location.pathname.slice(1)}`)
-      .then((response) => {
-        setWarehouseDetailsData(response.data);
-      })
-      .catch((error) => console.log(error));
+    // bandaid solution
+    if (
+      location.pathname.includes("warehouse/") &&
+      !location.pathname.includes("add") &&
+      !location.pathname.includes("edit")
+    ) {
+      console.log("useEffect did update on warehouse list click");
+      axios
+        .get(`${BASE_URL}${location.pathname.slice(1)}`)
+        .then((response) => {
+          setWarehouseDetailsData(response.data);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [location.pathname]);
+
+  // component did mount for inventory data
+  useEffect(() => {
+    if (location.pathname === "/inventory") {
+      console.log("get inventory data");
+      getInventoryData();
+    }
   }, [location.pathname]);
 
   // Note to myself: order the routes from most specific to least specific
@@ -47,7 +72,7 @@ const App = ({ location }) => {
     <>
       <div className="body">
         <div className="app__container">
-          <Header />
+          <Header location={location} />
           <Switch>
             <Route
               exact
@@ -82,6 +107,7 @@ const App = ({ location }) => {
                 <Table
                   {...routerProps}
                   data={warehouseDetailsData}
+                  dataSet="warehouseDetails"
                   title={warehouseDetailsData.name}
                   setWarehouseDetailsData={setWarehouseDetailsData}
                   hasSearch={false}
@@ -91,8 +117,9 @@ const App = ({ location }) => {
                   colTwoTitle=" CATEGORY"
                   colThreeTitle="STATUS"
                   colFourTitle="QUANTITY"
-                  link="/warehouse/edit-warehouse/:warehouseId"
                   modalType="inventory"
+                  // not sure if this prop is necessary
+                  link="/warehouse/edit-warehouse/:warehouseId"
                 />
               )}
             />
@@ -103,6 +130,7 @@ const App = ({ location }) => {
                 <Table
                   {...routerProps}
                   data={warehouseListData}
+                  dataSet="warehouseList"
                   getWarehouseData={getWarehouseData}
                   title="Warehouses"
                   hasSearch={true}
@@ -112,12 +140,34 @@ const App = ({ location }) => {
                   colTwoTitle=" ADDRESS"
                   colThreeTitle="CONTACT NAME"
                   colFourTitle="CONTACT INFORMATION"
+                  // not sure if this prop is necessary
                   link="/warehouse/add-new-warehouse"
                   modalType="warehouse"
                 />
               )}
             />
-            <Route exact path="/inventory" component={""} />
+            <Route
+              exact
+              path="/inventory"
+              render={(routerProps) => (
+                <Table
+                  {...routerProps}
+                  data={inventoryListData}
+                  dataSet="inventoryList"
+                  getInventoryData={getInventoryData}
+                  title="Inventory"
+                  hasSearch={true}
+                  buttonType="add"
+                  buttonLabel="+ Add New Item"
+                  colOneTitle="INVENTORY ITEM"
+                  colTwoTitle="CATEGORY"
+                  colThreeTitle="STATUS"
+                  colFourTitle="QTY"
+                  colFiveTitle="WAREHOUSE"
+                  modalType="inventory"
+                />
+              )}
+            />
             <Redirect exact from="/" to="/warehouse" />
           </Switch>
         </div>

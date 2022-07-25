@@ -7,11 +7,6 @@ import Button from "../Button/Button";
 import { NavLink } from "react-router-dom";
 
 const Table = (props) => {
-  // console.log("Table props", props);
-  console.log("current id:", props.location.pathname.slice(-36));
-  // if (!props.data.inventoryData) {
-  //   return <h1>Page loading...</h1>;
-  // }
   return (
     <section className="table">
       <div className="table__header">
@@ -30,6 +25,7 @@ const Table = (props) => {
           </form>
         )}
         <NavLink
+          className="table__link"
           to={
             props.location.pathname === "/warehouse"
               ? "/warehouse/add-new-warehouse"
@@ -41,8 +37,16 @@ const Table = (props) => {
           <Button type={props.buttonType} label={props.buttonLabel} />
         </NavLink>
       </div>
-      <div className="table__table-headers">
-        <div className="table__info-headers">
+      <div
+        className={`table__table-headers ${
+          props.colFiveTitle && "table__table-headers--inventory"
+        }`}
+      >
+        <div
+          className={`table__info-headers ${
+            props.colFiveTitle && "table__info-headers--inventory"
+          }`}
+        >
           <div className="table__table-header-item">
             <h4 className="table__table-heading">{props.colOneTitle}</h4>
             <button className="table__sort-button">
@@ -67,6 +71,14 @@ const Table = (props) => {
               <img src={sortIcon} alt="Sort icon" />
             </button>
           </div>
+          {props.colFiveTitle && (
+            <div className="table__table-header-item">
+              <h4 className="table__table-heading">{props.colFiveTitle}</h4>
+              <button className="table__sort-button">
+                <img src={sortIcon} alt="Sort icon" />
+              </button>
+            </div>
+          )}
         </div>
         <div className="warehouse-action-headers">
           <div className="table__table-header-item table__table-header-item--actions">
@@ -75,11 +87,12 @@ const Table = (props) => {
         </div>
       </div>
       <section className="table__container">
-        {props.location.pathname === "/warehouse" &&
+        {props.dataSet === "warehouseList" &&
           props.data.map((warehouse) => {
             return (
               <TableItem
                 data={warehouse}
+                dataSet={props.dataSet}
                 key={warehouse.id}
                 location={props.location}
                 setWarehouseData={props.settWarehouseData}
@@ -89,14 +102,28 @@ const Table = (props) => {
           })}
 
         {props.data.inventoryData &&
-          Object.keys(props.data).includes("inventoryData") &&
+          props.dataSet === "warehouseDetails" &&
           props.data.inventoryData.map((inventory) => {
             return (
               <TableItem
                 data={inventory}
+                dataSet={props.dataSet}
                 key={inventory.id}
                 location={props.location}
                 setWarehouseDetailsData={props.setWarehouseDetailsData}
+                modalType={props.modalType}
+              />
+            );
+          })}
+
+        {props.dataSet === "inventoryList" &&
+          props.data.map((inventory) => {
+            return (
+              <TableItem
+                data={inventory}
+                dataSet={props.dataSet}
+                key={inventory.id}
+                location={props.location}
                 modalType={props.modalType}
               />
             );

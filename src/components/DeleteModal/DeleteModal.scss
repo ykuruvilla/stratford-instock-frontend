@@ -69,15 +69,4 @@
       padding: 0 6.4rem;
     }
   }
-
-  &__cancel-link {
-    display: flex;
-    // do we have to limit the width of the buttons to 16.3rem?
-    flex-basis: 50%;
-
-    @include medium {
-      height: 3.8rem;
-      flex-basis: 7.2rem;
-    }
-  }
 }

@@ -76,13 +76,11 @@ const DeleteModal = ({
             </div>
           </div>
           <div className="delete__buttons-container">
-            <NavLink
-              to="/warehouse"
-              className="delete__cancel-link"
-              onClick={closeModal}
-            >
-              <Button type="cancel" label={"Cancel"} action={closeModal} />
-            </NavLink>
+            <Button
+              type="cancel button__cancel-link"
+              label={"Cancel"}
+              action={closeModal}
+            />
             <Button
               type="delete"
               label={"Delete"}

@@ -34,8 +34,7 @@
   }
 
   &__logo {
-    height: 1.69rem;
-    width: 8.981rem;
+    height: 2.8rem;
 
     &:hover {
       cursor: pointer;
@@ -67,7 +66,6 @@
       font-size: 1.3rem;
       line-height: 2rem;
       color: $cloud;
-      // figma default 16.3rem but at 320px screen width item goes out of bounds
       display: flex;
       align-items: center;
       justify-content: center;

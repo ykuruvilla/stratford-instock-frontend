@@ -17,7 +17,7 @@ function TableItem(props) {
   const closeModal = () => {
     setIsOpen(false);
   };
-  if (props.location.pathname === "/warehouse") {
+  if (props.dataSet === "warehouseList") {
     return (
       <>
         <DeleteModal
@@ -70,7 +70,7 @@ function TableItem(props) {
     );
   }
 
-  if (Object.keys(props.data).includes("status")) {
+  if (props.dataSet === "warehouseDetails") {
     return (
       <>
         {/* DeleteModal will need to be changed to DeleteInventoryModal once it is built */}
@@ -111,6 +111,71 @@ function TableItem(props) {
               <h4 className="table-item__info-header">QTY</h4>
               <div className="table-item__contact-details-container">
                 <p>{props.data.quantity}</p>
+              </div>
+            </div>
+          </div>
+          <div className="table-item__actions">
+            <button className="table-item__action-button" onClick={openModal}>
+              <img src={deleteIcon} alt="Delete button" />
+            </button>
+            <button className="table-item__action-button">
+              <img src={editIcon} alt="Edit button" />
+            </button>
+          </div>
+        </article>
+      </>
+    );
+  }
+
+  if (props.dataSet === "inventoryList") {
+    return (
+      <>
+        {/* DeleteWarehouseModal will need to be changed to DeleteInventoryModal once it is built */}
+        <DeleteModal
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+          warehouseID={props.data.id}
+          getWarehouseData={props.getWarehouseData}
+          warehouseName={props.data.name}
+          inventoryName={props.data.itemName}
+          modalType={props.modalType}
+        />
+        <article className="table-item__list-item">
+          <div className="table-item__details table-item__details--inventory">
+            <div className="table-item__info table-item__info--inventory">
+              <h4 className="table-item__info-header">INVENTORY ITEM</h4>
+              <NavLink className="table-item__name-link" to={``}>
+                <h3 className="table-item__name">{props.data.itemName}</h3>
+                <img src={chevron} alt="Chevron right" />
+              </NavLink>
+              <h4 className="table-item__info-header">CATEGORY</h4>
+              <p className="table-item__address">{props.data.category}</p>
+            </div>
+            <div className="table-item__status-info">
+              <h4 className="table-item__info-header">STATUS</h4>
+              <div
+                className={`table-item__status-container ${
+                  props.dataSet === "inventoryList" &&
+                  "table-item__status-container--inventory"
+                }`}
+              >
+                <p
+                  className={`table-item__status ${
+                    props.data.quantity > 0
+                      ? "table-item__status--instock"
+                      : "table-item__status--outstock"
+                  }`}
+                >
+                  {props.data.status}
+                </p>
+              </div>
+              <h4 className="table-item__info-header">QTY</h4>
+              <div className="table-item__quantity-container">
+                <p className="table-item__quantity">{props.data.quantity}</p>
+                <h4 className="table-item__info-header">WAREHOUSE</h4>
+              </div>
+              <div className="table-item__warehouse-container">
+                <p>{props.data.warehouseName}</p>
               </div>
             </div>
           </div>

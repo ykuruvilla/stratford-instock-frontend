@@ -2,7 +2,7 @@ import logo from "../../assets/logos/instock-logo.svg";
 import "./Header.scss";
 import { Link, NavLink } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ location }) => {
   return (
     <header className="header">
       <nav className="navbar">
@@ -12,16 +12,40 @@ const Header = () => {
           </NavLink>
         </div>
         <ul className="navbar__list">
-          <li className="navbar__list-item navbar__list-item--selected">
+          <li
+            className={`navbar__list-item ${
+              location.pathname.includes("/warehouse")
+                ? "navbar__list-item--selected"
+                : "navbar__list-item--unselected"
+            }`}
+          >
             <Link to="/warehouse" className="navbar__warehouses-link">
-              <span className="navbar__text navbar__text--selected">
+              <span
+                className={`navbar__text ${
+                  location.pathname.includes("/warehouse")
+                    ? "navbar__text--selected"
+                    : "navbar__text--unselected"
+                }`}
+              >
                 Warehouses
               </span>
             </Link>
           </li>
-          <li className="navbar__list-item navbar__list-item--unselected">
+          <li
+            className={`navbar__list-item ${
+              location.pathname.includes("/inventory")
+                ? "navbar__list-item--selected"
+                : "navbar__list-item--unselected"
+            }`}
+          >
             <Link to="/inventory" className="navbar__inventory-link">
-              <span className="navbar__text navbar__text--unselected">
+              <span
+                className={`navbar__text ${
+                  location.pathname.includes("/inventory")
+                    ? "navbar__text--selected"
+                    : "navbar__text--unselected"
+                }`}
+              >
                 Inventory
               </span>
             </Link>
