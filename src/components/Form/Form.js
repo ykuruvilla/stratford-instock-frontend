@@ -99,7 +99,6 @@ const Form = ({
       axios
         .post(`${BASE_URL}warehouse`, newWarehouseObj)
         .then((response) => {
-          console.log(response);
           // add new warehouse to state to trigger re-render
           setWarehouseListData((prevData) => [
             ...prevData,

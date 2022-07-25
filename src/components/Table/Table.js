@@ -29,7 +29,6 @@ const Table = (props) => {
             </button>
           </form>
         )}
-        {/* NavLink needs to be dynamic */}
         <NavLink
           to={
             props.location.pathname === "/warehouse"
@@ -84,6 +83,7 @@ const Table = (props) => {
                 key={warehouse.id}
                 location={props.location}
                 setWarehouseData={props.settWarehouseData}
+                modalType={props.modalType}
               />
             );
           })}
@@ -91,13 +91,13 @@ const Table = (props) => {
         {props.data.inventoryData &&
           Object.keys(props.data).includes("inventoryData") &&
           props.data.inventoryData.map((inventory) => {
-            console.log(inventory);
             return (
               <TableItem
                 data={inventory}
                 key={inventory.id}
                 location={props.location}
                 setWarehouseDetailsData={props.setWarehouseDetailsData}
+                modalType={props.modalType}
               />
             );
           })}
