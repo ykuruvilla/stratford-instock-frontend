@@ -144,7 +144,10 @@ function TableItem(props) {
           <div className="table-item__details table-item__details--inventory">
             <div className="table-item__info table-item__info--inventory">
               <h4 className="table-item__info-header">INVENTORY ITEM</h4>
-              <NavLink className="table-item__name-link" to={``}>
+              <NavLink
+                className="table-item__name-link"
+                to={`/inventory/${props.data.id}`}
+              >
                 <h3 className="table-item__name">{props.data.itemName}</h3>
                 <img src={chevron} alt="Chevron right" />
               </NavLink>
