@@ -21,8 +21,9 @@ const InventoryItemDetails = ({ location }) => {
   };
 
   useEffect(() => {
-    console.log("Hello");
-    getInventoryDetailsData();
+    if (!location.pathname.includes("add")) {
+      getInventoryDetailsData();
+    }
   }, []);
   return (
     <div className="inventory-details">
@@ -33,7 +34,11 @@ const InventoryItemDetails = ({ location }) => {
         <h1 className="inventory-details__header-title">
           {inventoryDetailsData.itemName}
         </h1>
-        <NavLink to={``} className="inventory-details__link">
+        {/* FIXME: navlink to missing  */}
+        <NavLink
+          to={`/inventory/edit-item/${location.pathname.slice(-36)}`}
+          className="inventory-details__link"
+        >
           <img
             className="inventory-details__link-image"
             src={editIcon}

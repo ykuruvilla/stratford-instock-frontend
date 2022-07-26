@@ -7,15 +7,19 @@ import Button from "../Button/Button";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { filterInventory, filterWarehouse } from "../../utils/helper";
+import arrow from "../../assets/icons/arrow_back-24px.svg";
 
 const Table = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
-
   return (
     <section className="table">
       <div className="table__header">
+        {props.dataSet === "warehouseDetails" && (
+          <NavLink to="/warehouse" className="form__arrow-link">
+            <img src={arrow} alt="arrow icon" className="form__arrow" />
+          </NavLink>
+        )}
         <h1 className="table__title">{props.title}</h1>
-        {/* Will this work? */}
         {props.hasSearch && (
           <form className="table__search">
             <input
@@ -32,11 +36,15 @@ const Table = (props) => {
         <NavLink
           className="table__link"
           to={
-            props.location.pathname === "/warehouse"
+            props.buttonLabel.includes("Add New Warehouse")
               ? "/warehouse/add-new-warehouse"
-              : `/warehouse/edit-warehouse/${props.location.pathname.slice(
+              : props.dataSet === "warehouseDetails"
+              ? `/warehouse/edit-warehouse/${props.location.pathname.slice(
                   -36
                 )}`
+              : props.buttonLabel.includes("Add New Item")
+              ? "/inventory/add-new-item"
+              : `/inventory/edit/${props.location.pathname.slice(-36)}`
           }
         >
           <Button type={props.buttonType} label={props.buttonLabel} />
@@ -102,8 +110,9 @@ const Table = (props) => {
                   dataSet={props.dataSet}
                   key={warehouse.id}
                   location={props.location}
-                  setWarehouseData={props.settWarehouseData}
+                  setWarehouseListData={props.setWarehouseListData}
                   modalType={props.modalType}
+                  setWarehouseDetailsData={props.setWarehouseDetailsData}
                 />
               );
             })}
@@ -119,6 +128,7 @@ const Table = (props) => {
                 location={props.location}
                 setWarehouseDetailsData={props.setWarehouseDetailsData}
                 modalType={props.modalType}
+                setInventoryListData={props.setInventoryListData}
               />
             );
           })}
@@ -134,6 +144,8 @@ const Table = (props) => {
                   key={inventory.id}
                   location={props.location}
                   modalType={props.modalType}
+                  setWarehouseListData={props.setWarehouseListData}
+                  setInventoryListData={props.setInventoryListData}
                 />
               );
             })}

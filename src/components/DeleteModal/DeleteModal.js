@@ -6,6 +6,7 @@ import axios from "axios";
 import React from "react";
 import Modal from "react-modal";
 import BASE_URL from "../../api/api";
+import { useHistory } from "react-router-dom";
 
 const DeleteModal = ({
   modalIsOpen,
@@ -13,15 +14,18 @@ const DeleteModal = ({
   id,
   setWarehouseListData,
   setWarehouseDetailsData,
+  setInventoryListData,
   modalType,
   warehouseName,
   inventoryName,
+  location,
 }) => {
+  const history = useHistory();
+
   const deleteWarehouse = () => {
     axios
       .delete(`${BASE_URL}warehouse/${id}`)
-      .then((response) => {
-        console.log("delete success", response);
+      .then((_response) => {
         setWarehouseListData((prev) =>
           prev.filter((warehouse) => warehouse.id !== id)
         );
@@ -32,16 +36,12 @@ const DeleteModal = ({
   const deleteInventoryItem = () => {
     axios
       .delete(`${BASE_URL}inventory/${id}`)
-      .then((response) => {
-        console.log("delete success", response);
-        setWarehouseDetailsData((prevData) => ({
-          ...prevData,
-          inventoryData: prevData.inventoryData.filter(
-            (inventory) => inventory.id !== id
-          ),
-        }));
+      .then((_response) => {
+        setInventoryListData((prev) => prev.filter((item) => item.id !== id));
+        closeModal();
       })
       .catch((error) => console.log("delete error", error));
+    // history.goBack();
   };
 
   return (
@@ -54,7 +54,7 @@ const DeleteModal = ({
       >
         <section className="delete">
           <div className="delete__container-top">
-            <NavLink to="/warehouse" className="delete__link-close">
+            <NavLink to={`${location.pathname}`} className="delete__link-close">
               <img
                 className="delete__icon-close"
                 alt="close icon"

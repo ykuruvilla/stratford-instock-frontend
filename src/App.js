@@ -44,13 +44,11 @@ const App = ({ location }) => {
 
   // Component did update (on warehouse list click)
   useEffect(() => {
-    // bandaid solution
     if (
       location.pathname.includes("warehouse/") &&
       !location.pathname.includes("add") &&
       !location.pathname.includes("edit")
     ) {
-      console.log("useEffect did update on warehouse list click");
       axios
         .get(`${BASE_URL}${location.pathname.slice(1)}`)
         .then((response) => {
@@ -76,11 +74,6 @@ const App = ({ location }) => {
           <Switch>
             <Route
               exact
-              path="/inventory/:inventoryId"
-              render={() => <InventoryItemDetails location={location} />}
-            />
-            <Route
-              exact
               path="/warehouse/add-new-warehouse"
               render={() => (
                 <Form
@@ -88,7 +81,11 @@ const App = ({ location }) => {
                   setWarehouseListData={setWarehouseListData}
                   buttonType="add"
                   buttonLabel="+ Add Warehouse"
+                  location={location}
                   view="add"
+                  warehouseListData={warehouseListData}
+                  setInventoryListData={setInventoryListData}
+                  inventoryListData={inventoryListData}
                 />
               )}
             />
@@ -103,6 +100,8 @@ const App = ({ location }) => {
                   buttonLabel="Save"
                   view="edit"
                   location={location}
+                  warehouseListData={warehouseListData}
+                  inventoryListData={inventoryListData}
                 />
               )}
             />
@@ -115,6 +114,7 @@ const App = ({ location }) => {
                   dataSet="warehouseDetails"
                   title={warehouseDetailsData.name}
                   setWarehouseDetailsData={setWarehouseDetailsData}
+                  setWarehouseListData={setWarehouseListData}
                   hasSearch={false}
                   buttonType="edit"
                   buttonLabel="Edit"
@@ -123,8 +123,7 @@ const App = ({ location }) => {
                   colThreeTitle="STATUS"
                   colFourTitle="QUANTITY"
                   modalType="inventory"
-                  // not sure if this prop is necessary
-                  link="/warehouse/edit-warehouse/:warehouseId"
+                  setInventoryListData={setInventoryListData}
                 />
               )}
             />
@@ -137,6 +136,7 @@ const App = ({ location }) => {
                   data={warehouseListData}
                   dataSet="warehouseList"
                   getWarehouseData={getWarehouseData}
+                  setWarehouseListData={setWarehouseListData}
                   title="Warehouses"
                   hasSearch={true}
                   buttonType="add"
@@ -145,11 +145,50 @@ const App = ({ location }) => {
                   colTwoTitle=" ADDRESS"
                   colThreeTitle="CONTACT NAME"
                   colFourTitle="CONTACT INFORMATION"
-                  // not sure if this prop is necessary
-                  link="/warehouse/add-new-warehouse"
                   modalType="warehouse"
+                  setInventoryListData={setInventoryListData}
                 />
               )}
+            />
+            <Route
+              exact
+              path="/inventory/edit-item/:inventoryId"
+              render={(routerProps) => (
+                <Form
+                  location={routerProps.location}
+                  title="Edit Inventory Item"
+                  setWarehouseListData={setWarehouseListData}
+                  buttonType="save"
+                  buttonLabel="Save"
+                  view="edit"
+                  warehouseListData={warehouseListData}
+                  setInventoryListData={setInventoryListData}
+                  inventoryListData={inventoryListData}
+                />
+              )}
+            />
+
+            <Route
+              exact
+              path="/inventory/add-new-item"
+              render={(routerProps) => (
+                <Form
+                  location={routerProps.location}
+                  title="Add Inventory Item"
+                  setWarehouseListData={setWarehouseListData}
+                  buttonType="add"
+                  buttonLabel="+ Add Item"
+                  view="add"
+                  warehouseListData={warehouseListData}
+                  setInventoryListData={setInventoryListData}
+                  inventoryListData={inventoryListData}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/inventory/:inventoryId"
+              render={() => <InventoryItemDetails location={location} />}
             />
             <Route
               exact
@@ -160,6 +199,7 @@ const App = ({ location }) => {
                   data={inventoryListData}
                   dataSet="inventoryList"
                   getInventoryData={getInventoryData}
+                  setInventoryListData={setInventoryListData}
                   title="Inventory"
                   hasSearch={true}
                   buttonType="add"

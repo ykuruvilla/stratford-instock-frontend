@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./TableItem.scss";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
@@ -24,10 +24,11 @@ function TableItem(props) {
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
           id={props.data.id}
-          getWarehouseData={props.getWarehouseData}
+          setWarehouseListData={props.setWarehouseListData}
           warehouseName={props.data.name}
           inventoryName={props.data.itemName}
           modalType={props.modalType}
+          location={props.location}
         />
         <article className="table-item__list-item">
           <div className="table-item__details">
@@ -73,22 +74,27 @@ function TableItem(props) {
   if (props.dataSet === "warehouseDetails") {
     return (
       <>
-        {/* DeleteModal will need to be changed to DeleteInventoryModal once it is built */}
         <DeleteModal
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
           id={props.data.id}
           getWarehouseData={props.getWarehouseData}
           setWarehouseDetailsData={props.setWarehouseDetailsData}
+          setWarehouseListData={props.setWarehouseListData}
           warehouseName={props.data.name}
           inventoryName={props.data.itemName}
           modalType={props.modalType}
+          setInventoryListData={props.setInventoryListData}
+          location={props.location}
         />
         <article className="table-item__list-item">
           <div className="table-item__details">
             <div className="table-item__info">
               <h4 className="table-item__info-header">INVENTORY ITEM</h4>
-              <NavLink className="table-item__name-link" to={``}>
+              <NavLink
+                className="table-item__name-link"
+                to={`/inventory/${props.data.id}`}
+              >
                 <h3 className="table-item__name">{props.data.itemName}</h3>
                 <img src={chevron} alt="Chevron right" />
               </NavLink>
@@ -118,9 +124,12 @@ function TableItem(props) {
             <button className="table-item__action-button" onClick={openModal}>
               <img src={deleteIcon} alt="Delete button" />
             </button>
-            <button className="table-item__action-button">
-              <img src={editIcon} alt="Edit button" />
-            </button>
+
+            <Link to={`/inventory/edit-item/${props.data.id}`}>
+              <button className="table-item__action-button">
+                <img src={editIcon} alt="Edit button" />
+              </button>
+            </Link>
           </div>
         </article>
       </>
@@ -130,15 +139,16 @@ function TableItem(props) {
   if (props.dataSet === "inventoryList") {
     return (
       <>
-        {/* DeleteWarehouseModal will need to be changed to DeleteInventoryModal once it is built */}
         <DeleteModal
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
-          warehouseID={props.data.id}
+          id={props.data.id}
           getWarehouseData={props.getWarehouseData}
+          setInventoryListData={props.setInventoryListData}
           warehouseName={props.data.name}
           inventoryName={props.data.itemName}
           modalType={props.modalType}
+          location={props.location}
         />
         <article className="table-item__list-item">
           <div className="table-item__details table-item__details--inventory">
@@ -186,9 +196,11 @@ function TableItem(props) {
             <button className="table-item__action-button" onClick={openModal}>
               <img src={deleteIcon} alt="Delete button" />
             </button>
-            <button className="table-item__action-button">
-              <img src={editIcon} alt="Edit button" />
-            </button>
+            <Link to={`/inventory/edit-item/${props.data.id}`}>
+              <button className="table-item__action-button">
+                <img src={editIcon} alt="Edit button" />
+              </button>
+            </Link>
           </div>
         </article>
       </>
