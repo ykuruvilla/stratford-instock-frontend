@@ -179,6 +179,7 @@ const App = ({ location }) => {
                   data={inventoryListData}
                   dataSet="inventoryList"
                   getInventoryData={getInventoryData}
+                  setInventoryListData={setInventoryListData}
                   title="Inventory"
                   hasSearch={true}
                   buttonType="add"

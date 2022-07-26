@@ -13,6 +13,7 @@ const DeleteModal = ({
   id,
   setWarehouseListData,
   setWarehouseDetailsData,
+  setInventoryListData,
   modalType,
   warehouseName,
   inventoryName,
@@ -34,12 +35,15 @@ const DeleteModal = ({
       .delete(`${BASE_URL}inventory/${id}`)
       .then((response) => {
         console.log("delete inventory success", response);
-        setWarehouseDetailsData((prevData) => ({
-          ...prevData,
-          inventoryData: prevData.inventoryData.filter(
-            (inventory) => inventory.id !== id
-          ),
-        }));
+        // FIXME: What data arae we mapping over to show ivnentory list?
+        // setWarehouseDetailsData((prevData) => ({
+        //   ...prevData,
+        //   inventoryData: prevData.inventoryData.filter(
+        //     (inventory) => inventory.id !== id
+        //   ),
+        // }));
+
+        setInventoryListData((prev) => prev.filter((item) => item.id !== id));
       })
       .catch((error) => console.log("delete error", error));
   };

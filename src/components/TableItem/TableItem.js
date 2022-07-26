@@ -8,7 +8,7 @@ import { useState } from "react";
 import DeleteModal from "../DeleteModal/DeleteModal";
 
 function TableItem(props) {
-  console.log("TableItem props", props);
+  // console.log("TableItem props", props);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -90,6 +90,7 @@ function TableItem(props) {
           <div className="table-item__details">
             <div className="table-item__info">
               <h4 className="table-item__info-header">INVENTORY ITEM</h4>
+              {/* FIXME: no path given  */}
               <NavLink className="table-item__name-link" to={``}>
                 <h3 className="table-item__name">{props.data.itemName}</h3>
                 <img src={chevron} alt="Chevron right" />
@@ -133,14 +134,16 @@ function TableItem(props) {
   }
 
   if (props.dataSet === "inventoryList") {
+    // console.log("TableItem Inventory List Section");
     return (
       <>
         {/* DeleteWarehouseModal will need to be changed to DeleteInventoryModal once it is built */}
         <DeleteModal
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
-          warehouseID={props.data.id}
+          id={props.data.id}
           getWarehouseData={props.getWarehouseData}
+          setInventoryListData={props.setInventoryListData}
           warehouseName={props.data.name}
           inventoryName={props.data.itemName}
           modalType={props.modalType}

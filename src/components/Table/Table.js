@@ -11,8 +11,8 @@ import { filterInventory, filterWarehouse } from "../../utils/helper";
 const Table = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  console.log("Table props", props);
-
+  // console.log("Table props", props);
+  // console.log();
   return (
     <section className="table">
       <div className="table__header">
@@ -34,11 +34,14 @@ const Table = (props) => {
         <NavLink
           className="table__link"
           to={
-            props.location.pathname === "/warehouse"
+            // FIXME: might not work properly yet
+            props.buttonLabel.includes("Add New Warehouse")
               ? "/warehouse/add-new-warehouse"
-              : `/warehouse/edit-warehouse/${props.location.pathname.slice(
-                  -36
-                )}`
+              : props.buttonLabel.includes("edit warehouse")
+              ? `/warehouse/edit/${props.location.pathname.slice(-36)}`
+              : props.buttonLabel.includes("Add New Item")
+              ? "/inventory/add-new-item"
+              : `/inventory/edit/${props.location.pathname.slice(-36)}`
           }
         >
           <Button type={props.buttonType} label={props.buttonLabel} />
@@ -139,6 +142,7 @@ const Table = (props) => {
                   location={props.location}
                   modalType={props.modalType}
                   setWarehouseListData={props.setWarehouseListData}
+                  setInventoryListData={props.setInventoryListData}
                 />
               );
             })}
