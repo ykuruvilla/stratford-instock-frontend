@@ -1,5 +1,8 @@
 import "./ItemDetailsForm.scss";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import axios from "axios";
+import BASE_URL from "../../api/api";
+import { useEffect, useState } from "react";
 
 const ItemDetailsForm = ({
   title,
@@ -17,19 +20,34 @@ const ItemDetailsForm = ({
   inventoryListData,
   selectedItem,
   purpose,
+  location,
 }) => {
   const uniqueCategories = [
     ...new Set(inventoryListData.map((item) => item.category)),
   ];
 
   console.log("itemavailability selectedItem", selectedItem);
-
-  console.log("unique", uniqueCategories);
   console.log("purpose", purpose);
 
-  // if (selectedItem.length < 1) {
-  //   return <h1>Loading...</h1>;
-  // } else {
+  const [inventoryName, setInventoryName] = useState("");
+  const [inventoryDescription, setInventoryDescription] = useState("");
+  const [inventoryCategory, setInventoryCategory] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}inventory/${location.pathname.slice(-36)}`)
+      .then((response) => {
+        console.log("get inventory by ID success in itemdetailsForm");
+        setInventoryName(response.data.itemName);
+        setInventoryDescription(response.data.description);
+        setInventoryCategory(response.data.category);
+        console.log(response);
+      })
+      .catch((error) =>
+        console.log("ItemAvailabilityForm get inventory data error", error)
+      );
+  }, []);
+
   return (
     <article className={`formcard ${borderClass}`}>
       <h2 className="formcard__title">{title}</h2>
@@ -44,7 +62,7 @@ const ItemDetailsForm = ({
           }`}
           name={labelOne.replace(/\s+/g, "")}
           id={labelOne.replace(/\s+/g, "")}
-          defaultValue={itemName}
+          defaultValue={inventoryName}
         />
       )}
       {purpose === "add" && (
@@ -55,7 +73,7 @@ const ItemDetailsForm = ({
           }`}
           name={labelOne.replace(/\s+/g, "")}
           id={labelOne.replace(/\s+/g, "")}
-          placeholder={itemName}
+          placeholder={inventoryName}
         />
       )}
       <ErrorMessage errorInput={ErrorInputOne} />
@@ -71,7 +89,7 @@ const ItemDetailsForm = ({
           }`}
           name={labelTwo.replace(/\s+/g, "")}
           id={labelTwo.replace(/\s+/g, "")}
-          defaultValue={description}
+          defaultValue={inventoryDescription}
         />
       )}
       {purpose === "add" && (
@@ -82,7 +100,7 @@ const ItemDetailsForm = ({
           }`}
           name={labelTwo.replace(/\s+/g, "")}
           id={labelTwo.replace(/\s+/g, "")}
-          placeholder={description}
+          placeholder={inventoryDescription}
         />
       )}
       <ErrorMessage errorInput={ErrorInputTwo} />
@@ -99,7 +117,8 @@ const ItemDetailsForm = ({
           className={`formcard__input ${false ? "formcard__error" : ""}`}
           name={labelThree.replace(/\s+/g, "")}
           id={labelThree.replace(/\s+/g, "")}
-          defaultValue={selectedItem.category}
+          value={inventoryCategory}
+          onChange={(e) => setInventoryCategory(e.target.value)}
         >
           {uniqueCategories.map((category, i) => (
             <option key={i}>{category}</option>

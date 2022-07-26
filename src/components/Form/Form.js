@@ -37,15 +37,7 @@ const Form = ({
   const [phoneValidation, setPhoneValidation] = useState(false);
   const [emailValidation, setEmailValidation] = useState(false);
 
-  // // EDIT warehouse
-  // const [warehouseName, setWarehouseName] = useState("");
-  // const [warehouseAddress, setWarehouseAddress] = useState("");
-  // const [warehouseCity, setWarehouseCity] = useState("");
-  // const [warehouseCounty, setWarehouseCounty] = useState("");
-  // const [warehouseContact, setWarehouseContact] = useState("");
-
   // EDIT inventory items - put field values in state
-  //async for state onChange!!!!
   const [itemName, setItemName] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
@@ -99,24 +91,6 @@ const Form = ({
   const inventoryFormSubmitHandler = (e) => {
     e.preventDefault();
 
-    // resets
-    // resets();
-
-    // input validation
-    // let errorArray = [
-    //   validateInput(e.target.itemName.value, setWarehouseNameError),
-    //   validateInput(e.target.description.value, setstreetAddressError),
-    //   validateInput(e.target.category.value, setCityError),
-    //   validateInput(e.target.status.value, setCountryError),
-    //   validateInput(e.target.quantity.value, setContactNameError),
-    //   validateInput(e.target.warehoues.value, setPositionError),
-    // ];
-
-    // for (let error of errorArray) {
-    //   if (error) {
-    //     return;
-    //   }
-    // }
     // if no input error -> POST data to backend
     console.log("event", e.target.Warehouse);
 
@@ -261,10 +235,6 @@ const Form = ({
     history.goBack("/warehouse");
   };
 
-  console.log(
-    " location.pathname.includes()",
-    location.pathname.includes("add-new-item")
-  );
   return (
     <section className="form">
       <div className="form__container">
@@ -294,6 +264,7 @@ const Form = ({
               ErrorInputTwo={streetAddressError}
               ErrorInputThree={cityError}
               ErrorInputFour={countryError}
+              location={location}
             />
             <FormCard
               title={"Contact Details"}
@@ -308,6 +279,7 @@ const Form = ({
               ErrorInputFour={emailError}
               phoneValidation={phoneValidation}
               emailValidation={emailValidation}
+              location={location}
             />
           </div>
         )}
@@ -328,6 +300,7 @@ const Form = ({
               inventoryListData={inventoryListData}
               selectedItem={selectedItem}
               warehouseListData={warehouseListData}
+              location={location}
             />
             <ItemAvailabilityForm
               title={"Item Availability"}
@@ -365,6 +338,7 @@ const Form = ({
               inventoryListData={inventoryListData}
               selectedItem={selectedItem}
               warehouseListData={warehouseListData}
+              location={location}
             />
             <ItemAvailabilityForm
               title={"Item Availability"}

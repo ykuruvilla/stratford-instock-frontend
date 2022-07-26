@@ -23,17 +23,16 @@ const ItemAvailabilityForm = ({
 }) => {
   const [singleItem, setSingleItem] = useState("");
   const [itemStatus, setItemStatus] = useState("");
+  const [selectedWarehouse, setSelectedWarehouse] = useState("");
 
   useEffect(() => {
     if (!location.pathname.includes("add-new-item")) {
-      console.log("useEffect in ItemAvailabilityForm:");
       axios
         .get(`${BASE_URL}inventory/${location.pathname.slice(-36)}`)
         .then((response) => {
-          console.log("get inventory by ID success");
           setSingleItem(response.data);
           setItemStatus(response.data.status);
-          console.log(response);
+          setSelectedWarehouse(response.data.warehouseName);
         })
         .catch((error) =>
           console.log("ItemAvailabilityForm get inventory data error", error)
@@ -41,17 +40,6 @@ const ItemAvailabilityForm = ({
     }
   }, []);
 
-  //FIXME:
-  // const onChangeHandler = (e, setState) => {
-  //   e.preventDefault();
-  //   console.log("onChange");
-  //   console.log(e.target.value);
-  //   setState(e.target.value);
-  // };
-
-  // if (purpose === "") {
-  //   return <h1>Loading...</h1>;
-  // } else {
   return (
     <article className={`formcard ${borderClass}`}>
       <h2 className="formcard__title">{title}</h2>
@@ -68,9 +56,8 @@ const ItemAvailabilityForm = ({
             name={"status"}
             id={labelOne.replace(/\s+/g, "")}
             value="In Stock"
-            // defaultChecked={itemStatus === "In Stock"}
+            checked={itemStatus === "In Stock"}
             onChange={(e) => setItemStatus(e.target.value)}
-            // checked
           />
           <label
             htmlFor={labelOne.replace(/\s+/g, "")}
@@ -89,7 +76,7 @@ const ItemAvailabilityForm = ({
             name={"status"}
             id={labelTwo.replace(/\s+/g, "")}
             value={"Out of Stock"}
-            defaultChecked={itemStatus === "Out of Stock"}
+            checked={itemStatus === "Out of Stock"}
             onChange={(e) => setItemStatus(e.target.value)}
           />
           <label
@@ -128,7 +115,8 @@ const ItemAvailabilityForm = ({
           className={`formcard__input ${false ? "formcard__error" : ""}`}
           name={labelFour.replace(/\s+/g, "")}
           id={labelFour.replace(/\s+/g, "")}
-          defaultValue={singleItem.warehouseName}
+          value={selectedWarehouse}
+          onChange={(e) => setSelectedWarehouse(e.target.value)}
         >
           {warehouseListData.map((warehouse) => (
             <option key={warehouse.id}>{warehouse.name}</option>

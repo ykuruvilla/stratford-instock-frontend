@@ -44,7 +44,6 @@ const App = ({ location }) => {
 
   // Component did update (on warehouse list click)
   useEffect(() => {
-    // bandaid solution
     if (
       location.pathname.includes("warehouse/") &&
       !location.pathname.includes("add") &&
