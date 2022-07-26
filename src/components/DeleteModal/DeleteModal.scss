@@ -1,0 +1,72 @@
+@use "../../styles/partials/globals/mixins" as *;
+@use "../../styles/partials/globals/fonts" as *;
+@use "../../styles/partials/globals/colors" as *;
+
+.modal {
+  width: 100%;
+  background-color: rgba($instock-black, 0.7);
+
+  @include medium {
+    // unexplained behaviour from Modal module so padding works like margin
+    padding: 16rem 4.8rem 100%;
+  }
+
+  @include large {
+    // may need to double check calculation
+    padding: 16rem calc((100vw - 672px) / 2) 100%;
+    margin: 0;
+  }
+}
+
+.delete {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  justify-content: space-between;
+  padding: 2.1rem 1.6rem 2.1rem 2.4rem;
+
+  @include medium {
+    height: 26.2rem;
+    border-radius: 3px;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  &__container-top {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__wrapper {
+    @include medium {
+      padding: 0 6.4rem 3.2rem;
+    }
+  }
+
+  &__title {
+    padding-bottom: 1.6rem;
+  }
+
+  &__link-close {
+    display: flex;
+    align-self: flex-end;
+    justify-self: flex-end;
+
+    @include medium {
+      padding: 2.1rem 2.1rem 0.5rem;
+    }
+  }
+
+  &__buttons-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.7rem;
+
+    @include medium {
+      justify-content: flex-end;
+      padding: 0 6.4rem;
+    }
+  }
+}
