@@ -58,7 +58,6 @@ const ItemAvailabilityForm = ({
             value="In Stock"
             checked={itemStatus === "In Stock"}
             onChange={(e) => {
-              console.log("in stock", e.target.value);
               setItemStatus(e.target.value);
             }}
           />

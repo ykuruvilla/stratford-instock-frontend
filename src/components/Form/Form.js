@@ -37,11 +37,13 @@ const Form = ({
   const [phoneValidation, setPhoneValidation] = useState(false);
   const [emailValidation, setEmailValidation] = useState(false);
 
-  // EDIT inventory items - put field values in state
+  // EDIT inventory items
   const [itemName, setItemName] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
+
+  const history = useHistory();
 
   useEffect(() => {
     if (
@@ -58,7 +60,6 @@ const Form = ({
               return inventory.id === location.pathname.slice(-36);
             });
 
-            console.log("current Item");
             setSelectedItem(currentItem);
             setItemName(currentItem.itemName);
             setDescription(currentItem.description);
@@ -84,8 +85,6 @@ const Form = ({
     setEmailValidation(false);
   };
 
-  const history = useHistory();
-
   // INVENTORY
   const inventoryFormSubmitHandler = (e) => {
     e.preventDefault();
@@ -108,6 +107,7 @@ const Form = ({
       axios
         .post(`${BASE_URL}inventory`, newItemObj)
         .then((response) => {
+          history.goBack();
           // add new warehouse to state to trigger re-render
           setInventoryListData((prevData) => [
             ...prevData,
@@ -115,8 +115,6 @@ const Form = ({
           ]);
         })
         .catch((error) => console.log("POST new item error", error));
-      // return to inventory page
-      history.push("/inventory");
     } else if (view === "edit") {
       axios
         .put(`${BASE_URL}inventory/${location.pathname.slice(-36)}`, newItemObj)
