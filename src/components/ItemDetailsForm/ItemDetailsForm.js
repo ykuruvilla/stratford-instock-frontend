@@ -16,6 +16,7 @@ const ItemDetailsForm = ({
   description,
   inventoryListData,
   selectedItem,
+  purpose,
 }) => {
   const uniqueCategories = [
     ...new Set(inventoryListData.map((item) => item.category)),
@@ -33,15 +34,28 @@ const ItemDetailsForm = ({
         >
           {labelOne}
         </label>
-        <input
-          type="text"
-          className={`formcard__input ${
-            ErrorInputOne ? "formcard__error" : ""
-          }`}
-          name={labelOne.replace(/\s+/g, "")}
-          id={labelOne.replace(/\s+/g, "")}
-          defaultValue={itemName}
-        />
+        {purpose === "edit" && (
+          <input
+            type="text"
+            className={`formcard__input ${
+              ErrorInputOne ? "formcard__error" : ""
+            }`}
+            name={labelOne.replace(/\s+/g, "")}
+            id={labelOne.replace(/\s+/g, "")}
+            defaultValue={itemName}
+          />
+        )}
+        {purpose === "add" && (
+          <input
+            type="text"
+            className={`formcard__input ${
+              ErrorInputOne ? "formcard__error" : ""
+            }`}
+            name={labelOne.replace(/\s+/g, "")}
+            id={labelOne.replace(/\s+/g, "")}
+            placeholder={itemName}
+          />
+        )}
         <ErrorMessage errorInput={ErrorInputOne} />
 
         <label
@@ -50,15 +64,28 @@ const ItemDetailsForm = ({
         >
           {labelTwo}
         </label>
-        <textarea
-          type="text"
-          className={`formcard__textarea ${
-            ErrorInputTwo ? "formcard__error" : ""
-          }`}
-          name={labelTwo.replace(/\s+/g, "")}
-          id={labelTwo.replace(/\s+/g, "")}
-          defaultValue={description}
-        />
+        {purpose === "edit" && (
+          <textarea
+            type="text"
+            className={`formcard__textarea ${
+              ErrorInputTwo ? "formcard__error" : ""
+            }`}
+            name={labelTwo.replace(/\s+/g, "")}
+            id={labelTwo.replace(/\s+/g, "")}
+            defaultValue={description}
+          />
+        )}
+        {purpose === "add" && (
+          <textarea
+            type="text"
+            className={`formcard__textarea ${
+              ErrorInputTwo ? "formcard__error" : ""
+            }`}
+            name={labelTwo.replace(/\s+/g, "")}
+            id={labelTwo.replace(/\s+/g, "")}
+            placeholder={description}
+          />
+        )}
         <ErrorMessage errorInput={ErrorInputTwo} />
 
         <label
@@ -68,16 +95,32 @@ const ItemDetailsForm = ({
           {labelFour}
         </label>
 
-        <select
-          className={`formcard__input ${false ? "formcard__error" : ""}`}
-          name={labelThree.replace(/\s+/g, "")}
-          id={labelThree.replace(/\s+/g, "")}
-          defaultValue={selectedItem.category}
-        >
-          {uniqueCategories.map((category, i) => (
-            <option key={i}>{category}</option>
-          ))}
-        </select>
+        {purpose === "edit" && (
+          <select
+            className={`formcard__input ${false ? "formcard__error" : ""}`}
+            name={labelThree.replace(/\s+/g, "")}
+            id={labelThree.replace(/\s+/g, "")}
+            defaultValue={selectedItem.category}
+          >
+            {uniqueCategories.map((category, i) => (
+              <option key={i}>{category}</option>
+            ))}
+          </select>
+        )}
+        {purpose === "add" && (
+          <select
+            className={`formcard__input ${false ? "formcard__error" : ""}`}
+            name={labelThree.replace(/\s+/g, "")}
+            id={labelThree.replace(/\s+/g, "")}
+          >
+            <option value="" selected disabled hidden>
+              Please select a category
+            </option>
+            {uniqueCategories.map((category, i) => (
+              <option key={i}>{category}</option>
+            ))}
+          </select>
+        )}
         {/* <ErrorMessage errorInput={ErrorInputFour} emailError={emailValidation} /> */}
       </article>
     );

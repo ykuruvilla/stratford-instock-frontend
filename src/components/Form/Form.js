@@ -54,7 +54,8 @@ const Form = ({
   useEffect(() => {
     if (
       Object.keys(selectedItem).length === 0 &&
-      location.pathname.includes("inventory")
+      location.pathname.includes("inventory") &&
+      !location.pathname.includes("/inventory/add")
     ) {
       axios
         .get(`${BASE_URL}inventory`)
@@ -218,7 +219,43 @@ const Form = ({
             />
           </div>
         )}
-        {location.pathname.includes("inventory") && (
+        {location.pathname.includes("add-new-item") && (
+          <div className="form__container-cards">
+            <ItemDetailsForm
+              title={"item Details"}
+              labelOne={"Item Name"}
+              labelTwo={"Description"}
+              labelThree={"Category"}
+              labelFour={"Category"}
+              ErrorInputOne={contactNameError}
+              ErrorInputTwo={positionError}
+              ErrorInputThree={phoneError}
+              purpose={"add"}
+              itemName={"Please enter an item name"}
+              description={"Please enter a brief description"}
+              inventoryListData={inventoryListData}
+              selectedItem={"testest"}
+              warehouseListData={warehouseListData}
+            />
+            <ItemAvailabilityForm
+              title={"Item Availability"}
+              labelOne={"In Stock"}
+              labelTwo={"Out of Stock"}
+              labelThree={"Quantity"}
+              labelFour={"Warehouse"}
+              ErrorInputOne={contactNameError}
+              ErrorInputTwo={positionError}
+              ErrorInputThree={phoneError}
+              ErrorInputFour={emailError}
+              warehouseListData={warehouseListData}
+              stockStatus={status}
+              setStatus={setStatus}
+              purpose={"add"}
+              selectedItem={[]}
+            />
+          </div>
+        )}
+        {location.pathname.includes("/inventory/edit") && (
           <div className="form__container-cards">
             <ItemDetailsForm
               title={"item Details"}

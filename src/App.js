@@ -74,11 +74,11 @@ const App = ({ location }) => {
         <div className="app__container">
           <Header location={location} />
           <Switch>
-            <Route
+            {/* <Route
               exact
               path="/inventory/:inventoryId"
               render={() => <InventoryItemDetails location={location} />}
-            />
+            /> */}
             <Route
               exact
               path="/warehouse/add-new-warehouse"
@@ -155,7 +155,7 @@ const App = ({ location }) => {
             />
             <Route
               exact
-              path="/inventory/edit/:inventoryId"
+              path="/inventory/edit-item/:inventoryId"
               render={(routerProps) => (
                 <Form
                   location={routerProps.location}
@@ -164,6 +164,23 @@ const App = ({ location }) => {
                   buttonType="save"
                   buttonLabel="Save"
                   view="edit"
+                  warehouseListData={warehouseListData}
+                  setInventoryListData={setInventoryListData}
+                  inventoryListData={inventoryListData}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/inventory/add-new-item"
+              render={(routerProps) => (
+                <Form
+                  location={routerProps.location}
+                  title="Add Inventory Item"
+                  setWarehouseListData={setWarehouseListData}
+                  buttonType="add"
+                  buttonLabel="+ Add Item"
+                  view="add"
                   warehouseListData={warehouseListData}
                   setInventoryListData={setInventoryListData}
                   inventoryListData={inventoryListData}
