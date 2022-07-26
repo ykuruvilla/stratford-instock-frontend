@@ -128,8 +128,6 @@ const App = ({ location }) => {
                   colThreeTitle="STATUS"
                   colFourTitle="QUANTITY"
                   modalType="inventory"
-                  // not sure if this prop is necessary
-                  link="/warehouse/edit-warehouse/:warehouseId"
                 />
               )}
             />
@@ -151,8 +149,6 @@ const App = ({ location }) => {
                   colTwoTitle=" ADDRESS"
                   colThreeTitle="CONTACT NAME"
                   colFourTitle="CONTACT INFORMATION"
-                  // not sure if this prop is necessary
-                  link="/warehouse/add-new-warehouse"
                   modalType="warehouse"
                 />
               )}

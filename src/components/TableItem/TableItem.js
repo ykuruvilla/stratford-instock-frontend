@@ -8,6 +8,7 @@ import { useState } from "react";
 import DeleteModal from "../DeleteModal/DeleteModal";
 
 function TableItem(props) {
+  console.log("TableItem props", props);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -80,6 +81,7 @@ function TableItem(props) {
           id={props.data.id}
           getWarehouseData={props.getWarehouseData}
           setWarehouseDetailsData={props.setWarehouseDetailsData}
+          setWarehouseListData={props.setWarehouseListData}
           warehouseName={props.data.name}
           inventoryName={props.data.itemName}
           modalType={props.modalType}
