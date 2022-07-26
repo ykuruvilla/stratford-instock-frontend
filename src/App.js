@@ -74,11 +74,6 @@ const App = ({ location }) => {
         <div className="app__container">
           <Header location={location} />
           <Switch>
-            {/* <Route
-              exact
-              path="/inventory/:inventoryId"
-              render={() => <InventoryItemDetails location={location} />}
-            /> */}
             <Route
               exact
               path="/warehouse/add-new-warehouse"
@@ -92,6 +87,7 @@ const App = ({ location }) => {
                   view="add"
                   warehouseListData={warehouseListData}
                   setInventoryListData={setInventoryListData}
+                  inventoryListData={inventoryListData}
                 />
               )}
             />
@@ -107,6 +103,7 @@ const App = ({ location }) => {
                   view="edit"
                   location={location}
                   warehouseListData={warehouseListData}
+                  inventoryListData={inventoryListData}
                 />
               )}
             />
@@ -128,6 +125,7 @@ const App = ({ location }) => {
                   colThreeTitle="STATUS"
                   colFourTitle="QUANTITY"
                   modalType="inventory"
+                  setInventoryListData={setInventoryListData}
                 />
               )}
             />
@@ -150,6 +148,7 @@ const App = ({ location }) => {
                   colThreeTitle="CONTACT NAME"
                   colFourTitle="CONTACT INFORMATION"
                   modalType="warehouse"
+                  setInventoryListData={setInventoryListData}
                 />
               )}
             />
@@ -170,6 +169,7 @@ const App = ({ location }) => {
                 />
               )}
             />
+
             <Route
               exact
               path="/inventory/add-new-item"
@@ -186,6 +186,11 @@ const App = ({ location }) => {
                   inventoryListData={inventoryListData}
                 />
               )}
+            />
+            <Route
+              exact
+              path="/inventory/:inventoryId"
+              render={() => <InventoryItemDetails location={location} />}
             />
             <Route
               exact

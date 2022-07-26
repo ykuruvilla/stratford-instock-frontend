@@ -37,12 +37,12 @@ const Form = ({
   const [phoneValidation, setPhoneValidation] = useState(false);
   const [emailValidation, setEmailValidation] = useState(false);
 
-  // EDIT warehouse
-  const [warehouseName, setWarehouseName] = useState("");
-  const [warehouseAddress, setWarehouseAddress] = useState("");
-  const [warehouseCity, setWarehouseCity] = useState("");
-  const [warehouseCounty, setWarehouseCounty] = useState("");
-  const [warehouseContact, setWarehouseContact] = useState("");
+  // // EDIT warehouse
+  // const [warehouseName, setWarehouseName] = useState("");
+  // const [warehouseAddress, setWarehouseAddress] = useState("");
+  // const [warehouseCity, setWarehouseCity] = useState("");
+  // const [warehouseCounty, setWarehouseCounty] = useState("");
+  // const [warehouseContact, setWarehouseContact] = useState("");
 
   // EDIT inventory items - put field values in state
   //async for state onChange!!!!
@@ -54,8 +54,8 @@ const Form = ({
   useEffect(() => {
     if (
       //FIXME:
-      // (Object.keys(selectedItem).length === 0 &&
-      //   location.pathname.includes("inventory")) ||
+      // Object.keys(selectedItem).length === 0 ||
+      // location.pathname.includes("inventory")) ||
       inventoryListData.length < 1
     ) {
       axios
@@ -253,6 +253,7 @@ const Form = ({
         .catch((error) => console.log("POST new warehouse error", error));
     }
     e.target.reset();
+    //FIXME:
     history.push("/warehouse");
   };
 
@@ -322,7 +323,7 @@ const Form = ({
               itemName={"Please enter an item name"}
               description={"Please enter a brief description"}
               inventoryListData={inventoryListData}
-              selectedItem={"testest"}
+              selectedItem={selectedItem}
               warehouseListData={warehouseListData}
             />
             <ItemAvailabilityForm
@@ -340,13 +341,14 @@ const Form = ({
               setStatus={setStatus}
               purpose={"add"}
               selectedItem={[]}
+              location={location}
             />
           </div>
         )}
-        {location.pathname.includes("/inventory/edit") && (
+        {location.pathname.includes("/inventory/edit-item") && (
           <div className="form__container-cards">
             <ItemDetailsForm
-              title={"item Details"}
+              title={"Item Details"}
               labelOne={"Item Name"}
               labelTwo={"Description"}
               labelThree={"Category"}
@@ -355,6 +357,7 @@ const Form = ({
               ErrorInputTwo={positionError}
               ErrorInputThree={phoneError}
               itemName={itemName}
+              purpose="edit"
               description={description}
               inventoryListData={inventoryListData}
               selectedItem={selectedItem}
@@ -372,8 +375,10 @@ const Form = ({
               ErrorInputFour={emailError}
               warehouseListData={warehouseListData}
               stockStatus={status}
+              purpose="edit"
               setStatus={setStatus}
               selectedItem={selectedItem}
+              location={location}
             />
           </div>
         )}

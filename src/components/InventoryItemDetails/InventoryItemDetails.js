@@ -21,7 +21,7 @@ const InventoryItemDetails = ({ location }) => {
   };
 
   useEffect(() => {
-    console.log("Hello");
+    console.log(location.pathname);
     if (!location.pathname.includes("add")) {
       getInventoryDetailsData();
     }

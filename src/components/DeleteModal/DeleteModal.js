@@ -6,6 +6,7 @@ import axios from "axios";
 import React from "react";
 import Modal from "react-modal";
 import BASE_URL from "../../api/api";
+import { useHistory } from "react-router-dom";
 
 const DeleteModal = ({
   modalIsOpen,
@@ -17,7 +18,10 @@ const DeleteModal = ({
   modalType,
   warehouseName,
   inventoryName,
+  location,
 }) => {
+  const history = useHistory();
+
   const deleteWarehouse = () => {
     axios
       .delete(`${BASE_URL}warehouse/${id}`)
@@ -36,16 +40,14 @@ const DeleteModal = ({
       .then((response) => {
         console.log("delete inventory success", response);
         // FIXME: What data arae we mapping over to show ivnentory list?
-        // setWarehouseDetailsData((prevData) => ({
-        //   ...prevData,
-        //   inventoryData: prevData.inventoryData.filter(
-        //     (inventory) => inventory.id !== id
-        //   ),
-        // }));
+        // setInventoryListData((prevData) =>  prevData.filter(
+        //     (inventory) => inventory.id !== id))}
 
         setInventoryListData((prev) => prev.filter((item) => item.id !== id));
       })
       .catch((error) => console.log("delete error", error));
+    history.goBack();
+    // closeModal();
   };
 
   return (
@@ -58,7 +60,7 @@ const DeleteModal = ({
       >
         <section className="delete">
           <div className="delete__container-top">
-            <NavLink to="/warehouse" className="delete__link-close">
+            <NavLink to={`${location.pathname}`} className="delete__link-close">
               <img
                 className="delete__icon-close"
                 alt="close icon"

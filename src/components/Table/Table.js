@@ -11,7 +11,7 @@ import { filterInventory, filterWarehouse } from "../../utils/helper";
 const Table = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // console.log("Table props", props);
+  console.log("Table props", props);
   // console.log();
   return (
     <section className="table">
@@ -37,8 +37,10 @@ const Table = (props) => {
             // FIXME: might not work properly yet
             props.buttonLabel.includes("Add New Warehouse")
               ? "/warehouse/add-new-warehouse"
-              : props.buttonLabel.includes("edit warehouse")
-              ? `/warehouse/edit/${props.location.pathname.slice(-36)}`
+              : props.dataSet === "warehouseDetails"
+              ? `/warehouse/edit-warehouse/${props.location.pathname.slice(
+                  -36
+                )}`
               : props.buttonLabel.includes("Add New Item")
               ? "/inventory/add-new-item"
               : `/inventory/edit/${props.location.pathname.slice(-36)}`
@@ -126,6 +128,7 @@ const Table = (props) => {
                 location={props.location}
                 setWarehouseDetailsData={props.setWarehouseDetailsData}
                 modalType={props.modalType}
+                setInventoryListData={props.setInventoryListData}
               />
             );
           })}

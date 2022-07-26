@@ -19,20 +19,35 @@ const ItemAvailabilityForm = ({
   selectedItem,
   setStatus,
   purpose,
+  location,
 }) => {
-  console.log("labelOne", labelOne);
-  console.log("labelTwo", labelTwo);
-  console.log("labelThree", labelThree);
-  console.log("labelFour", labelFour);
+  console.log("selectedItem", selectedItem);
 
-  console.log(selectedItem);
+  const [singleItem, setSingleItem] = useState("");
+  const [itemStatus, setItemStatus] = useState("");
+
+  useEffect(() => {
+    console.log("loop");
+    axios
+      .get(`${BASE_URL}inventory/${location.pathname.slice(-36)}`)
+      .then((response) => {
+        console.log("get inventory by ID success");
+        setSingleItem(response.data);
+        setItemStatus(response.data.status);
+        console.log(response);
+      })
+      .catch((error) =>
+        console.log("ItemAvailabilityForm get inventory data error", error)
+      );
+  }, []);
+
   //FIXME:
-  const onChangeHandler = (e, setState) => {
-    e.preventDefault();
-    console.log("onChange");
-    console.log(e.target.value);
-    setState(e.target.value);
-  };
+  // const onChangeHandler = (e, setState) => {
+  //   e.preventDefault();
+  //   console.log("onChange");
+  //   console.log(e.target.value);
+  //   setState(e.target.value);
+  // };
 
   // if (purpose === "") {
   //   return <h1>Loading...</h1>;
@@ -53,12 +68,14 @@ const ItemAvailabilityForm = ({
             name={"status"}
             id={labelOne.replace(/\s+/g, "")}
             value="In Stock"
-            defaultChecked={stockStatus === "In Stock"}
+            // defaultChecked={itemStatus === "In Stock"}
+            onChange={(e) => setItemStatus(e.target.value)}
+            // checked
           />
           <label
             htmlFor={labelOne.replace(/\s+/g, "")}
             className={`formcard__label`}
-            id={`${stockStatus === "In Stock" ? "" : "formcard__label--grey"}`}
+            id={`${itemStatus === "In Stock" ? "" : "formcard__label--grey"}`}
           >
             {labelOne}
           </label>
@@ -72,33 +89,34 @@ const ItemAvailabilityForm = ({
             name={"status"}
             id={labelTwo.replace(/\s+/g, "")}
             value={"Out of Stock"}
-            defaultChecked={stockStatus === "Out of Stock"}
+            defaultChecked={itemStatus === "Out of Stock"}
+            onChange={(e) => setItemStatus(e.target.value)}
           />
           <label
             htmlFor={labelTwo.replace(/\s+/g, "")}
             className={`formcard__label `}
             id={`${
-              stockStatus === "Out of Stock" ? "" : "formcard__label--grey"
+              itemStatus === "Out of Stock" ? "" : "formcard__label--grey"
             }`}
           >
             {labelTwo}
           </label>
         </div>
       </div>
-      {stockStatus === "In Stock" ||
-        (purpose === "add" && (
-          <>
-            <label htmlFor={labelThree} className="formcard__label">
-              {labelThree}
-            </label>
-            <input
-              type="number"
-              className="formcard__input formcard__input--qty"
-              id={labelThree.replace(/\s+/g, "")}
-              defaultValue={selectedItem.quantity}
-            ></input>
-          </>
-        ))}
+      {/* QUANTITY FIELD  */}
+      {itemStatus === "In Stock" && (
+        <>
+          <label htmlFor={labelThree} className="formcard__label">
+            {labelThree}
+          </label>
+          <input
+            type="number"
+            className="formcard__input formcard__input--qty"
+            id={labelThree.replace(/\s+/g, "")}
+            defaultValue={singleItem.quantity}
+          ></input>
+        </>
+      )}
       <label
         htmlFor={labelFour.replace(/\s+/g, "")}
         className="formcard__label"
@@ -110,7 +128,7 @@ const ItemAvailabilityForm = ({
           className={`formcard__input ${false ? "formcard__error" : ""}`}
           name={labelFour.replace(/\s+/g, "")}
           id={labelFour.replace(/\s+/g, "")}
-          defaultValue={selectedItem.warehouseName}
+          defaultValue={singleItem.warehouseName}
         >
           {warehouseListData.map((warehouse) => (
             <option key={warehouse.id}>{warehouse.name}</option>
