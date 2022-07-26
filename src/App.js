@@ -49,7 +49,6 @@ const App = ({ location }) => {
       !location.pathname.includes("add") &&
       !location.pathname.includes("edit")
     ) {
-      console.log("useEffect did update on warehouse list click");
       axios
         .get(`${BASE_URL}${location.pathname.slice(1)}`)
         .then((response) => {

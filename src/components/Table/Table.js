@@ -11,7 +11,6 @@ import { filterInventory, filterWarehouse } from "../../utils/helper";
 const Table = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  console.log("Table props", props);
   return (
     <section className="table">
       <div className="table__header">

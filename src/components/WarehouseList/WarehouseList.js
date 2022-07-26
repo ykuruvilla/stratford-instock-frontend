@@ -7,7 +7,6 @@ import Button from "../Button/Button";
 import { NavLink } from "react-router-dom";
 
 const WarehouseList = ({ warehouseListData, setWarehouseListData }) => {
-  console.log("WarehouseList props", setWarehouseListData);
   if (warehouseListData.length < 1) {
     return <h1>Page loading...</h1>;
   }

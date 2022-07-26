@@ -91,15 +91,10 @@ const Form = ({
   const inventoryFormSubmitHandler = (e) => {
     e.preventDefault();
 
-    // if no input error -> POST data to backend
-    console.log("event", e.target.Warehouse);
-
     let selectedWarehouse = warehouseListData.find(
       (warehouse) => warehouse.name === e.target.Warehouse.value
     );
-    console.log("selectedWarehouse.id", selectedWarehouse.id);
 
-    // FIXME: accessing the value doesnt work!
     const newItemObj = {
       warehouseID: selectedWarehouse.id,
       warehouseName: e.target.Warehouse.value,
@@ -110,14 +105,10 @@ const Form = ({
       quantity: e.target.Quantity.value,
     };
 
-    console.log("New item obj", newItemObj);
-
     if (view === "add") {
-      console.log("View is add");
       axios
         .post(`${BASE_URL}inventory`, newItemObj)
         .then((response) => {
-          console.log("Post success");
           // add new warehouse to state to trigger re-render
           setInventoryListData((prevData) => [
             ...prevData,
@@ -126,11 +117,9 @@ const Form = ({
         })
         .catch((error) => console.log("POST new item error", error));
     } else if (view === "edit") {
-      console.log("View is edit");
       axios
         .put(`${BASE_URL}inventory/${location.pathname.slice(-36)}`, newItemObj)
         .then((response) => {
-          console.log("PUT new item success");
           // add edited item to state to trigger re-render
           setInventoryListData((prevData) =>
             prevData.map((item) =>
@@ -194,7 +183,6 @@ const Form = ({
     };
 
     if (view === "add") {
-      console.log("View is add");
       axios
         .post(`${BASE_URL}warehouse`, newWarehouseObj)
         .then((response) => {
@@ -206,7 +194,6 @@ const Form = ({
         })
         .catch((error) => console.log("POST new warehouse error", error));
     } else if (view === "edit") {
-      console.log("View is edit");
       axios
         .put(
           `${BASE_URL}warehouse/${location.pathname.slice(-36)}`,

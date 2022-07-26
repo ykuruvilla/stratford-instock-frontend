@@ -26,7 +26,6 @@ const DeleteModal = ({
     axios
       .delete(`${BASE_URL}warehouse/${id}`)
       .then((response) => {
-        console.log("delete warehouse success", response);
         setWarehouseListData((prev) =>
           prev.filter((warehouse) => warehouse.id !== id)
         );
@@ -37,12 +36,7 @@ const DeleteModal = ({
   const deleteInventoryItem = () => {
     axios
       .delete(`${BASE_URL}inventory/${id}`)
-      .then((response) => {
-        console.log("delete inventory success", response);
-        // FIXME: What data arae we mapping over to show ivnentory list?
-        // setInventoryListData((prevData) =>  prevData.filter(
-        //     (inventory) => inventory.id !== id))}
-
+      .then((_response) => {
         setInventoryListData((prev) => prev.filter((item) => item.id !== id));
       })
       .catch((error) => console.log("delete error", error));

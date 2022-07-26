@@ -26,26 +26,23 @@ const ItemDetailsForm = ({
     ...new Set(inventoryListData.map((item) => item.category)),
   ];
 
-  console.log("itemavailability selectedItem", selectedItem);
-  console.log("purpose", purpose);
-
   const [inventoryName, setInventoryName] = useState("");
   const [inventoryDescription, setInventoryDescription] = useState("");
   const [inventoryCategory, setInventoryCategory] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`${BASE_URL}inventory/${location.pathname.slice(-36)}`)
-      .then((response) => {
-        console.log("get inventory by ID success in itemdetailsForm");
-        setInventoryName(response.data.itemName);
-        setInventoryDescription(response.data.description);
-        setInventoryCategory(response.data.category);
-        console.log(response);
-      })
-      .catch((error) =>
-        console.log("ItemAvailabilityForm get inventory data error", error)
-      );
+    if (!location.pathname.includes("add-new-item")) {
+      axios
+        .get(`${BASE_URL}inventory/${location.pathname.slice(-36)}`)
+        .then((response) => {
+          setInventoryName(response.data.itemName);
+          setInventoryDescription(response.data.description);
+          setInventoryCategory(response.data.category);
+        })
+        .catch((error) =>
+          console.log("ItemAvailabilityForm GET inventory data error", error)
+        );
+    }
   }, []);
 
   return (

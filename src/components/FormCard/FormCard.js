@@ -41,10 +41,9 @@ const FormCard = ({
           setContactPosition(response.data.contact.position);
           setContactPhone(response.data.contact.phone);
           setContactEmail(response.data.contact.email);
-          console.log("successful get warehousebyID");
         })
         .catch((error) =>
-          console.log("GET warehouse by ID error in FormCard.js", error)
+          console.log("GET warehouseById error in FormCard.js", error)
         );
     }
   }, []);
