@@ -152,23 +152,21 @@ const Form = ({
         })
         .catch((error) => console.log("POST new item error", error));
     } else if (view === "edit") {
-      // console.log("View is edit");
-      // axios
-      //   .put(
-      //     `${BASE_URL}warehouse/${location.pathname.slice(-36)}`,
-      //     newWarehouseObj
-      //   )
-      //   .then((response) => {
-      //     // add edited warehouse to state to trigger re-render
-      //     setWarehouseListData((prevData) =>
-      //       prevData.map((warehouse) =>
-      //         warehouse.id === location.pathname.slice(-36)
-      //           ? response.data.resourceUpdated
-      //           : warehouse
-      //       )
-      //     );
-      //   })
-      //   .catch((error) => console.log("POST new warehouse error", error));
+      console.log("View is edit");
+      axios
+        .put(`${BASE_URL}inventory/${location.pathname.slice(-36)}`, newItemObj)
+        .then((response) => {
+          console.log("PUT new item success");
+          // add edited item to state to trigger re-render
+          setInventoryListData((prevData) =>
+            prevData.map((item) =>
+              item.id === location.pathname.slice(-36)
+                ? response.data.resourceUpdated
+                : item
+            )
+          );
+        })
+        .catch((error) => console.log("PUT new item error", error));
     }
     e.target.reset();
     history.push("/warehouse");
@@ -263,6 +261,10 @@ const Form = ({
     history.goBack("/warehouse");
   };
 
+  console.log(
+    " location.pathname.includes()",
+    location.pathname.includes("add-new-item")
+  );
   return (
     <section className="form">
       <div className="form__container">
@@ -273,7 +275,8 @@ const Form = ({
       </div>
       <form
         onSubmit={
-          location.pathname.includes("add-new-item")
+          location.pathname.includes("add-new-item") ||
+          location.pathname.includes("edit-item")
             ? inventoryFormSubmitHandler
             : warehouseFormSubmitHandler
         }

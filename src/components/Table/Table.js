@@ -12,12 +12,10 @@ const Table = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   console.log("Table props", props);
-  // console.log();
   return (
     <section className="table">
       <div className="table__header">
         <h1 className="table__title">{props.title}</h1>
-        {/* Will this work? */}
         {props.hasSearch && (
           <form className="table__search">
             <input
@@ -34,7 +32,6 @@ const Table = (props) => {
         <NavLink
           className="table__link"
           to={
-            // FIXME: might not work properly yet
             props.buttonLabel.includes("Add New Warehouse")
               ? "/warehouse/add-new-warehouse"
               : props.dataSet === "warehouseDetails"

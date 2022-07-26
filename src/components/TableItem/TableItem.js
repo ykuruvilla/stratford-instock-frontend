@@ -8,7 +8,6 @@ import { useState } from "react";
 import DeleteModal from "../DeleteModal/DeleteModal";
 
 function TableItem(props) {
-  console.log("TableItem props", props);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -75,7 +74,6 @@ function TableItem(props) {
   if (props.dataSet === "warehouseDetails") {
     return (
       <>
-        {/* DeleteModal will need to be changed to DeleteInventoryModal once it is built */}
         <DeleteModal
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
@@ -139,10 +137,8 @@ function TableItem(props) {
   }
 
   if (props.dataSet === "inventoryList") {
-    // console.log("TableItem Inventory List Section");
     return (
       <>
-        {/* DeleteWarehouseModal will need to be changed to DeleteInventoryModal once it is built */}
         <DeleteModal
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}

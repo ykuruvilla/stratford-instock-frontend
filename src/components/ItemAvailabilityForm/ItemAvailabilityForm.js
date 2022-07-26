@@ -21,24 +21,24 @@ const ItemAvailabilityForm = ({
   purpose,
   location,
 }) => {
-  console.log("selectedItem", selectedItem);
-
   const [singleItem, setSingleItem] = useState("");
   const [itemStatus, setItemStatus] = useState("");
 
   useEffect(() => {
-    console.log("loop");
-    axios
-      .get(`${BASE_URL}inventory/${location.pathname.slice(-36)}`)
-      .then((response) => {
-        console.log("get inventory by ID success");
-        setSingleItem(response.data);
-        setItemStatus(response.data.status);
-        console.log(response);
-      })
-      .catch((error) =>
-        console.log("ItemAvailabilityForm get inventory data error", error)
-      );
+    if (!location.pathname.includes("add-new-item")) {
+      console.log("useEffect in ItemAvailabilityForm:");
+      axios
+        .get(`${BASE_URL}inventory/${location.pathname.slice(-36)}`)
+        .then((response) => {
+          console.log("get inventory by ID success");
+          setSingleItem(response.data);
+          setItemStatus(response.data.status);
+          console.log(response);
+        })
+        .catch((error) =>
+          console.log("ItemAvailabilityForm get inventory data error", error)
+        );
+    }
   }, []);
 
   //FIXME:
