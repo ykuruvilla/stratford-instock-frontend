@@ -7,13 +7,18 @@ import Button from "../Button/Button";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { filterInventory, filterWarehouse } from "../../utils/helper";
+import arrow from "../../assets/icons/arrow_back-24px.svg";
 
 const Table = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
-
   return (
     <section className="table">
       <div className="table__header">
+        {props.dataSet === "warehouseDetails" && (
+          <NavLink to="/warehouse" className="form__arrow-link">
+            <img src={arrow} alt="arrow icon" className="form__arrow" />
+          </NavLink>
+        )}
         <h1 className="table__title">{props.title}</h1>
         {props.hasSearch && (
           <form className="table__search">
@@ -107,7 +112,6 @@ const Table = (props) => {
                   location={props.location}
                   setWarehouseListData={props.setWarehouseListData}
                   modalType={props.modalType}
-                  // below is undefined
                   setWarehouseDetailsData={props.setWarehouseDetailsData}
                 />
               );

@@ -53,11 +53,14 @@ const ItemAvailabilityForm = ({
             className={`formcard__radio ${
               ErrorInputTwo ? "formcard__error" : ""
             }`}
-            name={"status"}
+            name="status"
             id={labelOne.replace(/\s+/g, "")}
             value="In Stock"
             checked={itemStatus === "In Stock"}
-            onChange={(e) => setItemStatus(e.target.value)}
+            onChange={(e) => {
+              console.log("in stock", e.target.value);
+              setItemStatus(e.target.value);
+            }}
           />
           <label
             htmlFor={labelOne.replace(/\s+/g, "")}
@@ -73,7 +76,7 @@ const ItemAvailabilityForm = ({
             className={`formcard__radio ${
               ErrorInputTwo ? "formcard__error" : ""
             }`}
-            name={"status"}
+            name="status"
             id={labelTwo.replace(/\s+/g, "")}
             value={"Out of Stock"}
             checked={itemStatus === "Out of Stock"}
@@ -81,7 +84,7 @@ const ItemAvailabilityForm = ({
           />
           <label
             htmlFor={labelTwo.replace(/\s+/g, "")}
-            className={`formcard__label `}
+            className={`formcard__label`}
             id={`${
               itemStatus === "Out of Stock" ? "" : "formcard__label--grey"
             }`}
@@ -101,6 +104,18 @@ const ItemAvailabilityForm = ({
             className="formcard__input formcard__input--qty"
             id={labelThree.replace(/\s+/g, "")}
             defaultValue={singleItem.quantity}
+            name="Quantity"
+          ></input>
+        </>
+      )}
+      {itemStatus === "Out of Stock" && (
+        <>
+          <input
+            type="hidden"
+            className="formcard__input formcard__input--qty"
+            id={labelThree.replace(/\s+/g, "")}
+            defaultValue={0}
+            name="Quantity"
           ></input>
         </>
       )}

@@ -25,7 +25,7 @@ const DeleteModal = ({
   const deleteWarehouse = () => {
     axios
       .delete(`${BASE_URL}warehouse/${id}`)
-      .then((response) => {
+      .then((_response) => {
         setWarehouseListData((prev) =>
           prev.filter((warehouse) => warehouse.id !== id)
         );
@@ -38,10 +38,10 @@ const DeleteModal = ({
       .delete(`${BASE_URL}inventory/${id}`)
       .then((_response) => {
         setInventoryListData((prev) => prev.filter((item) => item.id !== id));
+        closeModal();
       })
       .catch((error) => console.log("delete error", error));
-    history.goBack();
-    // closeModal();
+    // history.goBack();
   };
 
   return (

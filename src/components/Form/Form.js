@@ -45,9 +45,7 @@ const Form = ({
 
   useEffect(() => {
     if (
-      //FIXME:
-      // Object.keys(selectedItem).length === 0 ||
-      // location.pathname.includes("inventory")) ||
+      location.pathname.includes("add-new-warehouse") &&
       inventoryListData.length < 1
     ) {
       axios
@@ -60,6 +58,7 @@ const Form = ({
               return inventory.id === location.pathname.slice(-36);
             });
 
+            console.log("current Item");
             setSelectedItem(currentItem);
             setItemName(currentItem.itemName);
             setDescription(currentItem.description);
@@ -101,8 +100,8 @@ const Form = ({
       itemName: e.target.ItemName.value,
       description: e.target.Description.value,
       category: e.target.Category.value,
-      status: e.target.status.value,
-      quantity: e.target.Quantity.value,
+      status: !e.target.status.value ? "Out of Stock" : e.target.status.value,
+      quantity: !e.target.status.value ? 0 : e.target.Quantity.value,
     };
 
     if (view === "add") {
@@ -116,6 +115,8 @@ const Form = ({
           ]);
         })
         .catch((error) => console.log("POST new item error", error));
+      // return to inventory page
+      history.push("/inventory");
     } else if (view === "edit") {
       axios
         .put(`${BASE_URL}inventory/${location.pathname.slice(-36)}`, newItemObj)
@@ -130,9 +131,9 @@ const Form = ({
           );
         })
         .catch((error) => console.log("PUT new item error", error));
+      history.goBack();
     }
     e.target.reset();
-    history.push("/warehouse");
   };
 
   const warehouseFormSubmitHandler = (e) => {
@@ -193,6 +194,8 @@ const Form = ({
           ]);
         })
         .catch((error) => console.log("POST new warehouse error", error));
+      // return to /warehouse
+      history.push("/warehouse");
     } else if (view === "edit") {
       axios
         .put(
@@ -210,22 +213,28 @@ const Form = ({
           );
         })
         .catch((error) => console.log("POST new warehouse error", error));
+      history.goBack();
     }
     e.target.reset();
-    //FIXME:
-    history.push("/warehouse");
   };
 
   const cancelSubmitHandler = (e) => {
     e.preventDefault();
-    //FIXME:
-    history.goBack("/warehouse");
+    history.goBack();
   };
 
   return (
     <section className="form">
       <div className="form__container">
-        <NavLink to="/warehouse" className="form__arrow-link">
+        <NavLink
+          to={
+            location.pathname.includes("add-new-item") ||
+            location.pathname.includes("edit-item")
+              ? "/inventory"
+              : "/warehouse"
+          }
+          className="form__arrow-link"
+        >
           <img src={arrow} alt="arrow icon" className="form__arrow" />
         </NavLink>
         <h1 className="form__title">{title}</h1>
