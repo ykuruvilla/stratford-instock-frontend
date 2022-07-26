@@ -22,6 +22,8 @@ const ItemDetailsForm = ({
     ...new Set(inventoryListData.map((item) => item.category)),
   ];
 
+  console.log("unique", uniqueCategories);
+
   if (selectedItem.length === 0) {
     return <h1>Loading...</h1>;
   } else {
@@ -113,7 +115,7 @@ const ItemDetailsForm = ({
             name={labelThree.replace(/\s+/g, "")}
             id={labelThree.replace(/\s+/g, "")}
           >
-            <option value="" selected disabled hidden>
+            <option selected disabled hidden>
               Please select a category
             </option>
             {uniqueCategories.map((category, i) => (

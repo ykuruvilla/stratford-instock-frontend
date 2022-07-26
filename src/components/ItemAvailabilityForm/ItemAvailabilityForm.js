@@ -20,6 +20,11 @@ const ItemAvailabilityForm = ({
   setStatus,
   purpose,
 }) => {
+  console.log("labelOne", labelOne);
+  console.log("labelTwo", labelTwo);
+  console.log("labelThree", labelThree);
+  console.log("labelFour", labelFour);
+
   console.log(selectedItem);
   //FIXME:
   const onChangeHandler = (e, setState) => {
@@ -47,7 +52,7 @@ const ItemAvailabilityForm = ({
             }`}
             name={"status"}
             id={labelOne.replace(/\s+/g, "")}
-            value={stockStatus}
+            value="In Stock"
             defaultChecked={stockStatus === "In Stock"}
           />
           <label
@@ -66,7 +71,7 @@ const ItemAvailabilityForm = ({
             }`}
             name={"status"}
             id={labelTwo.replace(/\s+/g, "")}
-            value={labelTwo.replace(/\s+/g, "")}
+            value={"Out of Stock"}
             defaultChecked={stockStatus === "Out of Stock"}
           />
           <label
@@ -118,7 +123,7 @@ const ItemAvailabilityForm = ({
           name={labelFour.replace(/\s+/g, "")}
           id={labelFour.replace(/\s+/g, "")}
         >
-          <option value="" selected disabled hidden>
+          <option selected disabled hidden>
             Please select a warehouse
           </option>
           {warehouseListData.map((warehouse) => (

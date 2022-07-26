@@ -53,23 +53,26 @@ const Form = ({
 
   useEffect(() => {
     if (
-      Object.keys(selectedItem).length === 0 &&
-      location.pathname.includes("inventory") &&
-      !location.pathname.includes("/inventory/add")
+      //FIXME:
+      // (Object.keys(selectedItem).length === 0 &&
+      //   location.pathname.includes("inventory")) ||
+      inventoryListData.length < 1
     ) {
       axios
         .get(`${BASE_URL}inventory`)
         .then((response) => {
           setInventoryListData(response.data);
 
-          let currentItem = response.data.find((inventory) => {
-            return inventory.id === location.pathname.slice(-36);
-          });
+          if (!location.pathname.includes("inventory/add")) {
+            let currentItem = response.data.find((inventory) => {
+              return inventory.id === location.pathname.slice(-36);
+            });
 
-          setSelectedItem(currentItem);
-          setItemName(currentItem.itemName);
-          setDescription(currentItem.description);
-          setStatus(currentItem.status);
+            setSelectedItem(currentItem);
+            setItemName(currentItem.itemName);
+            setDescription(currentItem.description);
+            setStatus(currentItem.status);
+          }
         })
         .catch((error) =>
           console.log("ItemAvailabilityForm get inventory data error", error)
@@ -92,7 +95,86 @@ const Form = ({
 
   const history = useHistory();
 
-  const formSubmitHandler = (e) => {
+  // INVENTORY
+  const inventoryFormSubmitHandler = (e) => {
+    e.preventDefault();
+
+    // resets
+    // resets();
+
+    // input validation
+    // let errorArray = [
+    //   validateInput(e.target.itemName.value, setWarehouseNameError),
+    //   validateInput(e.target.description.value, setstreetAddressError),
+    //   validateInput(e.target.category.value, setCityError),
+    //   validateInput(e.target.status.value, setCountryError),
+    //   validateInput(e.target.quantity.value, setContactNameError),
+    //   validateInput(e.target.warehoues.value, setPositionError),
+    // ];
+
+    // for (let error of errorArray) {
+    //   if (error) {
+    //     return;
+    //   }
+    // }
+    // if no input error -> POST data to backend
+    console.log("event", e.target.Warehouse);
+
+    let selectedWarehouse = warehouseListData.find(
+      (warehouse) => warehouse.name === e.target.Warehouse.value
+    );
+    console.log("selectedWarehouse.id", selectedWarehouse.id);
+
+    // FIXME: accessing the value doesnt work!
+    const newItemObj = {
+      warehouseID: selectedWarehouse.id,
+      warehouseName: e.target.Warehouse.value,
+      itemName: e.target.ItemName.value,
+      description: e.target.Description.value,
+      category: e.target.Category.value,
+      status: e.target.status.value,
+      quantity: e.target.Quantity.value,
+    };
+
+    console.log("New item obj", newItemObj);
+
+    if (view === "add") {
+      console.log("View is add");
+      axios
+        .post(`${BASE_URL}inventory`, newItemObj)
+        .then((response) => {
+          console.log("Post success");
+          // add new warehouse to state to trigger re-render
+          setInventoryListData((prevData) => [
+            ...prevData,
+            response.data.resourceCreated,
+          ]);
+        })
+        .catch((error) => console.log("POST new item error", error));
+    } else if (view === "edit") {
+      // console.log("View is edit");
+      // axios
+      //   .put(
+      //     `${BASE_URL}warehouse/${location.pathname.slice(-36)}`,
+      //     newWarehouseObj
+      //   )
+      //   .then((response) => {
+      //     // add edited warehouse to state to trigger re-render
+      //     setWarehouseListData((prevData) =>
+      //       prevData.map((warehouse) =>
+      //         warehouse.id === location.pathname.slice(-36)
+      //           ? response.data.resourceUpdated
+      //           : warehouse
+      //       )
+      //     );
+      //   })
+      //   .catch((error) => console.log("POST new warehouse error", error));
+    }
+    e.target.reset();
+    history.push("/warehouse");
+  };
+
+  const warehouseFormSubmitHandler = (e) => {
     e.preventDefault();
 
     // resets
@@ -188,7 +270,13 @@ const Form = ({
         </NavLink>
         <h1 className="form__title">{title}</h1>
       </div>
-      <form onSubmit={formSubmitHandler}>
+      <form
+        onSubmit={
+          location.pathname.includes("add-new-item")
+            ? inventoryFormSubmitHandler
+            : warehouseFormSubmitHandler
+        }
+      >
         {location.pathname.includes("warehouse") && (
           <div className="form__container-cards">
             <FormCard
@@ -222,7 +310,7 @@ const Form = ({
         {location.pathname.includes("add-new-item") && (
           <div className="form__container-cards">
             <ItemDetailsForm
-              title={"item Details"}
+              title={"Item Details"}
               labelOne={"Item Name"}
               labelTwo={"Description"}
               labelThree={"Category"}
